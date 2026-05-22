@@ -58,7 +58,7 @@ let data =
 await response.json();
 
 chatBody.innerHTML +=
-"<p><b>AI:</b> "
+"<p>"
 + data.reply +
 "</p>";
 
