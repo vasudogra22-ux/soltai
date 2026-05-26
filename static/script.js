@@ -1,104 +1,115 @@
-function toggleChat(){
-
-    let chat =
-    document.getElementById("chatBox");
-
-    if(chat.style.display === "flex"){
-
-        chat.style.display = "none";
-
-    }else{
-
-        chat.style.display = "flex";
-    }
-}
-
+const chatBody =
+document.getElementById("chatBody");
 
 
 async function sendMessage(){
 
-    let input =
-    document.getElementById("message");
+let input =
+document.getElementById("message");
 
-    let message = input.value;
+let message =
+input.value;
 
-    if(message === "") return;
-
-    let chatBody =
-    document.getElementById("chatBody");
+if(message === "") return;
 
 
-    // USER MESSAGE
+// USER MESSAGE
 
-    chatBody.innerHTML += `
+chatBody.innerHTML += `
 
-    <div class="user-message">
-        ${message}
-    </div>
+<div class="user">
 
-    `;
+<div class="bubble">
 
+${message}
 
-    // THINKING
+</div>
 
-    chatBody.innerHTML += `
+</div>
 
-    <div class="ai-message thinking"
-    id="thinking">
-
-        SOLTAI AI is thinking
-
-    </div>
-
-    `;
-
-    chatBody.scrollTop =
-    chatBody.scrollHeight;
+`;
 
 
-    input.value = "";
+// THINKING
+
+chatBody.innerHTML += `
+
+<div class="ai"
+id="thinking">
+
+<div class="ai-logo">
+S
+</div>
+
+<div class="bubble thinking">
+
+SOLTAI AI is thinking
+
+</div>
+
+</div>
+
+`;
 
 
-    let response =
-    await fetch("/chat",{
-
-        method:"POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify({
-            message:message
-        })
-    });
+chatBody.scrollTop =
+chatBody.scrollHeight;
 
 
-    let data =
-    await response.json();
+input.value = "";
 
 
-    // REMOVE THINKING
+// API
 
-    document
-    .getElementById("thinking")
-    .remove();
+let response =
+await fetch("/chat",{
 
+method:"POST",
 
-    // AI REPLY
+headers:{
+"Content-Type":"application/json"
+},
 
-    chatBody.innerHTML += `
+body:JSON.stringify({
+message:message
+})
 
-    <div class="ai-message">
-
-        ${data.reply}
-
-    </div>
-
-    `;
+});
 
 
-    chatBody.scrollTop =
-    chatBody.scrollHeight;
+let data =
+await response.json();
 
-}  
+
+// REMOVE THINKING    
+
+document
+.getElementById("thinking")
+.remove();
+
+
+// AI MESSAGE
+
+chatBody.innerHTML += `
+
+<div class="ai">
+
+<div class="ai-logo">
+S
+</div>
+
+<div class="bubble">
+
+${data.reply}
+
+</div>
+
+</div>
+
+`;
+
+
+chatBody.scrollTop =
+chatBody.scrollHeight;
+
+}
