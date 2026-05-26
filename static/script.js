@@ -1,68 +1,104 @@
-function openChat(){
+function toggleChat(){
 
-let chat =
-document.getElementById("chatBox");
+    let chat =
+    document.getElementById("chatBox");
 
-if(chat.style.display === "block"){
+    if(chat.style.display === "flex"){
 
-chat.style.display = "none";
+        chat.style.display = "none";
 
+    }else{
+
+        chat.style.display = "flex";
+    }
 }
 
-else{
 
-chat.style.display = "block";
-
-}
-
-}
 
 async function sendMessage(){
 
-let input =
-document.getElementById("messageInput");
+    let input =
+    document.getElementById("message");
 
-let message =
-input.value;
+    let message = input.value;
 
-if(message.trim() === ""){
-return;
-}
+    if(message === "") return;
 
-let chatBody =
-document.querySelector(".chat-body");
+    let chatBody =
+    document.getElementById("chatBody");
 
-chatBody.innerHTML +=
-"<p><b>You:</b> "
-+ message +
-"</p>";
 
-input.value = "";
+    // USER MESSAGE
 
-let response =
-await fetch("/chat",
-{
-method:"POST",
+    chatBody.innerHTML += `
 
-headers:{
-"Content-Type":"application/json"
-},
+    <div class="user-message">
+        ${message}
+    </div>
 
-body:JSON.stringify({
-message:message
-})
-}
-);
+    `;
 
-let data =
-await response.json();
 
-chatBody.innerHTML +=
-"<p>"
-+ data.reply +
-"</p>";
+    // THINKING
 
-chatBody.scrollTop =
-chatBody.scrollHeight;
+    chatBody.innerHTML += `
 
-}
+    <div class="ai-message thinking"
+    id="thinking">
+
+        SOLTAI AI is thinking
+
+    </div>
+
+    `;
+
+    chatBody.scrollTop =
+    chatBody.scrollHeight;
+
+
+    input.value = "";
+
+
+    let response =
+    await fetch("/chat",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+            message:message
+        })
+    });
+
+
+    let data =
+    await response.json();
+
+
+    // REMOVE THINKING
+
+    document
+    .getElementById("thinking")
+    .remove();
+
+
+    // AI REPLY
+
+    chatBody.innerHTML += `
+
+    <div class="ai-message">
+
+        ${data.reply}
+
+    </div>
+
+    `;
+
+
+    chatBody.scrollTop =
+    chatBody.scrollHeight;
+
+}  
