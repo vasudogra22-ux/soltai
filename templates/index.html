@@ -1,120 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
-    <title>SOLTAI AI</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+<title>SOLTAI AI</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<div class="texture"></div>
+
+<!-- NAVBAR -->
 
 <nav>
 
-    <div class="logo">
-        SOLTAI
-    </div>
+<div class="logo">
+    SOLTAI
+</div>
 
-    <ul>
+<ul>
 
-        <li>Home</li>
-        <li>Services</li>
-        <li>AI</li>
-        <li>Contact</li>
+<li class="active">Home</li>
+<li>Services</li>
+<li>AI</li>
+<li>Contact</li>
 
-    </ul>
+</ul>
 
 </nav>
 
 
+<!-- HERO -->
+
 <section class="hero">
 
-    <div class="left">
+<div class="left">
 
-        <h1>
-            AI Powered <br>
-            Future Solutions
-        </h1>
+<div class="badge">
+● Next Generation AI Platform
+</div>
 
-        <p>
-            Welcome to SOLTAI AI.
-            Build smart systems with AI technology.
-        </p>
+<h1>
+AI Powered <br>
+Future Solutions
+</h1>
 
-        <button>
-            Get Started
-        </button>
+<p>
+Welcome to SOLTAI AI.
+Build smart systems with AI technology.
+</p>
 
-    </div>
+<button class="start-btn">
+
+Get Started
+<span>→</span>
+
+</button>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🧠</div>
+<h3>Smart AI</h3>
+<p>Automation</p>
+</div>
+
+<div class="card">
+<div class="icon">📊</div>
+<h3>Advanced</h3>
+<p>Analytics</p>
+</div>
+
+<div class="card">
+<div class="icon">🛡️</div>
+<h3>Secure &</h3>
+<p>Reliable</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHAT PANEL -->
+
+<div class="chat-panel">
+
+<div class="chat-top">
+
+<div class="profile">
+
+<div class="profile-logo">
+S
+</div>
+
+<div>
+
+<h2>SOLTAI AI</h2>
+
+<span class="online">
+● Online
+</span>
+
+</div>
+
+</div>
+
+<div class="minus">
+—
+</div>
+
+</div>
+
+
+<!-- CHAT BODY -->
+
+<div class="chat-body"
+id="chatBody">
+
+</div>
+
+
+<!-- INPUT -->
+
+<div class="chat-input">
+
+<input
+type="text"
+id="message"
+placeholder="Ask SOLTAI AI anything...">
+
+<button onclick="sendMessage()">
+➤
+</button>
+
+</div>
+
+<div class="powered">
+Powered by <span>SOLTAI AI</span>
+</div>
+
+</div>
 
 </section>
 
 
-<!-- FLOATING BUTTON -->
+<!-- FLOATING LOGO -->
 
-<div class="chat-toggle" onclick="toggleChat()">
-    S
+<div class="floating-logo">
+S
 </div>
-
-
-<!-- CHATBOX -->
-
-<div class="chat-box" id="chatBox">
-
-    <div class="chat-header">
-
-        <div class="chat-logo">
-            S
-        </div>
-
-        <div>
-
-            <h2>SOLTAI AI</h2>
-            <span>● Online</span>
-
-        </div>
-
-    </div>
-
-
-    <div class="chat-body" id="chatBody">
-
-        <div class="ai-message">
-            Hello 👋
-        </div>
-
-    </div>
-
-
-    <div class="chat-input">
-
-        <input
-        type="text"
-        id="message"
-        placeholder="Ask SOLTAI AI anything...">
-
-        <button onclick="sendMessage()">
-            →
-        </button>
-
-    </div>
-
-</div>
-
 
 <script
 src="{{ url_for('static', filename='script.js') }}">
 </script>
 
 </body>
-</html>
+</html>    
