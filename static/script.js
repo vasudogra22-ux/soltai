@@ -1,50 +1,45 @@
-const chatBody =
-document.getElementById("chatBody");
+function toggleChat(){
 
+let panel =
+document.getElementById("chatPanel");
+
+panel.classList.toggle("active");
+
+}
 
 async function sendMessage(){
 
 let input =
 document.getElementById("message");
 
+let chatBody =
+document.getElementById("chatBody");
+
 let message =
 input.value;
 
-if(message === "") return;
-
-
-// USER
+if(message=="") return;
 
 chatBody.innerHTML += `
 
-<div class="user">
-
-<div class="bubble">
-
+<div class="user-message">
 ${message}
-
-</div>
-
 </div>
 
 `;
 
-
-// THINKING
+input.value="";
 
 chatBody.innerHTML += `
 
-<div class="ai"
-id="thinking">
+<div class="ai-row thinking">
 
-<div class="ai-logo">
+<div class="mini-logo">
 S
 </div>
 
-<div class="bubble">
-
+<div class="ai-message">
 SOLTAI AI is thinking
-
 </div>
 
 </div>
@@ -53,11 +48,6 @@ SOLTAI AI is thinking
 
 chatBody.scrollTop =
 chatBody.scrollHeight;
-
-input.value = "";
-
-
-// API
 
 let response =
 await fetch("/chat",{
@@ -74,32 +64,22 @@ message:message
 
 });
 
-
 let data =
 await response.json();
 
-
-// REMOVE THINKING
-
-document
-.getElementById("thinking")
+document.querySelector(".thinking")
 .remove();
-
-
-// AI RESPONSE
 
 chatBody.innerHTML += `
 
-<div class="ai">
+<div class="ai-row">
 
-<div class="ai-logo">
+<div class="mini-logo">
 S
 </div>
 
-<div class="bubble">
-
+<div class="ai-message">
 ${data.reply}
-
 </div>
 
 </div>
