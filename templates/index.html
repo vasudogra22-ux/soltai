@@ -1,36 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SOLTAI AI</title>
 
 <link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+href="/static/style.css">
 
 </head>
 
 <body>
 
-<div class="overlay"></div>
+<!-- HERO -->
 
-<!-- NAVBAR -->
+<section class="hero">
 
 <nav>
 
-<div class="logo">
+<h1 class="logo">
 SOLTAI
-</div>
+</h1>
 
 <ul>
 
-<li class="active">Home</li>
+<li>Home</li>
 <li>Services</li>
 <li>AI</li>
 <li>Contact</li>
@@ -40,92 +34,89 @@ SOLTAI
 </nav>
 
 
-<!-- HERO -->
-
-<section class="hero">
+<div class="hero-content">
 
 <div class="left">
 
-<div class="badge">
-● Next Generation AI Platform
-</div>
-
-<h1>
+<h2>
 AI Powered <br>
 Future Solutions
-</h1>
+</h2>
 
 <p>
 Welcome to SOLTAI AI.
 Build smart systems with AI technology.
 </p>
 
-<button class="btn">
-
-Get Started →
+<button>
+Get Started
 </button>
 
-</div>
-
-
-<!-- CHAT -->
-
-<div class="chat-panel"
-id="chatPanel">
-
-<div class="chat-top">
-
-<div class="chat-profile">
-
-<div class="chat-logo">
-S
-</div>
-
-<div>
-
-<h2>SOLTAI AI</h2>
-
-<span>
-● Online
-</span>
-
-</div>
-
-</div>
-
-<div class="minus">
-—
-</div>
-
-</div>
-
-
-<div class="chat-body"
-id="chatBody">
-
-</div>
-
-
-<div class="chat-input">
-    
-<input
-id="message"
-placeholder="Ask SOLTAI AI anything...">
-
-<button onclick="sendMessage()">
-➤
-</button>
-
-</div>
-
-<div class="powered">
-Powered by SOLTAI AI
 </div>
 
 </div>
 
 </section>
 
+<!-- SERVICES -->
+
+<section class="services">
+
+<h2>
+Our Services
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>AI Chatbots</h3>
+<p>Advanced AI assistants for businesses.</p>
+</div>
+
+<div class="card">
+<h3>Automation</h3>
+<p>Smart AI automation systems.</p>
+</div>
+
+<div class="card">
+<h3>Web Development</h3>
+<p>Modern futuristic websites.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>
+Contact Us
+</h2>
+
+<input type="text"
+placeholder="Your Name">
+
+<input type="email"
+placeholder="Email Address">
+
+<textarea
+placeholder="Your Enquiry"></textarea>
+
+<button>
+Send Enquiry
+</button>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+SOLTAI AI © All Rights Reserved
+
+</footer>
 
 <!-- FLOATING BUTTON -->
 
@@ -136,8 +127,77 @@ S
 
 </div>
 
-<script
-src="{{ url_for('static', filename='script.js') }}">
+<!-- CHATBOT -->
+
+<div class="chat-panel"
+id="chatPanel">
+
+<div class="chat-header">
+
+<div class="chat-logo">
+
+S
+
+</div>
+
+<div>
+
+<h3>SOLTAI AI</h3>
+
+<p class="online">
+● Online
+</p>
+
+</div>
+
+<div class="close-btn"
+onclick="toggleChat()">
+
+—
+
+</div>
+
+</div>
+
+<div class="chat-body"
+id="chatBody">
+
+<div class="ai-row">
+
+<div class="mini-logo">
+S
+</div>
+
+<div class="ai-message">
+
+Hello 👋
+
+</div>
+
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input
+id="message"
+type="text"
+placeholder="Ask SOLTAI AI anything...">
+
+<button
+onclick="sendMessage()">
+
+➜
+
+</button>
+
+</div>
+
+</div>
+
+<script src="/static/script.js">
+
 </script>
 
 </body>
