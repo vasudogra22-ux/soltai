@@ -13,7 +13,7 @@ input.value;
 if(message === "") return;
 
 
-// USER MESSAGE
+// USER
 
 chatBody.innerHTML += `
 
@@ -41,7 +41,7 @@ id="thinking">
 S
 </div>
 
-<div class="bubble thinking">
+<div class="bubble">
 
 SOLTAI AI is thinking
 
@@ -51,10 +51,8 @@ SOLTAI AI is thinking
 
 `;
 
-
 chatBody.scrollTop =
 chatBody.scrollHeight;
-
 
 input.value = "";
 
@@ -81,14 +79,14 @@ let data =
 await response.json();
 
 
-// REMOVE THINKING    
+// REMOVE THINKING
 
 document
 .getElementById("thinking")
 .remove();
 
 
-// AI MESSAGE
+// AI RESPONSE
 
 chatBody.innerHTML += `
 
@@ -107,7 +105,6 @@ ${data.reply}
 </div>
 
 `;
-
 
 chatBody.scrollTop =
 chatBody.scrollHeight;
