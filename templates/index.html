@@ -4,16 +4,12 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SOLTAI AI</title>
 
 <link rel="stylesheet"
 href="{{ url_for('static', filename='style.css') }}">
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
 rel="stylesheet">
@@ -22,14 +18,14 @@ rel="stylesheet">
 
 <body>
 
-<div class="texture"></div>
+<div class="overlay"></div>
 
 <!-- NAVBAR -->
 
 <nav>
 
 <div class="logo">
-    SOLTAI
+SOLTAI
 </div>
 
 <ul>
@@ -64,47 +60,24 @@ Welcome to SOLTAI AI.
 Build smart systems with AI technology.
 </p>
 
-<button class="start-btn">
+<button class="btn">
 
-Get Started
-<span>→</span>
-
+Get Started →
 </button>
 
-<div class="cards">
-
-<div class="card">
-<div class="icon">🧠</div>
-<h3>Smart AI</h3>
-<p>Automation</p>
-</div>
-
-<div class="card">
-<div class="icon">📊</div>
-<h3>Advanced</h3>
-<p>Analytics</p>
-</div>
-
-<div class="card">
-<div class="icon">🛡️</div>
-<h3>Secure &</h3>
-<p>Reliable</p>
-</div>
-
-</div>
-
 </div>
 
 
-<!-- CHAT PANEL -->
+<!-- CHAT -->
 
-<div class="chat-panel">
+<div class="chat-panel"
+id="chatPanel">
 
 <div class="chat-top">
 
-<div class="profile">
+<div class="chat-profile">
 
-<div class="profile-logo">
+<div class="chat-logo">
 S
 </div>
 
@@ -112,7 +85,7 @@ S
 
 <h2>SOLTAI AI</h2>
 
-<span class="online">
+<span>
 ● Online
 </span>
 
@@ -127,20 +100,15 @@ S
 </div>
 
 
-<!-- CHAT BODY -->
-
 <div class="chat-body"
 id="chatBody">
 
 </div>
 
 
-<!-- INPUT -->
-
 <div class="chat-input">
-
+    
 <input
-type="text"
 id="message"
 placeholder="Ask SOLTAI AI anything...">
 
@@ -151,7 +119,7 @@ placeholder="Ask SOLTAI AI anything...">
 </div>
 
 <div class="powered">
-Powered by <span>SOLTAI AI</span>
+Powered by SOLTAI AI
 </div>
 
 </div>
@@ -159,10 +127,13 @@ Powered by <span>SOLTAI AI</span>
 </section>
 
 
-<!-- FLOATING LOGO -->
+<!-- FLOATING BUTTON -->
 
-<div class="floating-logo">
+<div class="floating-btn"
+onclick="toggleChat()">
+
 S
+
 </div>
 
 <script
@@ -170,4 +141,4 @@ src="{{ url_for('static', filename='script.js') }}">
 </script>
 
 </body>
-</html>    
+</html>
