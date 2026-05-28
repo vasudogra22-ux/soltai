@@ -399,3 +399,157 @@ color:white;
 
 font-size:22px;
 }
+/* MOBILE RESPONSIVE */
+
+@media(max-width:768px){
+
+nav{
+
+padding:20px;
+flex-direction:column;
+gap:20px;
+
+}
+
+nav ul{
+
+gap:20px;
+padding:0;
+
+font-size:14px;
+}
+
+.hero{
+
+height:auto;
+padding-bottom:120px;
+}
+
+.hero-content{
+
+padding:80px 25px;
+}
+
+.left h2{
+
+font-size:58px;
+line-height:1.1;
+}
+
+.left p{
+
+font-size:24px;
+width:100%;
+line-height:1.5;
+}
+
+.left button{
+
+width:220px;
+font-size:22px;
+padding:18px;
+}
+
+/* CHAT BUTTON */
+
+.floating-btn{
+
+width:70px;
+height:70px;
+
+font-size:34px;
+
+right:20px;
+bottom:20px;
+}
+
+/* CHAT PANEL */
+
+.chat-panel{
+
+width:92%;
+height:75vh;
+
+right:4%;
+bottom:110px;
+
+border-radius:30px;
+}
+
+.chat-header h3{
+
+font-size:26px;
+}
+
+.chat-logo{
+
+width:50px;
+height:50px;
+}
+
+.chat-body{
+
+padding:15px;
+}
+
+.ai-message{
+
+font-size:18px;
+line-height:1.5;
+
+max-width:75%;
+}
+
+.user-message{
+
+font-size:18px;
+}
+
+.chat-input{
+
+padding:15px;
+}
+
+.chat-input input{
+
+font-size:18px;
+padding:16px;
+}
+
+.chat-input button{
+
+width:55px;
+font-size:22px;
+}
+
+/* SERVICES */
+
+.services{
+
+padding:70px 25px;
+}
+
+.cards{
+
+flex-direction:column;
+}
+
+.card{
+
+width:auto;
+}
+
+/* CONTACT */
+
+.contact{
+
+padding:70px 25px;
+}
+
+footer{
+
+font-size:18px;
+padding:30px;
+}
+
+}
