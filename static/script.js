@@ -1,40 +1,154 @@
-function toggleChat(){
+const floatingLogo = document.querySelector(".floating-logo");
+const chatPopup = document.querySelector(".chat-popup");
+const sendBtn = document.querySelector(".send-btn");
+const input = document.querySelector(".chat-input");
+const messages = document.querySelector(".chat-messages");
 
-let panel =
-document.getElementById("chatPanel");
+/* OPEN CLOSE CHAT */
 
-panel.classList.toggle("active");
+floatingLogo.addEventListener("click", () => {
+  chatPopup.classList.toggle("active");
+});
+
+/* SEND MESSAGE */
+
+function sendMessage() {
+
+  const text = input.value.trim();
+
+  if(text === "") return;
+
+  /* USER MESSAGE */
+
+  const userMsg = document.createElement("div");
+
+  userMsg.className = "user-message";
+
+  userMsg.innerHTML = `
+    <div class="bubble user-bubble">
+      ${text}
+    </div>
+  `;
+
+  messages.appendChild(userMsg);
+
+  input.value = "";
+
+  messages.scrollTop = messages.scrollHeight;
+
+  /* THINKING */
+
+  const thinking = document.createElement("div");
+
+  thinking.className = "bot-message thinking";
+
+  thinking.innerHTML = `
+      <div class="bot-row">
+          <div class="bot-logo">S</div>
+
+          <div class="bubble bot-bubble">
+             SOLTAI ASSIST is thinking
+          </div>
+      </div>
+  `;
+
+  messages.appendChild(thinking);
+
+  messages.scrollTop = messages.scrollHeight;
+
+  /* BOT REPLY */
+
+  setTimeout(() => {
+
+      thinking.remove();
+
+      const reply = document.createElement("div");
+
+      reply.className = "bot-message";
+
+      reply.innerHTML = `
+        <div class="bot-row">
+
+          <div class="bot-logo">
+             S
+          </div>
+
+          <div class="bubble bot-bubble">
+
+            Welcome to SOLTAI AI.
+
+            I can help with:
+
+            • AI Chatbots
+
+            • AI Assistants
+
+            • B2B AI Solutions
+
+            • Business Automation
+
+            • Custom AI Development
+
+          </div>
+
+        </div>
+      `;
+
+      messages.appendChild(reply);
+
+      messages.scrollTop = messages.scrollHeight;
+
+  },1500);
 
 }
 
-async function sendMessage(){
+/* BUTTON */
 
-let input =
-document.getElementById("message");
+sendBtn.addEventListener("click", sendMessage);
 
-let chatBody =
-document.getElementById("chatBody");
+/* ENTER */
 
-let message =
-input.value;
+input.addEventListener("keypress", function(e){
 
-if(message=="") return;
+  if(e.key === "Enter"){
 
-chatBody.innerHTML += `
+      sendMessage();
 
-<div class="user-message">
-${message}
-</div>
+  }
 
-`;
+});
 
-input.value="";
+/* DEFAULT WELCOME */
 
-chatBody.innerHTML += `
+window.onload = () => {
 
-<div class="ai-row thinking">
+  const welcome = document.createElement("div");
 
-<div class="mini-logo">
+  welcome.className = "bot-message";
+
+  welcome.innerHTML = `
+      <div class="bot-row">
+
+        <div class="bot-logo">
+          S
+        </div>
+
+        <div class="bubble bot-bubble">
+
+          Hello 👋
+
+          Welcome to SOLTAI AI.
+
+          How can I help you today?
+
+        </div>
+
+      </div>
+  `;
+
+  messages.appendChild(welcome);
+
+};<div class="mini-logo">
 S
 </div>
 
