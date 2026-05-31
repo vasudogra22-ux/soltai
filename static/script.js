@@ -1,206 +1,69 @@
-const floatingLogo = document.querySelector(".floating-logo");
-const chatPopup = document.querySelector(".chat-popup");
-const sendBtn = document.querySelector(".send-btn");
-const input = document.querySelector(".chat-input");
-const messages = document.querySelector(".chat-messages");
+const chatToggle = document.getElementById("chatToggle");
+const chatbot = document.getElementById("chatbot");
+const closeChat = document.getElementById("closeChat");
 
-/* OPEN CLOSE CHAT */
-
-floatingLogo.addEventListener("click", () => {
-  chatPopup.classList.toggle("active");
+chatToggle.addEventListener("click", () => {
+    chatbot.classList.add("show");
 });
 
-/* SEND MESSAGE */
+closeChat.addEventListener("click", () => {
+    chatbot.classList.remove("show");
+});
 
-function sendMessage() {
+const sendBtn = document.getElementById("sendBtn");
+const userInput = document.getElementById("userInput");
+const chatBody = document.getElementById("chatBody");
 
-  const text = input.value.trim();
+async function sendMessage() {
 
-  if(text === "") return;
+    const message = userInput.value.trim();
 
-  /* USER MESSAGE */
+    if (!message) return;
 
-  const userMsg = document.createElement("div");
-
-  userMsg.className = "user-message";
-
-  userMsg.innerHTML = `
-    <div class="bubble user-bubble">
-      ${text}
-    </div>
-  `;
-
-  messages.appendChild(userMsg);
-
-  input.value = "";
-
-  messages.scrollTop = messages.scrollHeight;
-
-  /* THINKING */
-
-  const thinking = document.createElement("div");
-
-  thinking.className = "bot-message thinking";
-
-  thinking.innerHTML = `
-      <div class="bot-row">
-          <div class="bot-logo">S</div>
-
-          <div class="bubble bot-bubble">
-             SOLTAI ASSIST is thinking
-          </div>
-      </div>
-  `;
-
-  messages.appendChild(thinking);
-
-  messages.scrollTop = messages.scrollHeight;
-
-  /* BOT REPLY */
-
-  setTimeout(() => {
-
-      thinking.remove();
-
-      const reply = document.createElement("div");
-
-      reply.className = "bot-message";
-
-      reply.innerHTML = `
-        <div class="bot-row">
-
-          <div class="bot-logo">
-             S
-          </div>
-
-          <div class="bubble bot-bubble">
-
-            Welcome to SOLTAI AI.
-
-            I can help with:
-
-            • AI Chatbots
-
-            • AI Assistants
-
-            • B2B AI Solutions
-
-            • Business Automation
-
-            • Custom AI Development
-
-          </div>
-
+    chatBody.innerHTML += `
+        <div class="user-message">
+            ${message}
         </div>
-      `;
+    `;
 
-      messages.appendChild(reply);
+    userInput.value = "";
 
-      messages.scrollTop = messages.scrollHeight;
+    try {
 
-  },1500);
+        const response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
 
+        const data = await response.json();
+
+        chatBody.innerHTML += `
+            <div class="bot-message">
+                ${data.reply}
+            </div>
+        `;
+
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+    } catch (error) {
+
+        chatBody.innerHTML += `
+            <div class="bot-message">
+                Error connecting to SOLTAI AI
+            </div>
+        `;
+    }
 }
-
-/* BUTTON */
 
 sendBtn.addEventListener("click", sendMessage);
 
-/* ENTER */
-
-input.addEventListener("keypress", function(e){
-
-  if(e.key === "Enter"){
-
-      sendMessage();
-
-  }
-
+userInput.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        sendMessage();
+    }
 });
-
-/* DEFAULT WELCOME */
-
-window.onload = () => {
-
-  const welcome = document.createElement("div");
-
-  welcome.className = "bot-message";
-
-  welcome.innerHTML = `
-      <div class="bot-row">
-
-        <div class="bot-logo">
-          S
-        </div>
-
-        <div class="bubble bot-bubble">
-
-          Hello 👋
-
-          Welcome to SOLTAI AI.
-
-          How can I help you today?
-
-        </div>
-
-      </div>
-  `;
-
-  messages.appendChild(welcome);
-
-};<div class="mini-logo">
-S
-</div>
-
-<div class="ai-message">
-SOLTAI AI is thinking
-</div>
-
-</div>
-
-`;
-
-chatBody.scrollTop =
-chatBody.scrollHeight;
-
-let response =
-await fetch("/chat",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-message:message
-})
-
-});
-
-let data =
-await response.json();
-
-document.querySelector(".thinking")
-.remove();
-
-chatBody.innerHTML += `
-
-<div class="ai-row">
-
-<div class="mini-logo">
-S
-</div>
-
-<div class="ai-message">
-${data.reply}
-</div>
-
-</div>
-
-`;
-
-chatBody.scrollTop =
-chatBody.scrollHeight;
-
-}
