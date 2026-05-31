@@ -1,194 +1,125 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SOLTAI AI</title>
 
-<link rel="stylesheet"
-href="/static/style.css">
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<!-- HERO -->
+<div class="stars"></div>
 
-<section class="hero">
+<nav class="navbar">
 
-<nav>
+<div class="logo">
 
-<h1 class="logo">
-SOLTAI
-</h1>
+<div class="logo-circle">
+S
+</div>
+
+<span>SOLTAI</span>
+
+</div>
 
 <ul>
 
-<li>Home</li>
-<li>Services</li>
-<li>AI</li>
-<li>Contact</li>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
 
 </ul>
 
 </nav>
 
+<section class="hero">
 
 <div class="hero-content">
 
-<div class="left">
+<div class="badge">
+AI POWERED
+</div>
 
-<h2>
-AI Powered <br>
-Future Solutions
-</h2>
+<h1>
+
+Future
+<span>Solutions</span>
+
+</h1>
 
 <p>
-Welcome to SOLTAI AI.
-Build smart systems with AI technology.
+
+SOLTAI provides advanced AI solutions
+to automate, assist and scale your business.
+
 </p>
 
-<button>
-Get Started
+<button class="explore">
+
+Explore Solutions →
+
 </button>
 
 </div>
 
-</div>
-
 </section>
 
-<!-- SERVICES -->
+<section class="ask-box">
 
-<section class="services">
-
-<h2>
-Our Services
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>AI Chatbots</h3>
-<p>Advanced AI assistants for businesses.</p>
-</div>
-
-<div class="card">
-<h3>Automation</h3>
-<p>Smart AI automation systems.</p>
-</div>
-
-<div class="card">
-<h3>Web Development</h3>
-<p>Modern futuristic websites.</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="contact">
-
-<h2>
-Contact Us
-</h2>
-
-<input type="text"
-placeholder="Your Name">
-
-<input type="email"
-placeholder="Email Address">
-
-<textarea
-placeholder="Your Enquiry"></textarea>
-
-<button>
-Send Enquiry
-</button>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-SOLTAI AI © All Rights Reserved
-
-</footer>
-
-<!-- FLOATING BUTTON -->
-
-<div class="floating-btn"
-onclick="toggleChat()">
-
-S
-
-</div>
-
-<!-- CHATBOT -->
-
-<div class="chat-panel"
-id="chatPanel">
-
-<div class="chat-header">
-
-<div class="chat-logo">
-
-S
-
-</div>
-
-<div>
-
-<h3>SOLTAI AI</h3>
-
-<p class="online">
-● Online
-</p>
-
-</div>
-
-<div class="close-btn"
-onclick="toggleChat()">
-
-—
-
-</div>
-
-</div>
-
-<div class="chat-body"
-id="chatBody">
-
-<div class="ai-row">
+<div class="ask-inner">
 
 <div class="mini-logo">
 S
 </div>
 
-<div class="ai-message">
-
-Hello 👋
-
-</div>
-
-</div>
-
-</div>
-
-<div class="chat-input">
-
 <input
-id="message"
 type="text"
-placeholder="Ask SOLTAI AI anything...">
+placeholder="Ask me anything..."
+>
 
-<button
-onclick="sendMessage()">
+<button>
 
-➜
+↑
+
+</button>
+
+</div>
+
+</section>
+
+<section class="contact">
+
+<div class="contact-card">
+
+<div class="left">
+
+<h3>GET IN TOUCH</h3>
+
+<h2>
+
+Let's build the future together.
+
+</h2>
+
+</div>
+
+<div class="right">
+
+<p>
+
+We're here to help your business grow with AI.
+
+</p>
+
+<button>
+
+Get In Touch →
 
 </button>
 
@@ -196,9 +127,21 @@ onclick="sendMessage()">
 
 </div>
 
-<script src="/static/script.js">
+</section>
 
-</script>
+<footer>
+
+© 2026 SOLTAI AI. All rights reserved.
+
+</footer>
+
+<div class="floating-logo" id="chatBtn">
+
+S
+
+</div>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
