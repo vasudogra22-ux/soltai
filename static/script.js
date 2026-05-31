@@ -1,39 +1,25 @@
-const chatToggle = document.getElementById("chatToggle");
-const chatbot = document.getElementById("chatbot");
-const closeChat = document.getElementById("closeChat");
-
-chatToggle.addEventListener("click", () => {
-    chatbot.classList.add("show");
-});
-
-closeChat.addEventListener("click", () => {
-    chatbot.classList.remove("show");
-});
-
+const assistantBar = document.getElementById("assistantInput");
+const responseArea = document.getElementById("responseArea");
 const sendBtn = document.getElementById("sendBtn");
-const userInput = document.getElementById("userInput");
-const chatBody = document.getElementById("chatBody");
 
 async function sendMessage() {
 
-    const message = userInput.value.trim();
+    const message = assistantBar.value.trim();
 
-    if (!message) return;
+    if(message === "") return;
 
-    chatBody.innerHTML += `
-        <div class="user-message">
-            ${message}
+    responseArea.innerHTML = `
+        <div class="answer-card thinking-box">
+            SOLTAI is thinking...
         </div>
     `;
-
-    userInput.value = "";
 
     try {
 
         const response = await fetch("/chat", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type":"application/json"
             },
             body: JSON.stringify({
                 message: message
@@ -42,28 +28,34 @@ async function sendMessage() {
 
         const data = await response.json();
 
-        chatBody.innerHTML += `
-            <div class="bot-message">
+        responseArea.innerHTML = `
+            <div class="answer-card">
+                <strong>SOLTAI Assist:</strong><br><br>
                 ${data.reply}
             </div>
         `;
 
-        chatBody.scrollTop = chatBody.scrollHeight;
+    } catch(error){
 
-    } catch (error) {
-
-        chatBody.innerHTML += `
-            <div class="bot-message">
-                Error connecting to SOLTAI AI
+        responseArea.innerHTML = `
+            <div class="answer-card">
+                Unable to connect with SOLTAI AI.
             </div>
         `;
+
+        console.log(error);
     }
+
+    assistantBar.value = "";
 }
 
 sendBtn.addEventListener("click", sendMessage);
 
-userInput.addEventListener("keypress", function(e){
+assistantBar.addEventListener("keypress", function(e){
+
     if(e.key === "Enter"){
+        e.preventDefault();
         sendMessage();
     }
+
 });
