@@ -6,8 +6,7 @@
 
 <title>SOLTAI AI</title>
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -22,7 +21,7 @@ href="{{ url_for('static', filename='style.css') }}">
 
 <div class="logo">
 
-<div class="logo-icon">
+<div class="logo-circle">
 S
 </div>
 
@@ -30,10 +29,10 @@ S
 
 </div>
 
-<ul class="nav-links">
+<ul>
 <li><a href="#">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
 </ul>
 
 </nav>
@@ -42,18 +41,17 @@ S
 
 <section class="hero">
 
-<div class="hero-badge">
+<div class="ai-badge">
 AI POWERED ✦
 </div>
 
 <h1>
-Future
-<span>Solutions</span>
+Future <span>Solutions</span>
 </h1>
 
 <p>
-SOLTAI provides advanced AI solutions
-to automate, assist and scale your business.
+SOLTAI provides advanced AI solutions to automate,
+assist and scale your business.
 </p>
 
 <button class="explore-btn">
@@ -62,9 +60,9 @@ Explore Solutions →
 
 </section>
 
-<!-- WAVE EFFECT -->
+<!-- GLOW LINE -->
 
-<div class="wave-glow"></div>
+<div class="glow-line"></div>
 
 <!-- ASSIST BAR -->
 
@@ -72,14 +70,15 @@ Explore Solutions →
 
 <div class="assist-bar">
 
-<div class="assist-logo" id="chatToggle">
+<div class="assist-logo">
 S
 </div>
 
 <input
 type="text"
+id="heroInput"
 placeholder="Ask me anything..."
-id="heroInput">
+>
 
 <button id="heroSend">
 ↑
@@ -89,118 +88,37 @@ id="heroInput">
 
 </section>
 
-<!-- CHATBOT -->
+<!-- RESPONSE -->
 
-<div class="chatbot-container" id="chatbot">
+<div id="responseArea"></div>
 
-<div class="chat-header">
+<!-- CONTACT -->
 
-<div class="chat-brand">
-
-<div class="chat-logo">
-S
-</div>
-
-<div>
-
-<h3>SOLTAI ASSIST</h3>
-
-<span class="online">
-● Online
-</span>
-
-</div>
-
-</div>
-
-<button id="closeChat">
-−
-</button>
-
-</div>
-
-<div class="chat-body" id="chatBody">
-
-<div class="bot-row">
-
-<div class="mini-logo">
-S
-</div>
-
-<div class="thinking">
-SOLTAI is thinking
-</div>
-
-</div>
-
-<div class="bot-message">
-
-Hello 👋
-
-I'm SOLTAI Assist.
-
-How can I help you today?
-
-</div>
-
-</div>
-
-<div class="chat-input">
-
-<input
-type="text"
-id="userInput"
-placeholder="Ask anything...">
-
-<button id="sendBtn">
-➜
-</button>
-
-</div>
-
-</div>
-
-<!-- GET IN TOUCH -->
-
-<section
-class="contact-section"
-id="contact">
-
-<div class="contact-card">
+<section class="contact-box">
 
 <div class="contact-left">
 
-<span>GET IN TOUCH</span>
+<h5>GET IN TOUCH</h5>
 
 <h2>
 Let's build the future together.
 </h2>
 
+</div>
+
+<div class="contact-middle">
+
 <p>
-We're here to help your business
-grow with AI.
+We're here to help your business grow with AI.
 </p>
 
 </div>
 
-<div class="contact-form">
+<div class="contact-right">
 
-<input
-type="text"
-placeholder="Your Name">
-
-<input
-type="email"
-placeholder="Email Address">
-
-<textarea
-placeholder="Enquiry"></textarea>
-
-<button>
-Send Enquiry
+<button class="contact-btn">
+Get In Touch →
 </button>
-
-</div>
 
 </div>
 
@@ -210,10 +128,7 @@ Send Enquiry
 
 <footer>
 
-<p>
-© 2026 SOLTAI AI.
-All rights reserved.
-</p>
+© 2026 SOLTAI AI. All rights reserved.
 
 </footer>
 
