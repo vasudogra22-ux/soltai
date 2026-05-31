@@ -1,6 +1,6 @@
-const assistantBar = document.getElementById("assistantInput");
+const assistantBar = document.getElementById("heroInput");
 const responseArea = document.getElementById("responseArea");
-const sendBtn = document.getElementById("sendBtn");
+const sendBtn = document.getElementById("heroSend");
 
 async function sendMessage() {
 
