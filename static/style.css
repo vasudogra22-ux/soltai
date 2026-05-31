@@ -730,3 +730,35 @@ right:2.5%;
 bottom:15px;
 }
 }
+/* RESPONSE AREA */
+
+.response-area{
+    width:90%;
+    max-width:1100px;
+    margin:30px auto;
+}
+
+.answer-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(168,85,247,0.3);
+    border-radius:20px;
+    padding:25px;
+    color:white;
+    line-height:1.8;
+    font-size:18px;
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 30px rgba(168,85,247,0.2);
+}
+
+.thinking-box{
+    padding:20px;
+    color:#c4b5fd;
+    font-size:18px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{opacity:.4;}
+    50%{opacity:1;}
+    100%{opacity:.4;}
+}
