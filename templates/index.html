@@ -1,40 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SOLTAI AI</title>
+    <title>SOLTAI AI</title>
 
-<link rel="stylesheet" href="css/style.css">
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-<div class="stars"></div>
+    <!-- STARS BACKGROUND -->
+    <div class="stars"></div>
 
-<nav class="navbar">
+    <!-- NAVBAR -->
+    <nav class="navbar">
 
-<div class="logo">
+        <div class="logo">
 
-<div class="logo-circle">
-S
-</div>
+            <div class="logo-circle">
+                S
+            </div>
 
-<span>SOLTAI</span>
+            <span>SOLTAI</span>
 
-</div>
+        </div>
 
-<ul>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
 
-<li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Contact</a></li>
+    </nav>
 
-</ul>
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                AI POWERED
+            </div>
+
+            <h1>
+                Future
+                <span>Solutions</span>
+            </h1>
+
+            <p>
+                SOLTAI provides advanced AI solutions
+                to automate, assist and scale your business.
+            </p>
+
+            <button class="explore-btn">
+                Explore Solutions →
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ASSIST BAR -->
+    <section class="assist-section">
+
+        <div class="assist-bar">
+
+            <div class="assist-logo">
+                S
+            </div>
+
+            <input
+                type="text"
+                placeholder="Ask me anything..."
+            >
+
+            <button>
+                ↑
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- GET IN TOUCH -->
+    <section id="contact" class="contact-section">
+
+        <div class="contact-card">
+
+            <div>
+                <small>GET IN TOUCH</small>
+
+                <h2>
+                    Let's build the future together.
+                </h2>
+
+                <p>
+                    We're here to help your business grow with AI.
+                </p>
+            </div>
+
+            <button class="contact-btn">
+                Get In Touch →
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- FLOATING CHATBOT -->
+    <div class="floating-logo">
+        S
+    </div>
+
+    <div class="chat-popup">
+
+        <div class="chat-header">
+
+            <div class="header-logo">
+                S
+            </div>
+
+            <h3>SOLTAI ASSIST</h3>
+
+        </div>
+
+        <div class="chat-messages"></div>
+
+        <div class="chat-footer">
+
+            <input
+                type="text"
+                class="chat-input"
+                placeholder="Ask SOLTAI anything..."
+            >
+
+            <button class="send-btn">
+                ➜
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 SOLTAI AI. All rights reserved.
+
+    </footer>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html></ul>
 
 </nav>
 
