@@ -1,75 +1,99 @@
+// ==========================
 // ELEMENTS
+// ==========================
 
-const chatToggle =
-document.getElementById("chatToggle");
+const chatToggle = document.getElementById("chatToggle");
+const chatBox = document.getElementById("chatBox");
 
-const chatWindow =
-document.getElementById("chatWindow");
+const closeBtn = document.getElementById("closeBtn");
+const minimizeBtn = document.getElementById("minimizeBtn");
 
-const closeBtn =
-document.getElementById("closeBtn");
-
-const minimizeBtn =
-document.getElementById("minimizeBtn");
-
-const sendBtn =
-document.getElementById("sendBtn");
-
-const userInput =
-document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+const userInput = document.getElementById("userInput");
 
 const chatMessages =
 document.getElementById("chatMessages");
 
-const quickButtons =
-document.querySelectorAll(".quick-question");
 
-
+// ==========================
 // OPEN CHAT
+// ==========================
 
 chatToggle.addEventListener("click", () => {
 
-    chatWindow.classList.remove("hidden");
+    chatBox.classList.toggle("active");
 
 });
 
 
+// ==========================
 // CLOSE CHAT
+// ==========================
 
 closeBtn.addEventListener("click", () => {
 
-    chatWindow.classList.add("hidden");
+    chatBox.classList.remove("active");
 
 });
 
 
-// MINIMIZE
+// ==========================
+// MINIMIZE CHAT
+// ==========================
+
+let minimized = false;
 
 minimizeBtn.addEventListener("click", () => {
 
-    chatWindow.classList.toggle("minimized");
+    if(!minimized){
+
+        chatMessages.style.display = "none";
+
+        document.querySelector(
+            ".chat-input-area"
+        ).style.display = "none";
+
+        chatBox.style.height = "80px";
+
+        minimized = true;
+
+    }else{
+
+        chatMessages.style.display = "block";
+
+        document.querySelector(
+            ".chat-input-area"
+        ).style.display = "flex";
+
+        chatBox.style.height = "620px";
+
+        minimized = false;
+
+    }
 
 });
 
 
+// ==========================
 // SEND MESSAGE
+// ==========================
 
-async function sendMessage(messageText = null){
+async function sendMessage(customText = null){
 
     const message =
-    messageText || userInput.value.trim();
+    customText || userInput.value.trim();
 
-    if(message === "") return;
+    if(!message) return;
 
     // USER MESSAGE
 
     chatMessages.innerHTML += `
 
-    <div class="user-message">
+        <div class="user-message">
 
-        ${message}
+            ${message}
 
-    </div>
+        </div>
 
     `;
 
@@ -87,19 +111,19 @@ async function sendMessage(messageText = null){
 
     chatMessages.innerHTML += `
 
-    <div
-    class="bot-message"
-    id="${thinkingId}">
+        <div
+        class="bot-message"
+        id="${thinkingId}">
 
-    <strong>
-    SOLTAI Assist
-    </strong>
+        <strong>
+        SOLTAI Assist
+        </strong>
 
-    <br><br>
+        <br><br>
 
-    SOLTAI is thinking...
+        SOLTAI is thinking...
 
-    </div>
+        </div>
 
     `;
 
@@ -115,7 +139,8 @@ async function sendMessage(messageText = null){
             method:"POST",
 
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":
+                "application/json"
             },
 
             body:JSON.stringify({
@@ -129,36 +154,29 @@ async function sendMessage(messageText = null){
         const data =
         await response.json();
 
-
-
-        // REMOVE THINKING
-
         const thinking =
-        document.getElementById(thinkingId);
+        document.getElementById(
+            thinkingId
+        );
 
         if(thinking){
-
             thinking.remove();
-
         }
 
 
-
-        // BOT MESSAGE
-
         chatMessages.innerHTML += `
 
-        <div class="bot-message">
+            <div class="bot-message">
 
-        <strong>
-        SOLTAI Assist
-        </strong>
+                <strong>
+                SOLTAI Assist
+                </strong>
 
-        <br><br>
+                <br><br>
 
-        ${data.reply}
+                ${data.reply}
 
-        </div>
+            </div>
 
         `;
 
@@ -170,36 +188,39 @@ async function sendMessage(messageText = null){
     catch(error){
 
         const thinking =
-        document.getElementById(thinkingId);
+        document.getElementById(
+            thinkingId
+        );
 
         if(thinking){
-
             thinking.remove();
-
         }
 
         chatMessages.innerHTML += `
 
-        <div class="bot-message">
+            <div class="bot-message">
 
-        <strong>
-        Error
-        </strong>
+            <strong>Error</strong>
 
-        <br><br>
+            <br><br>
 
-        Unable to connect to SOLTAI AI.
+            Unable to connect
+            with SOLTAI AI.
 
-        </div>
+            </div>
 
         `;
+
+        console.error(error);
 
     }
 
 }
 
 
-// BUTTON CLICK
+// ==========================
+// SEND BUTTON
+// ==========================
 
 sendBtn.addEventListener("click", () => {
 
@@ -208,9 +229,13 @@ sendBtn.addEventListener("click", () => {
 });
 
 
+// ==========================
 // ENTER KEY
+// ==========================
 
-userInput.addEventListener("keypress", (e) => {
+userInput.addEventListener(
+"keypress",
+function(e){
 
     if(e.key === "Enter"){
 
@@ -221,16 +246,15 @@ userInput.addEventListener("keypress", (e) => {
 });
 
 
+// ==========================
 // QUICK QUESTIONS
+// ==========================
 
-quickButtons.forEach(button => {
+function askQuestion(question){
 
-    button.addEventListener("click", () => {
+    sendMessage(question);
 
-        sendMessage(
-            button.innerText
-        );
+}
 
-    });
-
-});
+window.askQuestion =
+askQuestion;
