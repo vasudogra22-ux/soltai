@@ -1,215 +1,99 @@
-// ==========================
-// ELEMENTS
-// ==========================
+// CHAT ELEMENTS
 
 const chatToggle = document.getElementById("chatToggle");
-const chatBox = document.getElementById("chatBox");
-
-const closeBtn = document.getElementById("closeBtn");
-const minimizeBtn = document.getElementById("minimizeBtn");
+const chatWindow = document.getElementById("chatWindow");
+const closeChat = document.getElementById("closeChat");
 
 const sendBtn = document.getElementById("sendBtn");
 const userInput = document.getElementById("userInput");
+const chatMessages = document.getElementById("chatMessages");
 
-const chatMessages =
-document.getElementById("chatMessages");
-
-
-// ==========================
 // OPEN CHAT
-// ==========================
 
 chatToggle.addEventListener("click", () => {
-
-    chatBox.classList.toggle("active");
-
+    chatWindow.style.display = "flex";
 });
 
-
-// ==========================
 // CLOSE CHAT
-// ==========================
 
-closeBtn.addEventListener("click", () => {
-
-    chatBox.classList.remove("active");
-
+closeChat.addEventListener("click", () => {
+    chatWindow.style.display = "none";
 });
 
-
-// ==========================
-// MINIMIZE CHAT
-// ==========================
-
-let minimized = false;
-
-minimizeBtn.addEventListener("click", () => {
-
-    if(!minimized){
-
-        chatMessages.style.display = "none";
-
-        document.querySelector(
-            ".chat-input-area"
-        ).style.display = "none";
-
-        chatBox.style.height = "80px";
-
-        minimized = true;
-
-    }else{
-
-        chatMessages.style.display = "block";
-
-        document.querySelector(
-            ".chat-input-area"
-        ).style.display = "flex";
-
-        chatBox.style.height = "620px";
-
-        minimized = false;
-
-    }
-
-});
-
-
-// ==========================
 // SEND MESSAGE
-// ==========================
 
-async function sendMessage(customText = null){
+async function sendMessage() {
 
-    const message =
-    customText || userInput.value.trim();
+    const message = userInput.value.trim();
 
-    if(!message) return;
+    if (!message) return;
 
     // USER MESSAGE
 
-    chatMessages.innerHTML += `
+    const userDiv = document.createElement("div");
+    userDiv.className = "user-msg";
+    userDiv.innerText = message;
 
-        <div class="user-message">
-
-            ${message}
-
-        </div>
-
-    `;
-
-    chatMessages.scrollTop =
-    chatMessages.scrollHeight;
+    chatMessages.appendChild(userDiv);
 
     userInput.value = "";
 
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
+    // TYPING MESSAGE
 
-    // THINKING
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "bot-msg";
+    typingDiv.innerText = "SOLTAI is thinking...";
 
-    const thinkingId =
-    "thinking-" + Date.now();
+    chatMessages.appendChild(typingDiv);
 
-    chatMessages.innerHTML += `
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        <div
-        class="bot-message"
-        id="${thinkingId}">
+    try {
 
-        <strong>
-        SOLTAI Assist
-        </strong>
+        const response = await fetch("/chat", {
 
-        <br><br>
+            method: "POST",
 
-        SOLTAI is thinking...
-
-        </div>
-
-    `;
-
-    chatMessages.scrollTop =
-    chatMessages.scrollHeight;
-
-
-    try{
-
-        const response =
-        await fetch("/chat",{
-
-            method:"POST",
-
-            headers:{
-                "Content-Type":
-                "application/json"
+            headers: {
+                "Content-Type": "application/json"
             },
 
-            body:JSON.stringify({
-
-                message:message
-
+            body: JSON.stringify({
+                message: message
             })
 
         });
 
-        const data =
-        await response.json();
+        const data = await response.json();
 
-        const thinking =
-        document.getElementById(
-            thinkingId
-        );
+        typingDiv.remove();
 
-        if(thinking){
-            thinking.remove();
-        }
+        const botDiv = document.createElement("div");
+        botDiv.className = "bot-msg";
 
+        botDiv.innerText =
+            data.reply || "Sorry, I couldn't process that.";
 
-        chatMessages.innerHTML += `
-
-            <div class="bot-message">
-
-                <strong>
-                SOLTAI Assist
-                </strong>
-
-                <br><br>
-
-                ${data.reply}
-
-            </div>
-
-        `;
+        chatMessages.appendChild(botDiv);
 
         chatMessages.scrollTop =
-        chatMessages.scrollHeight;
+            chatMessages.scrollHeight;
 
     }
 
-    catch(error){
+    catch (error) {
 
-        const thinking =
-        document.getElementById(
-            thinkingId
-        );
+        typingDiv.remove();
 
-        if(thinking){
-            thinking.remove();
-        }
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "bot-msg";
 
-        chatMessages.innerHTML += `
+        errorDiv.innerText =
+            "Server connection failed.";
 
-            <div class="bot-message">
-
-            <strong>Error</strong>
-
-            <br><br>
-
-            Unable to connect
-            with SOLTAI AI.
-
-            </div>
-
-        `;
+        chatMessages.appendChild(errorDiv);
 
         console.error(error);
 
@@ -217,44 +101,16 @@ async function sendMessage(customText = null){
 
 }
 
+// BUTTON CLICK
 
-// ==========================
-// SEND BUTTON
-// ==========================
+sendBtn.addEventListener("click", sendMessage);
 
-sendBtn.addEventListener("click", () => {
-
-    sendMessage();
-
-});
-
-
-// ==========================
 // ENTER KEY
-// ==========================
 
-userInput.addEventListener(
-"keypress",
-function(e){
+userInput.addEventListener("keypress", function(e) {
 
-    if(e.key === "Enter"){
-
+    if (e.key === "Enter") {
         sendMessage();
-
     }
 
 });
-
-
-// ==========================
-// QUICK QUESTIONS
-// ==========================
-
-function askQuestion(question){
-
-    sendMessage(question);
-
-}
-
-window.askQuestion =
-askQuestion;
