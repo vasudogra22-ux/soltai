@@ -620,5 +620,142 @@ letter-spacing:5px;
 .navbar ul{
 gap:20px;
 }
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media screen and (max-width: 768px){
+
+.navbar{
+flex-direction:column;
+gap:20px;
+padding:20px;
+}
+
+.navbar ul{
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.logo span{
+font-size:22px;
+letter-spacing:4px;
+}
+
+.hero{
+padding:20px;
+flex-direction:column;
+}
+
+.hero-left{
+padding-top:20px;
+text-align:center;
+}
+
+.hero h1{
+font-size:58px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+}
+
+.hero-btn{
+padding:16px 30px;
+font-size:18px;
+}
+
+.chat-wrapper{
+width:100%;
+margin-top:40px;
+}
+
+.chat-toggle{
+position:fixed;
+right:20px;
+bottom:20px;
+top:auto;
+
+width:70px;
+height:70px;
+
+font-size:34px;
+
+z-index:9999;
+}
+
+.chat-box{
+
+position:fixed;
+
+left:50%;
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:95%;
+max-width:420px;
+
+height:80vh;
+
+right:auto;
+}
+
+.chat-header{
+height:70px;
+}
+
+.chat-title{
+font-size:18px;
+}
+
+.chat-messages{
+padding:15px;
+}
+
+.chat-input-area{
+padding:12px;
+}
+
+.chat-input-area input{
+font-size:16px;
+}
+
+.contact{
+padding:30px 15px 60px;
+}
+
+.contact-card{
+flex-direction:column;
+text-align:center;
+gap:25px;
+padding:30px 20px;
+}
+
+.contact-left h2{
+font-size:34px;
+}
+
+.contact-middle{
+max-width:100%;
+font-size:18px;
+}
+
+.contact-right button{
+width:100%;
+}
+
+.divider{
+display:none;
+}
+
+footer{
+font-size:14px;
+padding:30px 10px;
+}
+
+}
 
 }
