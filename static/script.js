@@ -1,4 +1,6 @@
-// CHAT ELEMENTS
+// =========================
+// SOLTAI CHATBOT
+// =========================
 
 const chatToggle = document.getElementById("chatToggle");
 const chatWindow = document.getElementById("chatWindow");
@@ -8,19 +10,29 @@ const sendBtn = document.getElementById("sendBtn");
 const userInput = document.getElementById("userInput");
 const chatMessages = document.getElementById("chatMessages");
 
-// OPEN CHAT
-
+// Open Chat
 chatToggle.addEventListener("click", () => {
-    chatWindow.style.display = "flex";
+    chatWindow.classList.remove("hidden");
 });
 
-// CLOSE CHAT
-
+// Close Chat
 closeChat.addEventListener("click", () => {
-    chatWindow.style.display = "none";
+    chatWindow.classList.add("hidden");
 });
 
+// Send Button
+sendBtn.addEventListener("click", sendMessage);
+
+// Enter Key
+userInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+
+// =========================
 // SEND MESSAGE
+// =========================
 
 async function sendMessage() {
 
@@ -28,89 +40,95 @@ async function sendMessage() {
 
     if (!message) return;
 
-    // USER MESSAGE
-
-    const userDiv = document.createElement("div");
-    userDiv.className = "user-msg";
-    userDiv.innerText = message;
-
-    chatMessages.appendChild(userDiv);
+    // User Message
+    addUserMessage(message);
 
     userInput.value = "";
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Loading
+    const loadingDiv = document.createElement("div");
 
-    // TYPING MESSAGE
+    loadingDiv.className =
+        "bg-white/5 rounded-2xl p-4 text-gray-300";
 
-    const typingDiv = document.createElement("div");
-    typingDiv.className = "bot-msg";
-    typingDiv.innerText = "SOLTAI is thinking...";
+    loadingDiv.id = "loading-message";
 
-    chatMessages.appendChild(typingDiv);
+    loadingDiv.innerHTML = "SOLTAI is thinking...";
+
+    chatMessages.appendChild(loadingDiv);
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     try {
 
         const response = await fetch("/chat", {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify({
                 message: message
             })
-
         });
 
         const data = await response.json();
 
-        typingDiv.remove();
+        document.getElementById("loading-message")?.remove();
 
-        const botDiv = document.createElement("div");
-        botDiv.className = "bot-msg";
+        addBotMessage(
+            data.reply ||
+            "Sorry, I couldn't generate a response."
+        );
 
-        botDiv.innerText =
-            data.reply || "Sorry, I couldn't process that.";
+    } catch (error) {
 
-        chatMessages.appendChild(botDiv);
+        document.getElementById("loading-message")?.remove();
 
-        chatMessages.scrollTop =
-            chatMessages.scrollHeight;
-
-    }
-
-    catch (error) {
-
-        typingDiv.remove();
-
-        const errorDiv = document.createElement("div");
-        errorDiv.className = "bot-msg";
-
-        errorDiv.innerText =
-            "Server connection failed.";
-
-        chatMessages.appendChild(errorDiv);
+        addBotMessage(
+            "Server connection error. Please try again."
+        );
 
         console.error(error);
-
     }
-
 }
 
-// BUTTON CLICK
+// =========================
+// USER MESSAGE
+// =========================
 
-sendBtn.addEventListener("click", sendMessage);
+function addUserMessage(text) {
 
-// ENTER KEY
+    const div = document.createElement("div");
 
-userInput.addEventListener("keypress", function(e) {
+    div.className =
+        "bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-4 ml-auto max-w-[80%]";
 
-    if (e.key === "Enter") {
-        sendMessage();
-    }
+    div.innerHTML = text;
 
-});
+    chatMessages.appendChild(div);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+}
+
+// =========================
+// BOT MESSAGE
+// =========================
+
+function addBotMessage(text) {
+
+    const div = document.createElement("div");
+
+    div.className =
+        "bg-white/5 rounded-2xl p-4 max-w-[85%]";
+
+    div.innerHTML = `
+        <strong>SOLTAI AI:</strong><br>
+        ${text}
+    `;
+
+    chatMessages.appendChild(div);
+
+    chatMessages.scrollTop =
+        chatMessages.scrollHeight;
+}
