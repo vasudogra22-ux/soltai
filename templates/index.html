@@ -4,370 +4,351 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SOLTAI — AI Powered Future Solutions</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: #000;
-    color: #e8eaf0;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-  }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-  /* ── NAVBAR ── */
-  .navbar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 22px 32px;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(83,104,120,0.1);
-  }
-  .logo { font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0; }
-  .nav-links { display:flex;gap:40px; }
-  .nav-link {
-    font-size:14px;color:rgba(200,205,216,0.45);
-    text-decoration:none;position:relative;transition:color 0.2s;
-  }
-  .nav-link:hover,.nav-link.active { color:#e8eaf0; }
-  .nav-link.active::after {
-    content:'';position:absolute;bottom:-6px;left:0;right:0;
-    height:2px;background:#536878;border-radius:1px;
-  }
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(83,104,120,0.1);}
+.logo{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0;}
+.nav-links{display:flex;gap:40px;}
+.nav-link{font-size:14px;color:rgba(200,205,216,0.45);text-decoration:none;position:relative;transition:color 0.2s;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:#e8eaf0;}
+.nav-link.active::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;background:#536878;border-radius:1px;}
 
-  /* ── HERO ── */
-  .hero {
-    min-height:100vh;background:#000;
-    display:flex;flex-direction:column;justify-content:center;
-    padding:130px 32px 100px;position:relative;
-  }
-  .hero-inner { max-width:540px; }
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
 
-  .hero-title {
-    font-family:'Playfair Display',serif;
-    font-size:clamp(50px,9vw,82px);
-    font-weight:700;line-height:1.08;
-    margin-bottom:24px;letter-spacing:-0.01em;
-  }
-  .hero-title .accent { color:#536878; }
-  .hero-title .white  { color:#fff; }
+.hero{min-height:100vh;background:#000;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 100px;position:relative;}
+.hero-inner{max-width:540px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,82px);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-0.01em;}
+.hero-title .accent{color:#536878;}
+.hero-title .white{color:#fff;}
+.hero-sub{font-size:15px;color:rgba(200,205,216,0.5);line-height:1.9;margin-bottom:44px;}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#536878;color:#000;border:none;border-radius:10px;padding:16px 28px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:background 0.2s,transform 0.15s;}
+.btn-primary:hover{background:#6b8494;transform:translateY(-1px);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#e8eaf0;border:1.5px solid rgba(200,205,216,0.3);border-radius:10px;padding:15px 26px;font-family:'Inter',sans-serif;font-size:15px;font-weight:400;cursor:pointer;text-decoration:none;transition:border-color 0.2s,transform 0.15s;}
+.btn-outline:hover{border-color:rgba(200,205,216,0.65);transform:translateY(-1px);}
+.hint{margin-top:18px;font-size:12px;color:rgba(200,205,216,0.32);display:flex;align-items:center;gap:8px;}
+.hint-dot{width:6px;height:6px;border-radius:50%;background:#536878;}
 
-  .hero-sub {
-    font-size:15px;color:rgba(200,205,216,0.5);
-    line-height:1.9;margin-bottom:44px;
-  }
+.ai-pulse{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;}
+.pulse-rings{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(83,104,120,0.5);animation:expandRing 2.4s ease-out infinite;}
+.ring:nth-child(1){width:20px;height:20px;animation-delay:0s;}
+.ring:nth-child(2){width:20px;height:20px;animation-delay:0.6s;}
+.ring:nth-child(3){width:20px;height:20px;animation-delay:1.2s;}
+@keyframes expandRing{0%{width:16px;height:16px;opacity:0.9;border-color:rgba(83,104,120,0.7);}100%{width:56px;height:56px;opacity:0;border-color:rgba(83,104,120,0);}}
+.pulse-core{width:10px;height:10px;border-radius:50%;background:#536878;box-shadow:0 0 8px rgba(83,104,120,0.8);animation:corePulse 2.4s ease-in-out infinite;z-index:2;}
+@keyframes corePulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:0.7;}}
+.pulse-label{font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;}
 
-  .btn-row { display:flex;gap:14px;flex-wrap:wrap;align-items:center; }
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(83,104,120,0.3),transparent);}
 
-  .btn-primary {
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;
-    background:#536878;color:#000;border:none;border-radius:10px;
-    padding:16px 28px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-    cursor:pointer;text-decoration:none;transition:background 0.2s,transform 0.15s;
-  }
-  .btn-primary:hover { background:#6b8494;transform:translateY(-1px); }
+.contact{background:#000;padding:60px 32px 72px;}
+.contact-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:600;margin-bottom:10px;}
+.contact-title .white{color:#fff;}
+.contact-title .accent{color:#536878;}
+.contact-sub{font-size:13px;color:rgba(200,205,216,0.38);line-height:1.7;margin-bottom:36px;max-width:280px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}.nav-links{gap:18px;}}
+.input-wrap{position:relative;}
+.input-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(83,104,120,0.65);pointer-events:none;}
+.textarea-icon{position:absolute;left:15px;top:15px;color:rgba(83,104,120,0.65);pointer-events:none;}
+.f-input{width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.18);border-radius:12px;color:#e8eaf0;padding:14px 14px 14px 44px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,background 0.2s;}
+.f-input:focus{border-color:rgba(83,104,120,0.5);background:rgba(83,104,120,0.11);}
+.f-input::placeholder{color:rgba(200,205,216,0.25);}
+textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
+.btn-send{width:100%;background:#536878;color:#000;border:none;border-radius:10px;padding:17px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;transition:background 0.2s,transform 0.15s;}
+.btn-send:hover{background:#6b8494;transform:translateY(-1px);}
+.footer{background:#000;text-align:center;padding:22px 32px;border-top:1px solid rgba(83,104,120,0.1);}
+.footer p{font-size:12px;color:rgba(83,104,120,0.45);letter-spacing:0.04em;}
 
-  .btn-outline {
-    display:inline-flex;align-items:center;gap:8px;
-    background:transparent;color:#e8eaf0;
-    border:1.5px solid rgba(200,205,216,0.3);border-radius:10px;
-    padding:15px 26px;font-family:'Inter',sans-serif;font-size:15px;font-weight:400;
-    cursor:pointer;text-decoration:none;transition:border-color 0.2s,transform 0.15s;
-  }
-  .btn-outline:hover { border-color:rgba(200,205,216,0.65);transform:translateY(-1px); }
+#page-features{background:#000;padding-top:90px;}
+.features-hero{padding:60px 32px 20px;max-width:700px;}
+.features-hero h2{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,56px);font-weight:700;line-height:1.1;margin-bottom:16px;}
+.features-hero h2 .accent{color:#536878;}
+.features-hero h2 .white{color:#fff;}
+.features-hero p{font-size:14px;color:rgba(200,205,216,0.45);line-height:1.8;}
 
-  .hint {
-    margin-top:18px;font-size:12px;
-    color:rgba(200,205,216,0.32);
-    display:flex;align-items:center;gap:8px;
-  }
-  .hint-dot { width:6px;height:6px;border-radius:50%;background:#536878; }
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:32px 32px 80px;}
+@media(max-width:640px){.cards-grid{grid-template-columns:1fr;}}
 
-  /* AI PULSE RING ANIMATION */
-  .ai-pulse {
-    position:absolute;
-    bottom:52px; left:50%; transform:translateX(-50%);
-    display:flex;flex-direction:column;align-items:center;gap:14px;
-  }
-  .pulse-rings {
-    position:relative;
-    width:56px;height:56px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .ring {
-    position:absolute;
-    border-radius:50%;
-    border:1px solid rgba(83,104,120,0.5);
-    animation:expandRing 2.4s ease-out infinite;
-  }
-  .ring:nth-child(1){ width:20px;height:20px;animation-delay:0s; }
-  .ring:nth-child(2){ width:20px;height:20px;animation-delay:0.6s; }
-  .ring:nth-child(3){ width:20px;height:20px;animation-delay:1.2s; }
-  @keyframes expandRing {
-    0%   { width:16px;height:16px;opacity:0.9;border-color:rgba(83,104,120,0.7); }
-    100% { width:56px;height:56px;opacity:0;border-color:rgba(83,104,120,0); }
-  }
-  .pulse-core {
-    width:10px;height:10px;border-radius:50%;
-    background:#536878;
-    box-shadow:0 0 8px rgba(83,104,120,0.8);
-    animation:corePulse 2.4s ease-in-out infinite;
-    z-index:2;
-  }
-  @keyframes corePulse {
-    0%,100% { transform:scale(1);opacity:1; }
-    50%      { transform:scale(1.3);opacity:0.7; }
-  }
-  .pulse-label {
-    font-size:10px;letter-spacing:0.14em;
-    color:rgba(83,104,120,0.6);text-transform:uppercase;
-  }
+.feat-card{background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:20px;padding:28px 24px 24px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;}
+.feat-card:hover{border-color:rgba(83,104,120,0.45);transform:translateY(-4px);}
+.card-label{font-size:10px;letter-spacing:0.16em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:10px;}
+.card-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.3;}
+.card-title .accent{color:#536878;}
+.card-desc{font-size:13px;color:rgba(200,205,216,0.45);line-height:1.7;margin-bottom:20px;}
+.card-anim{width:100%;display:flex;justify-content:center;align-items:center;flex:1;}
 
-  /* ── DIVIDER ── */
-  .divider {
-    height:1px;
-    background:linear-gradient(90deg,transparent,rgba(83,104,120,0.3),transparent);
-  }
+.terminal{width:100%;max-width:260px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;overflow:hidden;}
+.terminal-bar{background:rgba(83,104,120,0.15);padding:8px 12px;display:flex;align-items:center;gap:6px;}
+.t-dot{width:8px;height:8px;border-radius:50%;}
+.terminal-body{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:100px;}
+.t-msg{padding:6px 10px;border-radius:8px;font-size:11px;line-height:1.4;max-width:80%;}
+.t-bot{background:rgba(83,104,120,0.2);color:#c8cdd8;align-self:flex-start;border-radius:3px 8px 8px 8px;}
+.t-user{background:rgba(83,104,120,0.35);color:#e8eaf0;align-self:flex-end;border-radius:8px 3px 8px 8px;}
+.t-typing{display:flex;gap:3px;padding:7px 10px;background:rgba(83,104,120,0.15);border-radius:3px 8px 8px 8px;align-self:flex-start;width:fit-content;}
+.t-typing span{width:4px;height:4px;border-radius:50%;background:rgba(83,104,120,0.7);animation:tblink 1.2s infinite;}
+.t-typing span:nth-child(2){animation-delay:0.2s;}
+.t-typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes tblink{0%,100%{opacity:0.3;}50%{opacity:1;}}
 
-  /* ── CONTACT ── */
-  .contact { background:#000;padding:60px 32px 72px; }
+.brain-wrap{position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;}
+.brain-core{width:44px;height:44px;border-radius:50%;background:rgba(83,104,120,0.2);border:1.5px solid rgba(83,104,120,0.5);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 0 20px rgba(83,104,120,0.3);}
+.brain-core svg{animation:brainPulse 2s ease-in-out infinite;}
+@keyframes brainPulse{0%,100%{opacity:0.6;}50%{opacity:1;}}
+.orbit-ring{position:absolute;border-radius:50%;border:1px dashed rgba(83,104,120,0.25);}
+.orbit-ring-1{width:80px;height:80px;animation:spinOrbit 6s linear infinite;}
+.orbit-ring-2{width:120px;height:120px;animation:spinOrbit 10s linear infinite reverse;}
+@keyframes spinOrbit{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.pill{position:absolute;background:rgba(83,104,120,0.15);border:1px solid rgba(83,104,120,0.35);border-radius:20px;padding:3px 8px;font-size:9px;color:#9aa5b8;white-space:nowrap;letter-spacing:0.04em;}
+.p1-a{top:0;left:50%;transform:translateX(-50%) translateY(-6px);}
+.p1-b{bottom:0;left:50%;transform:translateX(-50%) translateY(6px);}
+.p2-a{top:50%;right:-8px;transform:translateY(-50%);}
+.p2-b{top:50%;left:-8px;transform:translateY(-50%);}
 
-  .contact-title {
-    font-family:'Playfair Display',serif;
-    font-size:38px;font-weight:600;margin-bottom:10px;
-  }
-  .contact-title .white  { color:#fff; }
-  .contact-title .accent { color:#536878; }
+.team-board{width:100%;max-width:260px;}
+.team-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.12);margin-bottom:8px;transition:background 0.3s;}
+.team-row:hover{background:rgba(83,104,120,0.12);}
+.team-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+.team-info{flex:1;margin-left:10px;}
+.team-name{font-size:11px;color:#c8cdd8;font-weight:500;}
+.team-role{font-size:10px;color:rgba(200,205,216,0.4);}
+.team-status{display:flex;align-items:center;gap:4px;font-size:10px;}
+.status-dot{width:6px;height:6px;border-radius:50%;}
+.status-active{background:#536878;box-shadow:0 0 6px rgba(83,104,120,0.8);animation:statusPulse 2s infinite;}
+.status-idle{background:rgba(83,104,120,0.4);}
+@keyframes statusPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.ai-badge{background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.3);border-radius:6px;padding:2px 6px;font-size:9px;color:#536878;letter-spacing:0.04em;}
 
-  .contact-sub {
-    font-size:13px;color:rgba(200,205,216,0.38);
-    line-height:1.7;margin-bottom:36px;max-width:280px;
-  }
+.heatmap-wrap{width:100%;}
+.heatmap-label{font-size:10px;color:rgba(83,104,120,0.5);margin-bottom:10px;letter-spacing:0.06em;}
+.heatmap-grid{display:flex;gap:3px;}
+.hm-col{display:flex;flex-direction:column;gap:3px;}
+.hm-cell{width:10px;height:10px;border-radius:2px;}
 
-  .form-row { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px; }
-  @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
-
-  .input-wrap { position:relative; }
-  .input-icon  { position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(83,104,120,0.65);pointer-events:none; }
-  .textarea-icon { position:absolute;left:15px;top:15px;color:rgba(83,104,120,0.65);pointer-events:none; }
-
-  .f-input {
-    width:100%;background:rgba(83,104,120,0.07);
-    border:1px solid rgba(83,104,120,0.18);border-radius:12px;
-    color:#e8eaf0;padding:14px 14px 14px 44px;
-    font-family:'Inter',sans-serif;font-size:14px;
-    outline:none;transition:border-color 0.2s,background 0.2s;
-  }
-  .f-input:focus { border-color:rgba(83,104,120,0.5);background:rgba(83,104,120,0.11); }
-  .f-input::placeholder { color:rgba(200,205,216,0.25); }
-  textarea.f-input { resize:none;min-height:110px;padding-top:14px; }
-
-  .btn-send {
-    width:100%;background:#536878;color:#000;
-    border:none;border-radius:10px;padding:17px;
-    font-family:'Inter',sans-serif;font-size:15px;font-weight:600;
-    cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;
-    margin-top:12px;transition:background 0.2s,transform 0.15s;
-  }
-  .btn-send:hover { background:#6b8494;transform:translateY(-1px); }
-
-  /* ── FOOTER ── */
-  .footer {
-    background:#000;text-align:center;padding:22px 32px;
-    border-top:1px solid rgba(83,104,120,0.1);
-  }
-  .footer p { font-size:12px;color:rgba(83,104,120,0.45);letter-spacing:0.04em; }
-
-  /* ── CHATBOT FAB ── */
-  #fab {
-    position:fixed;bottom:26px;right:26px;z-index:300;
-    width:54px;height:54px;border-radius:50%;
-    background:#000;border:1.5px solid rgba(83,104,120,0.5);
-    box-shadow:0 0 0 0 rgba(83,104,120,0.4);
-    animation:pgpulse 3s ease-out infinite;
-    cursor:pointer;display:flex;align-items:center;justify-content:center;
-    transition:background 0.2s;
-  }
-  #fab:hover { background:rgba(83,104,120,0.12); }
-  @keyframes pgpulse {
-    0%   { box-shadow:0 0 0 0   rgba(83,104,120,0.45); }
-    70%  { box-shadow:0 0 0 13px rgba(83,104,120,0); }
-    100% { box-shadow:0 0 0 0   rgba(83,104,120,0); }
-  }
-
-  /* ── CHATBOT WINDOW ── */
-  #cwin {
-    display:none;
-    position:fixed;bottom:90px;right:26px;z-index:299;
-    width:340px;max-height:490px;
-    background:#0b0b0b;
-    border:1px solid rgba(83,104,120,0.25);
-    border-radius:18px;overflow:hidden;
-    box-shadow:0 24px 60px rgba(0,0,0,0.75);
-    flex-direction:column;
-  }
-  #cwin.open { display:flex;animation:slideup 0.25s ease; }
-  @keyframes slideup { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
-
-  .chead {
-    background:rgba(83,104,120,0.08);
-    border-bottom:1px solid rgba(83,104,120,0.15);
-    padding:13px 16px;
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .cdot { width:7px;height:7px;border-radius:50%;background:#536878;animation:blink 2s infinite; }
-  @keyframes blink{0%,100%{opacity:0.35;}50%{opacity:1;}}
-
-  .cmsgs {
-    flex:1;overflow-y:auto;padding:14px;
-    display:flex;flex-direction:column;gap:9px;
-  }
-  .cmsgs::-webkit-scrollbar{width:3px;}
-  .cmsgs::-webkit-scrollbar-thumb{background:rgba(83,104,120,0.3);border-radius:2px;}
-
-  .cmsg{max-width:85%;padding:9px 13px;border-radius:13px;font-size:13px;line-height:1.55;}
-  .cbot{background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;border-radius:4px 13px 13px 13px;}
-  .cusr{background:rgba(83,104,120,0.25);border:1px solid rgba(83,104,120,0.32);color:#e8eaf0;align-self:flex-end;border-radius:13px 4px 13px 13px;}
-
-  .cinput-area{border-top:1px solid rgba(83,104,120,0.15);padding:10px;display:flex;gap:8px;align-items:flex-end;}
-  .cinput{
-    flex:1;background:rgba(83,104,120,0.07);
-    border:1px solid rgba(83,104,120,0.2);
-    border-radius:10px;color:#e8eaf0;font-size:13px;
-    padding:9px 11px;resize:none;outline:none;
-    font-family:'Inter',sans-serif;max-height:70px;
-    transition:border-color 0.2s;
-  }
-  .cinput:focus{border-color:rgba(83,104,120,0.5);}
-  .cinput::placeholder{color:rgba(200,205,216,0.28);}
-
-  .csend{
-    width:34px;height:34px;border-radius:9px;flex-shrink:0;
-    background:rgba(83,104,120,0.25);border:1px solid rgba(83,104,120,0.4);
-    color:#c8cdd8;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:background 0.2s;
-  }
-  .csend:hover{background:rgba(83,104,120,0.5);}
-
-  .typing{display:flex;gap:4px;padding:9px 13px;}
-  .typing span{width:5px;height:5px;border-radius:50%;background:rgba(83,104,120,0.65);animation:blink 1.2s infinite;}
-  .typing span:nth-child(2){animation-delay:0.2s;}
-  .typing span:nth-child(3){animation-delay:0.4s;}
-
-  #toast{
-    position:fixed;bottom:110px;left:50%;transform:translateX(-50%);
-    background:rgba(83,104,120,0.92);color:#e8eaf0;
-    padding:11px 24px;border-radius:50px;font-size:13px;
-    display:none;z-index:400;white-space:nowrap;
-    box-shadow:0 8px 24px rgba(0,0,0,0.5);
-  }
+#fab{position:fixed;bottom:26px;right:26px;z-index:300;width:54px;height:54px;border-radius:50%;background:#000;border:1.5px solid rgba(83,104,120,0.5);box-shadow:0 0 0 0 rgba(83,104,120,0.4);animation:pgpulse 3s ease-out infinite;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+#fab:hover{background:rgba(83,104,120,0.12);}
+@keyframes pgpulse{0%{box-shadow:0 0 0 0 rgba(83,104,120,0.45);}70%{box-shadow:0 0 0 13px rgba(83,104,120,0);}100%{box-shadow:0 0 0 0 rgba(83,104,120,0);}}
+#cwin{display:none;position:fixed;bottom:90px;right:26px;z-index:299;width:340px;max-height:490px;background:#0b0b0b;border:1px solid rgba(83,104,120,0.25);border-radius:18px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.75);flex-direction:column;}
+#cwin.open{display:flex;animation:slideup 0.25s ease;}
+@keyframes slideup{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.chead{background:rgba(83,104,120,0.08);border-bottom:1px solid rgba(83,104,120,0.15);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;}
+.cdot{width:7px;height:7px;border-radius:50%;background:#536878;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:0.35;}50%{opacity:1;}}
+.cmsgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:9px;}
+.cmsgs::-webkit-scrollbar{width:3px;}
+.cmsgs::-webkit-scrollbar-thumb{background:rgba(83,104,120,0.3);border-radius:2px;}
+.cmsg{max-width:85%;padding:9px 13px;border-radius:13px;font-size:13px;line-height:1.55;}
+.cbot{background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;border-radius:4px 13px 13px 13px;}
+.cusr{background:rgba(83,104,120,0.25);border:1px solid rgba(83,104,120,0.32);color:#e8eaf0;align-self:flex-end;border-radius:13px 4px 13px 13px;}
+.cinput-area{border-top:1px solid rgba(83,104,120,0.15);padding:10px;display:flex;gap:8px;align-items:flex-end;}
+.cinput{flex:1;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;font-size:13px;padding:9px 11px;resize:none;outline:none;font-family:'Inter',sans-serif;max-height:70px;transition:border-color 0.2s;}
+.cinput:focus{border-color:rgba(83,104,120,0.5);}
+.cinput::placeholder{color:rgba(200,205,216,0.28);}
+.csend{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(83,104,120,0.25);border:1px solid rgba(83,104,120,0.4);color:#c8cdd8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.csend:hover{background:rgba(83,104,120,0.5);}
+.typing{display:flex;gap:4px;padding:9px 13px;}
+.typing span{width:5px;height:5px;border-radius:50%;background:rgba(83,104,120,0.65);animation:blink 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+#toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.92);color:#e8eaf0;padding:11px 24px;border-radius:50px;font-size:13px;display:none;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.3);color:rgba(200,205,216,0.6);border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;margin:24px 32px 0;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.back-btn:hover{border-color:rgba(83,104,120,0.6);color:#e8eaf0;}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SOLTAI</div>
   <div class="nav-links">
-    <a href="#home"    class="nav-link active">Home</a>
-    <a href="#contact" class="nav-link">Services</a>
-    <a href="#contact" class="nav-link">AI</a>
-    <a href="#contact" class="nav-link">Contact</a>
+    <span class="nav-link active" onclick="showPage('home')">Home</span>
+    <span class="nav-link" onclick="showPage('features')">Services</span>
+    <span class="nav-link" onclick="showPage('features')">AI</span>
+    <span class="nav-link" onclick="showPage('contact-page')">Contact</span>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <h1 class="hero-title">
-      <span class="accent">AI Powered</span><br/>
-      <span class="white">Future Solutions</span>
-    </h1>
-    <p class="hero-sub">
-      Welcome to SOLTAI AI.<br/>
-      Build smart systems with AI technology.
-    </p>
-    <div class="btn-row">
-      <a href="#contact" class="btn-primary">Get Started</a>
-      <a href="#contact" class="btn-outline">Explore Services &nbsp;→</a>
+<!-- HOME PAGE -->
+<div class="page active" id="page-home">
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span class="accent">AI Powered</span><br/>
+        <span class="white">Future Solutions</span>
+      </h1>
+      <p class="hero-sub">Welcome to SOLTAI AI.<br/>Build smart systems with AI technology.</p>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="showPage('features')">Get Started</button>
+        <button class="btn-outline" onclick="showPage('features')">Explore Services &nbsp;→</button>
+      </div>
+      <p class="hint"><span class="hint-dot"></span>Interactive product demo · No signup required</p>
     </div>
-    <p class="hint">
-      <span class="hint-dot"></span>
-      Interactive product demo · No signup required
-    </p>
-  </div>
-
-  <!-- AI Pulse Rings Animation -->
-  <div class="ai-pulse">
-    <div class="pulse-rings">
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="pulse-core"></div>
+    <div class="ai-pulse">
+      <div class="pulse-rings">
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        <div class="pulse-core"></div>
+      </div>
+      <span class="pulse-label">AI Active</span>
     </div>
-    <span class="pulse-label">AI Active</span>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <h2 class="contact-title">
-    <span class="white">Get In </span><span class="accent">Touch</span>
-  </h2>
-  <p class="contact-sub">Have a project in mind or want to know more about SOLTAI AI services?</p>
-
-  <div class="form-row">
-    <div class="input-wrap">
-      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-      </svg>
-      <input id="nm" type="text" placeholder="Your Name" class="f-input"/>
+  <section class="contact" id="contact">
+    <h2 class="contact-title"><span class="white">Get In </span><span class="accent">Touch</span></h2>
+    <p class="contact-sub">Have a project in mind or want to know more about SOLTAI AI services?</p>
+    <div class="form-row">
+      <div class="input-wrap">
+        <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <input id="nm" type="text" placeholder="Your Name" class="f-input"/>
+      </div>
+      <div class="input-wrap">
+        <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <input id="em" type="email" placeholder="Email Address" class="f-input"/>
+      </div>
     </div>
     <div class="input-wrap">
-      <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-        <polyline points="22,6 12,13 2,6"/>
-      </svg>
-      <input id="em" type="email" placeholder="Email Address" class="f-input"/>
+      <svg class="textarea-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      <textarea id="mg" placeholder="Your Enquiry / Message" class="f-input" rows="4"></textarea>
     </div>
-  </div>
+    <button class="btn-send" onclick="sendForm()">
+      Send Enquiry
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </section>
+  <footer class="footer"><p>soltai.onrender.com</p></footer>
+</div>
 
-  <div class="input-wrap">
-    <svg class="textarea-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-    </svg>
-    <textarea id="mg" placeholder="Your Enquiry / Message" class="f-input" rows="4"></textarea>
-  </div>
-
-  <button class="btn-send" onclick="sendForm()">
-    Send Enquiry
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5">
-      <line x1="22" y1="2" x2="11" y2="13"/>
-      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-    </svg>
+<!-- FEATURES PAGE -->
+<div class="page" id="page-features">
+  <button class="back-btn" onclick="showPage('home')">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back
   </button>
-</section>
+  <div class="features-hero">
+    <h2><span class="accent">SOLTAI</span> <span class="white">Core</span><br/><span class="white">Capabilities</span></h2>
+    <p>Explore what SOLTAI AI can do — built for enterprise, governed from day one.</p>
+  </div>
+  <div class="cards-grid">
 
-<footer class="footer">
-  <p>soltai.onrender.com</p>
-</footer>
+    <!-- CARD 02 -->
+    <div class="feat-card">
+      <div>
+        <div class="card-label">Card 02</div>
+        <div class="card-title"><span class="accent">Live</span> Chat Terminal</div>
+        <div class="card-desc">AI-powered chat with real-time typing indicator and intelligent responses.</div>
+      </div>
+      <div class="card-anim">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="t-dot" style="background:#536878;opacity:0.8;"></div>
+            <div class="t-dot" style="background:#536878;opacity:0.5;"></div>
+            <div class="t-dot" style="background:#536878;opacity:0.3;"></div>
+            <span style="font-size:10px;color:rgba(83,104,120,0.6);margin-left:6px;letter-spacing:0.06em;">SOLTAI CHAT</span>
+          </div>
+          <div class="terminal-body" id="term-body">
+            <div class="t-msg t-bot">Hello! How can I assist?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 04 -->
+    <div class="feat-card">
+      <div>
+        <div class="card-label">Card 04</div>
+        <div class="card-title">Floating <span class="accent">Context</span> Pills</div>
+        <div class="card-desc">Context-aware pills orbiting a central AI brain node in real-time.</div>
+      </div>
+      <div class="card-anim">
+        <div class="brain-wrap">
+          <div class="orbit-ring orbit-ring-1">
+            <div class="pill p1-a">Finance</div>
+            <div class="pill p1-b">Health</div>
+          </div>
+          <div class="orbit-ring orbit-ring-2">
+            <div class="pill p2-a">Energy</div>
+            <div class="pill p2-b">Gov</div>
+          </div>
+          <div class="brain-core">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#536878" stroke-width="1.5">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.44-4.66Z"/>
+              <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.44-4.66Z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 05 -->
+    <div class="feat-card">
+      <div>
+        <div class="card-label">Card 05</div>
+        <div class="card-title"><span class="accent">Team</span> Status Board</div>
+        <div class="card-desc">AI + humans working together — live activity status for your entire team.</div>
+      </div>
+      <div class="card-anim">
+        <div class="team-board">
+          <div class="team-row">
+            <div class="team-avatar" style="background:rgba(83,104,120,0.2);color:#536878;">A</div>
+            <div class="team-info"><div class="team-name">Aryan</div><div class="team-role">Lead Developer</div></div>
+            <div class="team-status"><div class="status-dot status-active"></div><span style="color:rgba(83,104,120,0.8);font-size:10px;">Active</span></div>
+          </div>
+          <div class="team-row">
+            <div class="team-avatar" style="background:rgba(83,104,120,0.1);color:#9aa5b8;font-size:9px;">AI</div>
+            <div class="team-info"><div class="team-name">SOLTAI Bot</div><div class="team-role">AI Assistant</div></div>
+            <div class="team-status"><span class="ai-badge">AI</span></div>
+          </div>
+          <div class="team-row">
+            <div class="team-avatar" style="background:rgba(83,104,120,0.15);color:#7a8fa0;">R</div>
+            <div class="team-info"><div class="team-name">Rahul</div><div class="team-role">Data Analyst</div></div>
+            <div class="team-status"><div class="status-dot status-idle"></div><span style="color:rgba(200,205,216,0.3);font-size:10px;">Idle</span></div>
+          </div>
+          <div class="team-row">
+            <div class="team-avatar" style="background:rgba(83,104,120,0.1);color:#9aa5b8;font-size:9px;">AI</div>
+            <div class="team-info"><div class="team-name">DataBot</div><div class="team-role">AI Analyst</div></div>
+            <div class="team-status"><span class="ai-badge">AI</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 06 -->
+    <div class="feat-card">
+      <div>
+        <div class="card-label">Card 06</div>
+        <div class="card-title">Activity <span class="accent">Heatmap</span></div>
+        <div class="card-desc">GitHub-style live activity heatmap — AI usage patterns visualized.</div>
+      </div>
+      <div class="card-anim" style="flex-direction:column;align-items:flex-start;padding:0 4px;">
+        <div class="heatmap-label">AI ACTIVITY — LAST 16 WEEKS</div>
+        <div class="heatmap-grid" id="heatmap"></div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:10px;">
+          <span style="font-size:10px;color:rgba(83,104,120,0.4);">Less</span>
+          <div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.1);"></div>
+          <div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.25);"></div>
+          <div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.45);"></div>
+          <div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.7);"></div>
+          <div style="width:9px;height:9px;border-radius:2px;background:#536878;"></div>
+          <span style="font-size:10px;color:rgba(83,104,120,0.4);">More</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div id="toast">✓ Enquiry sent! We'll be in touch shortly.</div>
 
 <!-- CHATBOT FAB -->
 <button id="fab" onclick="toggleChat()">
-  <svg id="ico-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5">
-    <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-  </svg>
-  <svg id="ico-x" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5">
-    <path d="M18 6L6 18M6 6l12 12"/>
-  </svg>
+  <svg id="ico-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+  <svg id="ico-x" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
 </button>
 
 <!-- CHATBOT WINDOW -->
@@ -386,111 +367,137 @@
       </div>
     </div>
     <button onclick="toggleChat()" style="background:none;border:none;cursor:pointer;padding:4px;color:rgba(83,104,120,0.6);">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
-
   <div class="cmsgs" id="cmsgs">
-    <div class="cmsg cbot">
-      Hello! I'm <span style="color:#536878;font-weight:500;">SOLTAI Assistant</span>.<br/>
-      How can I help you today?
-    </div>
+    <div class="cmsg cbot">Hello! I'm <span style="color:#536878;font-weight:500;">SOLTAI Assistant</span>. How can I help you today?</div>
   </div>
-
   <div class="cinput-area">
     <textarea class="cinput" id="cinput" placeholder="Ask something..." rows="1" onkeydown="chatKey(event)"></textarea>
     <button class="csend" onclick="chatSend()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <line x1="22" y1="2" x2="11" y2="13"/>
-        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-      </svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </div>
 </div>
 
 <script>
-  window.addEventListener('scroll', () => {
-    let cur = '';
-    document.querySelectorAll('section[id]').forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) cur = s.id;
-    });
-    document.querySelectorAll('.nav-link').forEach(l => {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + cur);
-    });
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  document.querySelectorAll('.nav-link').forEach((l, i) => {
+    l.classList.toggle('active', (i === 0 && id === 'home') || (i === 1 && id === 'features') || (i === 2 && id === 'features'));
   });
+}
 
-  function sendForm() {
-    const n = document.getElementById('nm').value.trim();
-    const e = document.getElementById('em').value.trim();
-    const m = document.getElementById('mg').value.trim();
-    if (!n || !e || !m) { alert('Please fill all fields.'); return; }
-    document.getElementById('nm').value = '';
-    document.getElementById('em').value = '';
-    document.getElementById('mg').value = '';
-    const t = document.getElementById('toast');
-    t.style.display = 'block';
-    setTimeout(() => t.style.display = 'none', 3000);
-  }
-
-  let chatOpen = false;
-  function toggleChat() {
-    chatOpen = !chatOpen;
-    document.getElementById('cwin').classList.toggle('open', chatOpen);
-    document.getElementById('ico-chat').style.display = chatOpen ? 'none' : 'block';
-    document.getElementById('ico-x').style.display   = chatOpen ? 'block' : 'none';
-  }
-
-  function chatKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatSend(); }
-  }
-
-  async function chatSend() {
-    const inp = document.getElementById('cinput');
-    const txt = inp.value.trim();
-    if (!txt) return;
-    inp.value = '';
-    const box = document.getElementById('cmsgs');
-
-    const um = document.createElement('div');
-    um.className = 'cmsg cusr';
-    um.textContent = txt;
-    box.appendChild(um);
-
-    const ty = document.createElement('div');
-    ty.className = 'cmsg cbot typing';
-    ty.innerHTML = '<span></span><span></span><span></span>';
-    box.appendChild(ty);
-    box.scrollTop = box.scrollHeight;
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: 'You are SOLTAI Assistant for SOLTAI AI company. SOLTAI provides enterprise AI solutions: VPC/On-Prem deployment, no public egress, audit trails, serving Life Sciences, Finance, Energy, Government sectors. Reply in the same language as the user (Hindi/English/Hinglish). Be friendly and concise under 80 words.',
-          messages: [{ role: 'user', content: txt }]
-        })
-      });
-      const data = await res.json();
-      const reply = data.content?.map(b => b.text || '').join('') || 'Something went wrong, please try again.';
-      ty.remove();
-      const bm = document.createElement('div');
-      bm.className = 'cmsg cbot';
-      bm.textContent = reply;
-      box.appendChild(bm);
-    } catch {
-      ty.remove();
-      const er = document.createElement('div');
-      er.className = 'cmsg cbot';
-      er.textContent = 'Connection error. Please retry.';
-      box.appendChild(er);
+function buildHeatmap() {
+  const grid = document.getElementById('heatmap');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const levels = [0,0.1,0.25,0.45,0.7,1];
+  for (let w = 0; w < 16; w++) {
+    const col = document.createElement('div');
+    col.className = 'hm-col';
+    for (let d = 0; d < 7; d++) {
+      const cell = document.createElement('div');
+      cell.className = 'hm-cell';
+      const lvl = levels[Math.floor(Math.random() * levels.length)];
+      cell.style.background = lvl === 0 ? 'rgba(83,104,120,0.07)' : `rgba(83,104,120,${lvl})`;
+      cell.style.transition = `background ${0.3 + Math.random()*0.4}s ease`;
+      col.appendChild(cell);
     }
-    box.scrollTop = box.scrollHeight;
+    grid.appendChild(col);
   }
+}
+buildHeatmap();
+setInterval(() => {
+  const cells = document.querySelectorAll('.hm-cell');
+  const count = Math.floor(cells.length * 0.15);
+  for (let i = 0; i < count; i++) {
+    const cell = cells[Math.floor(Math.random() * cells.length)];
+    const levels = [0.07,0.15,0.3,0.5,0.75,1];
+    cell.style.background = `rgba(83,104,120,${levels[Math.floor(Math.random()*levels.length)]})`;
+  }
+}, 800);
+
+const termMsgs = [
+  {type:'user',text:'Analyze Q3 data?'},
+  {type:'bot', text:'Running analysis...'},
+  {type:'user',text:'Show risk report'},
+  {type:'bot', text:'Report ready ✓'},
+  {type:'user',text:'Optimize pipeline?'},
+  {type:'bot', text:'Optimizing now...'},
+];
+let termIdx = 0;
+function addTermMsg() {
+  const body = document.getElementById('term-body');
+  if (!body) return;
+  const msgs = body.querySelectorAll('.t-msg,.t-typing');
+  if (msgs.length > 4) msgs[0].remove();
+  const ty = document.createElement('div');
+  ty.className = 't-typing';
+  ty.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(ty);
+  setTimeout(() => {
+    ty.remove();
+    const msg = termMsgs[termIdx % termMsgs.length];
+    const el = document.createElement('div');
+    el.className = `t-msg ${msg.type==='bot'?'t-bot':'t-user'}`;
+    el.textContent = msg.text;
+    body.appendChild(el);
+    termIdx++;
+  }, 900);
+}
+setInterval(addTermMsg, 2200);
+
+function sendForm() {
+  const n = document.getElementById('nm').value.trim();
+  const e = document.getElementById('em').value.trim();
+  const m = document.getElementById('mg').value.trim();
+  if (!n||!e||!m) { alert('Please fill all fields.'); return; }
+  document.getElementById('nm').value='';
+  document.getElementById('em').value='';
+  document.getElementById('mg').value='';
+  const t = document.getElementById('toast');
+  t.style.display='block';
+  setTimeout(()=>t.style.display='none',3000);
+}
+
+let chatOpen=false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('cwin').classList.toggle('open',chatOpen);
+  document.getElementById('ico-chat').style.display=chatOpen?'none':'block';
+  document.getElementById('ico-x').style.display=chatOpen?'block':'none';
+}
+function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chatSend();}}
+async function chatSend(){
+  const inp=document.getElementById('cinput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  inp.value='';
+  const box=document.getElementById('cmsgs');
+  const um=document.createElement('div');um.className='cmsg cusr';um.textContent=txt;box.appendChild(um);
+  const ty=document.createElement('div');ty.className='cmsg cbot typing';ty.innerHTML='<span></span><span></span><span></span>';box.appendChild(ty);
+  box.scrollTop=box.scrollHeight;
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
+        system:'You are SOLTAI Assistant. SOLTAI provides enterprise AI: VPC/On-Prem, no public egress, audit trails, Life Sciences, Finance, Energy, Government. Reply in user language (Hindi/English/Hinglish). Concise, under 80 words.',
+        messages:[{role:'user',content:txt}]})
+    });
+    const data=await res.json();
+    const reply=data.content?.map(b=>b.text||'').join('')||'Something went wrong.';
+    ty.remove();
+    const bm=document.createElement('div');bm.className='cmsg cbot';bm.textContent=reply;box.appendChild(bm);
+  }catch{
+    ty.remove();
+    const er=document.createElement('div');er.className='cmsg cbot';er.textContent='Connection error. Retry.';box.appendChild(er);
+  }
+  box.scrollTop=box.scrollHeight;
+}
 </script>
 </body>
 </html>
