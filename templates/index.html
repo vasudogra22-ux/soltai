@@ -10,7 +10,6 @@
 html{scroll-behavior:smooth;}
 body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* NAVBAR */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(83,104,120,0.1);}
 .logo{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0;}
 .nav-links{display:flex;gap:40px;}
@@ -18,11 +17,9 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .nav-link:hover,.nav-link.active{color:#e8eaf0;}
 .nav-link.active::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;background:#536878;border-radius:1px;}
 
-/* PAGE SYSTEM */
 .page{display:none;min-height:100vh;}
 .page.active{display:block;}
 
-/* HOME */
 .hero{min-height:100vh;background:#000;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 100px;position:relative;}
 .hero-inner{max-width:540px;}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,82px);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-0.01em;}
@@ -37,7 +34,6 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .hint{margin-top:18px;font-size:12px;color:rgba(200,205,216,0.32);display:flex;align-items:center;gap:8px;}
 .hint-dot{width:6px;height:6px;border-radius:50%;background:#536878;}
 
-/* AI Pulse */
 .ai-pulse{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;}
 .pulse-rings{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(83,104,120,0.5);animation:expandRing 2.4s ease-out infinite;}
@@ -51,7 +47,6 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(83,104,120,0.3),transparent);}
 
-/* CONTACT */
 .contact{background:#000;padding:60px 32px 72px;}
 .contact-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:600;margin-bottom:10px;}
 .contact-title .white{color:#fff;}
@@ -71,16 +66,40 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .footer{background:#000;text-align:center;padding:22px 32px;border-top:1px solid rgba(83,104,120,0.1);}
 .footer p{font-size:12px;color:rgba(83,104,120,0.45);letter-spacing:0.04em;}
 
-/* FEATURES PAGE */
-#page-features{background:#000;padding-top:90px;}
-.features-hero{padding:60px 32px 20px;max-width:700px;}
-.features-hero h2{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,56px);font-weight:700;line-height:1.1;margin-bottom:16px;}
-.features-hero h2 .accent{color:#536878;}
-.features-hero h2 .white{color:#fff;}
-.features-hero p{font-size:14px;color:rgba(200,205,216,0.45);line-height:1.8;}
-.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:32px 32px 0;}
+#page-services{background:#000;padding-top:90px;}
+.services-wrap{max-width:900px;margin:0 auto;padding:60px 32px 80px;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.3);color:rgba(200,205,216,0.6);border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;margin-bottom:40px;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.back-btn:hover{border-color:rgba(83,104,120,0.6);color:#e8eaf0;}
+.services-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:10px;}
+.services-title .white{color:#fff;}
+.services-title .accent{color:#536878;}
+.services-sub{font-size:14px;color:rgba(200,205,216,0.4);margin-bottom:48px;line-height:1.7;}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+@media(max-width:640px){.services-grid{grid-template-columns:1fr;}}
+.service-card{background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:24px;padding:36px 28px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(83,104,120,0.06) 0%,transparent 60%);opacity:0;transition:opacity 0.3s;}
+.service-card:hover{border-color:rgba(83,104,120,0.5);transform:translateY(-5px);box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.service-card:hover::before{opacity:1;}
+.sc-icon{width:56px;height:56px;border-radius:16px;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
+.sc-tag{font-size:10px;letter-spacing:0.12em;color:rgba(83,104,120,0.7);text-transform:uppercase;margin-bottom:10px;}
+.sc-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:12px;line-height:1.2;}
+.sc-title .accent{color:#536878;}
+.sc-title .white{color:#fff;}
+.sc-desc{font-size:13px;color:rgba(200,205,216,0.5);line-height:1.8;margin-bottom:24px;}
+.sc-features{display:flex;flex-direction:column;gap:8px;margin-bottom:28px;}
+.sc-feat{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.55);}
+.sc-feat-dot{width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;}
+.sc-btn{display:inline-flex;align-items:center;gap:8px;background:#536878;color:#000;border:none;border-radius:10px;padding:13px 22px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.sc-btn:hover{background:#6b8494;}
+.sc-badge{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:0.1em;padding:4px 10px;border-radius:20px;text-transform:uppercase;}
+.sc-badge.new{background:rgba(83,104,120,0.2);color:#536878;border:1px solid rgba(83,104,120,0.35);}
+.sc-badge.popular{background:rgba(200,205,216,0.08);color:#c8cdd8;border:1px solid rgba(200,205,216,0.15);}
+
+#page-chatbot{background:#000;padding-top:90px;}
+.feat-wrap{max-width:900px;margin:0 auto;padding:40px 32px 80px;}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
 @media(max-width:640px){.cards-grid{grid-template-columns:1fr;}}
-.feat-card{background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:20px;padding:28px 24px 24px;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;min-height:300px;display:flex;flex-direction:column;justify-content:space-between;}
+.feat-card{background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:20px;padding:28px 24px 24px;transition:border-color 0.3s,transform 0.3s;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;}
 .feat-card:hover{border-color:rgba(83,104,120,0.45);transform:translateY(-4px);}
 .card-label{font-size:10px;letter-spacing:0.16em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:10px;}
 .card-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:8px;line-height:1.3;}
@@ -88,11 +107,10 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .card-desc{font-size:13px;color:rgba(200,205,216,0.45);line-height:1.7;margin-bottom:20px;}
 .card-anim{width:100%;display:flex;justify-content:center;align-items:center;flex:1;}
 
-/* Terminal */
 .terminal{width:100%;max-width:260px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;overflow:hidden;}
 .terminal-bar{background:rgba(83,104,120,0.15);padding:8px 12px;display:flex;align-items:center;gap:6px;}
 .t-dot{width:8px;height:8px;border-radius:50%;}
-.terminal-body{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:100px;}
+.terminal-body{padding:12px;display:flex;flex-direction:column;gap:8px;min-height:90px;}
 .t-msg{padding:6px 10px;border-radius:8px;font-size:11px;line-height:1.4;max-width:80%;}
 .t-bot{background:rgba(83,104,120,0.2);color:#c8cdd8;align-self:flex-start;border-radius:3px 8px 8px 8px;}
 .t-user{background:rgba(83,104,120,0.35);color:#e8eaf0;align-self:flex-end;border-radius:8px 3px 8px 8px;}
@@ -102,7 +120,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .t-typing span:nth-child(3){animation-delay:0.4s;}
 @keyframes tblink{0%,100%{opacity:0.3;}50%{opacity:1;}}
 
-/* Brain */
 .brain-wrap{position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;}
 .brain-core{width:44px;height:44px;border-radius:50%;background:rgba(83,104,120,0.2);border:1.5px solid rgba(83,104,120,0.5);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 0 20px rgba(83,104,120,0.3);}
 .brain-core svg{animation:brainPulse 2s ease-in-out infinite;}
@@ -117,10 +134,8 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .p2-a{top:50%;right:-8px;transform:translateY(-50%);}
 .p2-b{top:50%;left:-8px;transform:translateY(-50%);}
 
-/* Team */
 .team-board{width:100%;max-width:260px;}
-.team-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.12);margin-bottom:8px;transition:background 0.3s;}
-.team-row:hover{background:rgba(83,104,120,0.12);}
+.team-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.12);margin-bottom:8px;}
 .team-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
 .team-info{flex:1;margin-left:10px;}
 .team-name{font-size:11px;color:#c8cdd8;font-weight:500;}
@@ -132,91 +147,47 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 @keyframes statusPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .ai-badge{background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.3);border-radius:6px;padding:2px 6px;font-size:9px;color:#536878;}
 
-/* Heatmap */
 .heatmap-grid{display:flex;gap:3px;}
 .hm-col{display:flex;flex-direction:column;gap:3px;}
 .hm-cell{width:10px;height:10px;border-radius:2px;}
 
-/* LETS JOIN SECTION */
-.lets-join-section{padding:60px 32px 80px;text-align:center;background:#000;}
-.lj-tag{display:inline-block;font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.7);text-transform:uppercase;margin-bottom:16px;padding:5px 14px;border:1px solid rgba(83,104,120,0.2);border-radius:20px;}
-.lj-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,48px);font-weight:700;line-height:1.1;margin-bottom:14px;}
-.lj-title .white{color:#fff;}
-.lj-title .accent{color:#536878;}
-.lj-sub{font-size:14px;color:rgba(200,205,216,0.4);max-width:380px;margin:0 auto 36px;line-height:1.8;}
-.btn-lets-join{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#000;border:none;border-radius:50px;padding:18px 40px;font-family:'Inter',sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 0 0 0 rgba(255,255,255,0.2);}
-.btn-lets-join:hover{background:#e0e4ea;transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,255,255,0.1);}
+#page-agent{background:#000;padding-top:90px;}
+.agent-wrap{max-width:860px;margin:0 auto;padding:40px 32px 80px;}
+.agent-hero{margin-bottom:40px;}
+.agent-title{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,48px);font-weight:700;margin-bottom:12px;}
+.agent-title .white{color:#fff;}
+.agent-title .accent{color:#536878;}
+.agent-sub{font-size:14px;color:rgba(200,205,216,0.45);line-height:1.8;max-width:520px;}
+.how-section{margin-bottom:44px;}
+.section-label{font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:20px;}
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(83,104,120,0.08);}
+.step:last-child{border-bottom:none;}
+.step-num{width:32px;height:32px;border-radius:50%;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#536878;flex-shrink:0;margin-top:2px;}
+.step-title{font-size:14px;font-weight:600;color:#e8eaf0;margin-bottom:4px;}
+.step-desc{font-size:13px;color:rgba(200,205,216,0.5);line-height:1.7;}
+.step-tag{display:inline-block;margin-top:8px;font-size:10px;padding:3px 10px;border-radius:20px;background:rgba(83,104,120,0.12);color:rgba(83,104,120,0.8);border:1px solid rgba(83,104,120,0.2);}
+.ticket-demo{background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:16px;padding:20px;margin-bottom:44px;}
+.ticket-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.tkt-item{display:flex;align-items:flex-start;gap:12px;padding:12px;background:rgba(83,104,120,0.05);border:1px solid rgba(83,104,120,0.1);border-radius:10px;margin-bottom:10px;transition:background 0.2s;}
+.tkt-item:last-child{margin-bottom:0;}
+.tkt-item:hover{background:rgba(83,104,120,0.09);}
+.tkt-icon{width:32px;height:32px;border-radius:8px;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tkt-body{flex:1;}
+.tkt-name{font-size:12px;font-weight:500;color:#c8cdd8;margin-bottom:3px;}
+.tkt-msg{font-size:11px;color:rgba(200,205,216,0.45);margin-bottom:5px;}
+.tkt-meta{display:flex;gap:8px;align-items:center;}
+.tkt-badge{font-size:9px;padding:2px 8px;border-radius:10px;border:1px solid;}
+.tkt-open{color:#536878;border-color:rgba(83,104,120,0.4);background:rgba(83,104,120,0.1);}
+.tkt-pending{color:rgba(200,160,80,0.8);border-color:rgba(200,160,80,0.3);background:rgba(200,160,80,0.06);}
+.tkt-resolved{color:rgba(100,180,100,0.8);border-color:rgba(100,180,100,0.3);background:rgba(100,180,100,0.06);}
+.tkt-time{font-size:10px;color:rgba(200,205,216,0.3);}
+.agent-cta{background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:16px;padding:28px;text-align:center;}
+.agent-cta h3{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:8px;}
+.agent-cta p{font-size:13px;color:rgba(200,205,216,0.45);margin-bottom:20px;}
+.btn-agent-start{display:inline-flex;align-items:center;gap:8px;background:#536878;color:#000;border:none;border-radius:10px;padding:14px 28px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-agent-start:hover{background:#6b8494;transform:translateY(-1px);}
 
-/* JOIN PAGE */
-#page-join{background:#000;padding-top:80px;min-height:100vh;}
-.join-wrap{max-width:520px;margin:0 auto;padding:50px 28px 80px;}
-.join-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:36px;transition:all 0.2s;font-family:'Inter',sans-serif;}
-.join-back:hover{border-color:rgba(83,104,120,0.5);color:#e8eaf0;}
-.join-title{font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,42px);font-weight:700;line-height:1.1;margin-bottom:8px;}
-.join-title .white{color:#fff;}
-.join-title .accent{color:#536878;}
-.join-sub{font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:36px;line-height:1.7;}
-
-.jf-group{margin-bottom:20px;}
-.jf-label{display:block;font-size:10px;letter-spacing:0.12em;color:rgba(83,104,120,0.7);text-transform:uppercase;margin-bottom:8px;font-weight:500;}
-.jf-input{width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;color:#e8eaf0;padding:14px 16px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,background 0.2s;}
-.jf-input:focus{border-color:rgba(83,104,120,0.5);background:rgba(83,104,120,0.1);}
-.jf-input::placeholder{color:rgba(200,205,216,0.22);}
-textarea.jf-input{resize:none;min-height:90px;}
-select.jf-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(83,104,120,0.6)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
-select.jf-input option{background:#111;color:#e8eaf0;}
-
-/* WhatsApp toggle */
-.wa-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.15);border-radius:12px;margin-bottom:20px;}
-.wa-toggle-label{display:flex;align-items:center;gap:10px;}
-.wa-icon{width:32px;height:32px;border-radius:8px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);display:flex;align-items:center;justify-content:center;}
-.wa-text{font-size:13px;color:#c8cdd8;font-weight:500;}
-.wa-sub{font-size:11px;color:rgba(200,205,216,0.35);margin-top:1px;}
-.toggle{position:relative;width:44px;height:24px;cursor:pointer;}
-.toggle input{opacity:0;width:0;height:0;}
-.toggle-slider{position:absolute;inset:0;background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.3);border-radius:12px;transition:0.3s;}
-.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;background:#536878;border-radius:50%;transition:0.3s;}
-.toggle input:checked + .toggle-slider{background:rgba(37,211,102,0.2);border-color:rgba(37,211,102,0.4);}
-.toggle input:checked + .toggle-slider::before{transform:translateX(20px);background:#25d366;}
-
-.wa-number-wrap{display:none;margin-bottom:20px;}
-.wa-number-wrap.show{display:block;}
-
-.btn-generate{width:100%;background:linear-gradient(135deg,#536878,#3d5060);color:#fff;border:none;border-radius:12px;padding:18px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;transition:all 0.2s;box-shadow:0 4px 20px rgba(83,104,120,0.25);}
-.btn-generate:hover{background:linear-gradient(135deg,#6b8494,#536878);transform:translateY(-1px);box-shadow:0 8px 30px rgba(83,104,120,0.35);}
-
-/* EMBED PAGE */
-#page-embed{background:#000;padding-top:80px;min-height:100vh;}
-.embed-wrap{max-width:560px;margin:0 auto;padding:50px 28px 80px;}
-.embed-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:36px;transition:all 0.2s;font-family:'Inter',sans-serif;}
-.embed-back:hover{border-color:rgba(83,104,120,0.5);color:#e8eaf0;}
-.embed-success{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
-.embed-check{width:36px;height:36px;border-radius:50%;background:rgba(83,104,120,0.15);border:1px solid rgba(83,104,120,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.embed-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,36px);font-weight:700;color:#fff;margin-bottom:6px;}
-.embed-title .accent{color:#536878;}
-.embed-sub{font-size:13px;color:rgba(200,205,216,0.4);line-height:1.7;margin-bottom:32px;}
-.client-card{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.18);border-radius:14px;padding:18px;margin-bottom:24px;}
-.client-card-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(83,104,120,0.08);}
-.client-card-row:last-child{border-bottom:none;}
-.cc-key{font-size:11px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;text-transform:uppercase;}
-.cc-val{font-size:12px;color:#c8cdd8;font-weight:500;}
-.code-section-title{font-size:12px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:10px;}
-.code-box{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.2);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:11px;color:#9aa5b8;line-height:1.6;word-break:break-all;margin-bottom:12px;position:relative;max-height:160px;overflow-y:auto;}
-.code-box::-webkit-scrollbar{width:3px;}
-.code-box::-webkit-scrollbar-thumb{background:rgba(83,104,120,0.3);border-radius:2px;}
-.btn-copy{width:100%;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.25);color:#c8cdd8;border-radius:10px;padding:13px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;transition:all 0.2s;}
-.btn-copy:hover{background:rgba(83,104,120,0.2);border-color:rgba(83,104,120,0.4);}
-.btn-copy.copied{background:rgba(83,104,120,0.25);color:#e8eaf0;}
-.btn-wa{width:100%;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);color:#25d366;border-radius:10px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;text-decoration:none;}
-.btn-wa:hover{background:rgba(37,211,102,0.14);border-color:rgba(37,211,102,0.4);}
-.wa-hidden{display:none;}
-.instructions{margin-top:28px;padding:18px;background:rgba(83,104,120,0.04);border:1px solid rgba(83,104,120,0.12);border-radius:12px;}
-.inst-title{font-size:11px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;}
-.inst-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.inst-num{width:20px;height:20px;border-radius:50%;background:rgba(83,104,120,0.15);border:1px solid rgba(83,104,120,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:#536878;font-weight:600;flex-shrink:0;margin-top:1px;}
-.inst-text{font-size:12px;color:rgba(200,205,216,0.5);line-height:1.6;}
-
-/* CHATBOT FAB */
 #fab{position:fixed;bottom:26px;right:26px;z-index:300;width:54px;height:54px;border-radius:50%;background:#000;border:1.5px solid rgba(83,104,120,0.5);box-shadow:0 0 0 0 rgba(83,104,120,0.4);animation:pgpulse 3s ease-out infinite;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 #fab:hover{background:rgba(83,104,120,0.12);}
 @keyframes pgpulse{0%{box-shadow:0 0 0 0 rgba(83,104,120,0.45);}70%{box-shadow:0 0 0 13px rgba(83,104,120,0);}100%{box-shadow:0 0 0 0 rgba(83,104,120,0);}}
@@ -243,32 +214,29 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .typing span:nth-child(2){animation-delay:0.2s;}
 .typing span:nth-child(3){animation-delay:0.4s;}
 #toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.92);color:#e8eaf0;padding:11px 24px;border-radius:50px;font-size:13px;display:none;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
-.back-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.3);color:rgba(200,205,216,0.6);border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;margin:24px 32px 0;transition:all 0.2s;font-family:'Inter',sans-serif;}
-.back-btn:hover{border-color:rgba(83,104,120,0.6);color:#e8eaf0;}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">SOLTAI</div>
   <div class="nav-links">
     <span class="nav-link active" onclick="showPage('home')">Home</span>
-    <span class="nav-link" onclick="showPage('features')">Services</span>
-    <span class="nav-link" onclick="showPage('features')">AI</span>
-    <span class="nav-link" onclick="showPage('join')">Let's Join</span>
+    <span class="nav-link" onclick="showPage('services')">Services</span>
+    <span class="nav-link" onclick="showPage('agent')">Agent Connect</span>
+    <span class="nav-link" onclick="scrollContact()">Contact</span>
   </div>
 </nav>
 
-<!-- HOME PAGE -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
     <div class="hero-inner">
       <h1 class="hero-title"><span class="accent">AI Powered</span><br/><span class="white">Future Solutions</span></h1>
       <p class="hero-sub">Welcome to SOLTAI AI.<br/>Build smart systems with AI technology.</p>
       <div class="btn-row">
-        <button class="btn-primary" onclick="showPage('features')">Get Started</button>
-        <button class="btn-outline" onclick="showPage('features')">Explore Services &nbsp;→</button>
+        <button class="btn-primary" onclick="showPage('services')">Get Started</button>
+        <button class="btn-outline" onclick="showPage('services')">Explore Services &nbsp;→</button>
       </div>
       <p class="hint"><span class="hint-dot"></span>Interactive product demo · No signup required</p>
     </div>
@@ -278,7 +246,7 @@ select.jf-input option{background:#111;color:#e8eaf0;}
     </div>
   </section>
   <div class="divider"></div>
-  <section class="contact">
+  <section class="contact" id="contact-section">
     <h2 class="contact-title"><span class="white">Get In </span><span class="accent">Touch</span></h2>
     <p class="contact-sub">Have a project in mind or want to know more about SOLTAI AI services?</p>
     <div class="form-row">
@@ -300,84 +268,110 @@ select.jf-input option{background:#111;color:#e8eaf0;}
   <footer class="footer"><p>soltai.onrender.com</p></footer>
 </div>
 
-<!-- FEATURES PAGE -->
-<div class="page" id="page-features">
-  <button class="back-btn" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
-  <div class="features-hero">
-    <h2><span class="accent">SOLTAI</span> <span class="white">Core</span><br/><span class="white">Capabilities</span></h2>
-    <p>Explore what SOLTAI AI can do — built for enterprise, governed from day one.</p>
-  </div>
-  <div class="cards-grid">
-    <div class="feat-card">
-      <div><div class="card-label">Card 02</div><div class="card-title"><span class="accent">Live</span> Chat Terminal</div><div class="card-desc">AI-powered chat with real-time typing indicator and intelligent responses.</div></div>
-      <div class="card-anim"><div class="terminal"><div class="terminal-bar"><div class="t-dot" style="background:#536878;opacity:0.8;"></div><div class="t-dot" style="background:#536878;opacity:0.5;"></div><div class="t-dot" style="background:#536878;opacity:0.3;"></div><span style="font-size:10px;color:rgba(83,104,120,0.6);margin-left:6px;letter-spacing:0.06em;">SOLTAI CHAT</span></div><div class="terminal-body" id="term-body"><div class="t-msg t-bot">Hello! How can I assist?</div></div></div></div>
-    </div>
-    <div class="feat-card">
-      <div><div class="card-label">Card 04</div><div class="card-title">Floating <span class="accent">Context</span> Pills</div><div class="card-desc">Context-aware pills orbiting a central AI brain node in real-time.</div></div>
-      <div class="card-anim"><div class="brain-wrap"><div class="orbit-ring orbit-ring-1"><div class="pill p1-a">Finance</div><div class="pill p1-b">Health</div></div><div class="orbit-ring orbit-ring-2"><div class="pill p2-a">Energy</div><div class="pill p2-b">Gov</div></div><div class="brain-core"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#536878" stroke-width="1.5"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.44-4.66Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.44-4.66Z"/></svg></div></div></div>
-    </div>
-    <div class="feat-card">
-      <div><div class="card-label">Card 05</div><div class="card-title"><span class="accent">Team</span> Status Board</div><div class="card-desc">AI + humans working together — live activity status for your entire team.</div></div>
-      <div class="card-anim"><div class="team-board"><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.2);color:#536878;">A</div><div class="team-info"><div class="team-name">Aryan</div><div class="team-role">Lead Developer</div></div><div class="team-status"><div class="status-dot status-active"></div><span style="color:rgba(83,104,120,0.8);font-size:10px;">Active</span></div></div><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.1);color:#9aa5b8;font-size:9px;">AI</div><div class="team-info"><div class="team-name">SOLTAI Bot</div><div class="team-role">AI Assistant</div></div><div class="team-status"><span class="ai-badge">AI</span></div></div><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.15);color:#7a8fa0;">R</div><div class="team-info"><div class="team-name">Rahul</div><div class="team-role">Data Analyst</div></div><div class="team-status"><div class="status-dot status-idle"></div><span style="color:rgba(200,205,216,0.3);font-size:10px;">Idle</span></div></div><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.1);color:#9aa5b8;font-size:9px;">AI</div><div class="team-info"><div class="team-name">DataBot</div><div class="team-role">AI Analyst</div></div><div class="team-status"><span class="ai-badge">AI</span></div></div></div></div>
-    </div>
-    <div class="feat-card">
-      <div><div class="card-label">Card 06</div><div class="card-title">Activity <span class="accent">Heatmap</span></div><div class="card-desc">GitHub-style live activity heatmap — AI usage patterns visualized.</div></div>
-      <div class="card-anim" style="flex-direction:column;align-items:flex-start;padding:0 4px;"><div style="font-size:10px;color:rgba(83,104,120,0.5);margin-bottom:10px;letter-spacing:0.06em;">AI ACTIVITY — LAST 16 WEEKS</div><div class="heatmap-grid" id="heatmap"></div><div style="display:flex;align-items:center;gap:6px;margin-top:10px;"><span style="font-size:10px;color:rgba(83,104,120,0.4);">Less</span><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.1);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.25);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.45);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.7);"></div><div style="width:9px;height:9px;border-radius:2px;background:#536878;"></div><span style="font-size:10px;color:rgba(83,104,120,0.4);">More</span></div></div>
-    </div>
-  </div>
-  <div class="lets-join-section">
-    <div class="lj-tag">Ready to Start?</div>
-    <h2 class="lj-title"><span class="white">Connect Your</span><br/><span class="accent">AI Chatbot</span> <span class="white">Today</span></h2>
-    <p class="lj-sub">Apni clinic, shop ya business ke liye custom AI chatbot setup karo — 2 minute mein ready.</p>
-    <button class="btn-lets-join" onclick="showPage('join')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Let's Join</button>
-  </div>
-</div>
-
-<!-- JOIN PAGE -->
-<div class="page" id="page-join">
-  <div class="join-wrap">
-    <button class="join-back" onclick="showPage('features')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
-    <h1 class="join-title"><span class="white">New </span><span class="accent">Client</span></h1>
-    <p class="join-sub">Fill in the client details below</p>
-    <div class="jf-group"><label class="jf-label">Client Name</label><input class="jf-input" id="j-name" type="text" placeholder="e.g. Sharma Clinic"/></div>
-    <div class="jf-group"><label class="jf-label">Business Type</label><select class="jf-input" id="j-btype"><option value="">Select...</option><option value="Clinic / Hospital">Clinic / Hospital</option><option value="Restaurant / Cafe">Restaurant / Cafe</option><option value="Retail Shop">Retail Shop</option><option value="Real Estate">Real Estate</option><option value="Education / Coaching">Education / Coaching</option><option value="E-commerce">E-commerce</option><option value="Salon / Spa">Salon / Spa</option><option value="Legal / Finance">Legal / Finance</option><option value="Other">Other</option></select></div>
-    <div class="jf-group"><label class="jf-label">Website / WhatsApp / Instagram</label><input class="jf-input" id="j-site" type="text" placeholder="e.g. sharmaclinic.com"/></div>
-    <div class="jf-group"><label class="jf-label">Bot Name</label><input class="jf-input" id="j-botname" type="text" placeholder="e.g. Dr. Bot, Priya, Assistant"/></div>
-    <div class="jf-group"><label class="jf-label">Welcome Message</label><textarea class="jf-input" id="j-welcome" placeholder="e.g. Hello! I'm the assistant for Sharma Clinic. I can help you book an appointment!"></textarea></div>
-    <div class="jf-group"><label class="jf-label">Monthly Plan</label><select class="jf-input" id="j-plan"><option value="Starter — ₹15,000/month">Starter — ₹15,000/month</option><option value="Growth — ₹35,000/month" selected>Growth — ₹35,000/month</option><option value="Pro — ₹65,000/month">Pro — ₹65,000/month</option><option value="Enterprise — Custom">Enterprise — Custom</option></select></div>
-    <div class="wa-toggle-row">
-      <div class="wa-toggle-label"><div class="wa-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div><div><div class="wa-text">WhatsApp Integration</div><div class="wa-sub">Chatbot WhatsApp se bhi connect hoga</div></div></div>
-      <label class="toggle"><input type="checkbox" id="wa-toggle-check" onchange="toggleWA()"/><span class="toggle-slider"></span></label>
-    </div>
-    <div class="wa-number-wrap" id="wa-num-wrap"><label class="jf-label">WhatsApp Number</label><input class="jf-input" id="j-wanum" type="tel" placeholder="e.g. +91 98765 43210"/></div>
-    <button class="btn-generate" onclick="generateEmbed()">✨ Generate Embed Code</button>
-  </div>
-</div>
-
-<!-- EMBED PAGE -->
-<div class="page" id="page-embed">
-  <div class="embed-wrap">
-    <button class="embed-back" onclick="showPage('join')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
-    <div class="embed-success"><div class="embed-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#536878" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="embed-title"><span class="accent">Embed</span> <span style="color:#fff;">Ready!</span></div></div></div>
-    <p class="embed-sub">Apni website ke <code style="background:rgba(83,104,120,0.15);padding:2px 6px;border-radius:4px;font-size:12px;color:#9aa5b8;">&lt;/body&gt;</code> tag se pehle yeh code paste karo — chatbot live ho jayega.</p>
-    <div class="client-card" id="client-summary"></div>
-    <div class="code-section-title">Your Embed Code</div>
-    <div class="code-box" id="embed-code-box"></div>
-    <button class="btn-copy" id="copy-btn" onclick="copyCode()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Embed Code</button>
-    <a id="wa-connect-btn" class="btn-wa wa-hidden" href="#" target="_blank"><svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Connect WhatsApp Now</a>
-    <div class="instructions">
-      <div class="inst-title">Installation Steps</div>
-      <div class="inst-step"><div class="inst-num">1</div><div class="inst-text">Upar diya hua embed code copy karo</div></div>
-      <div class="inst-step"><div class="inst-num">2</div><div class="inst-text">Apni website ki HTML file open karo</div></div>
-      <div class="inst-step"><div class="inst-num">3</div><div class="inst-text"><code style="background:rgba(83,104,120,0.15);padding:1px 5px;border-radius:3px;font-size:11px;">&lt;/body&gt;</code> closing tag se pehle paste karo</div></div>
-      <div class="inst-step"><div class="inst-num">4</div><div class="inst-text">Save karo aur publish — chatbot live ho jayega! 🎉</div></div>
+<!-- SERVICES SELECTION -->
+<div class="page" id="page-services">
+  <div class="services-wrap">
+    <button class="back-btn" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
+    <h2 class="services-title"><span class="white">Choose Your</span><br/><span class="accent">Service</span></h2>
+    <p class="services-sub">SOLTAI offers two powerful solutions — pick the one that fits your business needs.</p>
+    <div class="services-grid">
+      <div class="service-card" onclick="showPage('chatbot')">
+        <span class="sc-badge popular">Popular</span>
+        <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="sc-tag">Service 01</div>
+        <div class="sc-title"><span class="accent">AI</span> <span class="white">Chatbot</span></div>
+        <div class="sc-desc">Automated AI-powered chatbot for your website. Answers customer queries 24/7 without any human needed.</div>
+        <div class="sc-features">
+          <div class="sc-feat"><span class="sc-feat-dot"></span>24/7 automated responses</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Instant reply to FAQs</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>WhatsApp integration</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Easy embed on any website</div>
+        </div>
+        <button class="sc-btn">Explore Chatbot →</button>
+      </div>
+      <div class="service-card" onclick="showPage('agent')">
+        <span class="sc-badge new">New</span>
+        <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="sc-tag">Service 02</div>
+        <div class="sc-title"><span class="accent">Agent</span> <span class="white">Connect</span></div>
+        <div class="sc-desc">Real human agents handle high-level queries. Business requirements, complex issues, and decisions handled personally.</div>
+        <div class="sc-features">
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Real human agent replies</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>High-level business queries</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Auto ticket if agent offline</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Full conversation dashboard</div>
+        </div>
+        <button class="sc-btn">Explore Agent Connect →</button>
+      </div>
     </div>
   </div>
 </div>
 
-<div id="toast">✓ Code copied!</div>
+<!-- AI CHATBOT DETAIL -->
+<div class="page" id="page-chatbot">
+  <div class="feat-wrap">
+    <button class="back-btn" onclick="showPage('services')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,44px);font-weight:700;margin-bottom:10px;"><span style="color:#536878;">AI</span> <span style="color:#fff;">Chatbot Service</span></h2>
+    <p style="font-size:14px;color:rgba(200,205,216,0.45);margin-bottom:8px;">Automated 24/7 bot for your website — zero human effort needed.</p>
+    <div class="cards-grid">
+      <div class="feat-card">
+        <div><div class="card-label">Feature 01</div><div class="card-title"><span class="accent">Live</span> Chat Terminal</div><div class="card-desc">Real-time AI responses with typing indicator.</div></div>
+        <div class="card-anim"><div class="terminal"><div class="terminal-bar"><div class="t-dot" style="background:#536878;opacity:0.8;"></div><div class="t-dot" style="background:#536878;opacity:0.5;"></div><div class="t-dot" style="background:#536878;opacity:0.3;"></div><span style="font-size:10px;color:rgba(83,104,120,0.6);margin-left:6px;">SOLTAI CHAT</span></div><div class="terminal-body" id="term-body"><div class="t-msg t-bot">Hello! How can I assist?</div></div></div></div>
+      </div>
+      <div class="feat-card">
+        <div><div class="card-label">Feature 02</div><div class="card-title">Floating <span class="accent">Context</span> Pills</div><div class="card-desc">Context-aware AI understands your business domain.</div></div>
+        <div class="card-anim"><div class="brain-wrap"><div class="orbit-ring orbit-ring-1"><div class="pill p1-a">Finance</div><div class="pill p1-b">Health</div></div><div class="orbit-ring orbit-ring-2"><div class="pill p2-a">Energy</div><div class="pill p2-b">Gov</div></div><div class="brain-core"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#536878" stroke-width="1.5"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.44-4.66Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.44-4.66Z"/></svg></div></div></div>
+      </div>
+      <div class="feat-card">
+        <div><div class="card-label">Feature 03</div><div class="card-title"><span class="accent">Team</span> Status Board</div><div class="card-desc">AI + humans working together seamlessly.</div></div>
+        <div class="card-anim"><div class="team-board"><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.2);color:#536878;">A</div><div class="team-info"><div class="team-name">Aryan</div><div class="team-role">Lead Developer</div></div><div class="team-status"><div class="status-dot status-active"></div><span style="color:rgba(83,104,120,0.8);font-size:10px;">Active</span></div></div><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.1);color:#9aa5b8;font-size:9px;">AI</div><div class="team-info"><div class="team-name">SOLTAI Bot</div><div class="team-role">AI Assistant</div></div><div class="team-status"><span class="ai-badge">AI</span></div></div><div class="team-row"><div class="team-avatar" style="background:rgba(83,104,120,0.15);color:#7a8fa0;">R</div><div class="team-info"><div class="team-name">Rahul</div><div class="team-role">Data Analyst</div></div><div class="team-status"><div class="status-dot status-idle"></div><span style="color:rgba(200,205,216,0.3);font-size:10px;">Idle</span></div></div></div></div>
+      </div>
+      <div class="feat-card">
+        <div><div class="card-label">Feature 04</div><div class="card-title">Activity <span class="accent">Heatmap</span></div><div class="card-desc">Live usage analytics — see when your bot is busiest.</div></div>
+        <div class="card-anim" style="flex-direction:column;align-items:flex-start;padding:0 4px;"><div style="font-size:10px;color:rgba(83,104,120,0.5);margin-bottom:10px;letter-spacing:0.06em;">BOT ACTIVITY — 16 WEEKS</div><div class="heatmap-grid" id="heatmap"></div><div style="display:flex;align-items:center;gap:6px;margin-top:10px;"><span style="font-size:10px;color:rgba(83,104,120,0.4);">Less</span><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.1);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.25);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.45);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.7);"></div><div style="width:9px;height:9px;border-radius:2px;background:#536878;"></div><span style="font-size:10px;color:rgba(83,104,120,0.4);">More</span></div></div>
+      </div>
+    </div>
+    <div style="margin-top:40px;padding:28px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.18);border-radius:16px;text-align:center;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:8px;">Ready to deploy your <span style="color:#536878;">AI Chatbot?</span></h3>
+      <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:18px;">Contact us and we'll set it up for your website in under 24 hours.</p>
+      <button class="btn-primary" onclick="showPage('home');setTimeout(scrollContact,300);">Get In Touch →</button>
+    </div>
+  </div>
+</div>
 
-<!-- CHATBOT FAB -->
+<!-- AGENT CONNECT -->
+<div class="page" id="page-agent">
+  <div class="agent-wrap">
+    <button class="back-btn" onclick="showPage('services')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
+    <div class="agent-hero">
+      <h2 class="agent-title"><span class="accent">Agent</span> <span class="white">Connect</span></h2>
+      <p class="agent-sub">Real human agents handle your high-level business queries, requirements, and decisions. When the agent is unavailable, a ticket is automatically generated — nothing gets missed.</p>
+    </div>
+    <div class="how-section">
+      <div class="section-label">How It Works</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div><div class="step-title">Customer Sends a Query</div><div class="step-desc">A visitor submits a business query — pricing, custom requirements, partnerships, or anything complex.</div><span class="step-tag">High-level queries only</span></div></div>
+        <div class="step"><div class="step-num">2</div><div><div class="step-title">Agent Gets Notified</div><div class="step-desc">Our agent dashboard lights up with the new conversation. Full context, visitor info, reply directly.</div><span class="step-tag">Real-time dashboard</span></div></div>
+        <div class="step"><div class="step-num">3</div><div><div class="step-title">Agent Replies Personally</div><div class="step-desc">The human agent handles it personally — no bots, no automated responses for complex issues.</div><span class="step-tag">Human touch</span></div></div>
+        <div class="step"><div class="step-num">4</div><div><div class="step-title">Auto Ticket if No Response</div><div class="step-desc">If agent doesn't respond within SLA, a ticket is automatically created and escalated — zero queries missed.</div><span class="step-tag" style="background:rgba(200,160,80,0.08);color:rgba(200,160,80,0.7);border-color:rgba(200,160,80,0.25);">Auto escalation</span></div></div>
+      </div>
+    </div>
+    <div class="ticket-demo">
+      <div class="ticket-head"><span style="font-size:13px;font-weight:500;color:#c8cdd8;">Live Ticket Queue</span><span style="font-size:10px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;">DEMO</span></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Rajesh Mehta — Enterprise Pricing Query</div><div class="tkt-msg">"We need a custom plan for 500+ employees across 3 offices. Can we schedule a call?"</div><div class="tkt-meta"><span class="tkt-badge tkt-open">Open</span><span class="tkt-time">2 min ago</span></div></div></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Priya Sharma — Integration Requirement</div><div class="tkt-msg">"Need chatbot integrated with our CRM system. Is that possible?"</div><div class="tkt-meta"><span class="tkt-badge tkt-pending">Pending</span><span class="tkt-time">18 min ago</span></div></div></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Ankit Verma — Partnership Inquiry</div><div class="tkt-msg">"Interested in white-labeling your chatbot for our clients."</div><div class="tkt-meta"><span class="tkt-badge tkt-resolved">Resolved</span><span class="tkt-time">1 hr ago</span></div></div></div>
+    </div>
+    <div class="agent-cta">
+      <h3>Want <span style="color:#536878;">Agent Connect</span> for your business?</h3>
+      <p>Get a dedicated agent handling your high-level queries. Contact us to get started.</p>
+      <button class="btn-agent-start" onclick="showPage('home');setTimeout(scrollContact,300);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>Get In Touch →</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast">✓ Sent!</div>
+
 <button id="fab" onclick="toggleChat()">
   <svg id="ico-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
   <svg id="ico-x" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -397,60 +391,13 @@ function showPage(id){
   document.getElementById('page-'+id).classList.add('active');
   window.scrollTo(0,0);
   document.querySelectorAll('.nav-link').forEach((l,i)=>{
-    l.classList.toggle('active',(i===0&&id==='home')||(i===1&&(id==='features'||id==='join'||id==='embed'))||(i===2&&(id==='features'||id==='join'||id==='embed'))||(i===3&&(id==='join'||id==='embed')));
+    l.classList.toggle('active',(i===0&&id==='home')||(i===1&&(id==='services'||id==='chatbot'))||(i===2&&id==='agent'));
   });
 }
-
-function toggleWA(){
-  document.getElementById('wa-num-wrap').classList.toggle('show',document.getElementById('wa-toggle-check').checked);
+function scrollContact(){
+  showPage('home');
+  setTimeout(()=>document.getElementById('contact-section').scrollIntoView({behavior:'smooth'}),100);
 }
-
-function generateEmbed(){
-  const name=document.getElementById('j-name').value.trim();
-  const btype=document.getElementById('j-btype').value;
-  const site=document.getElementById('j-site').value.trim();
-  const botname=document.getElementById('j-botname').value.trim()||'SOLTAI Bot';
-  const welcome=document.getElementById('j-welcome').value.trim()||`Hello! I'm ${botname}. How can I help you?`;
-  const plan=document.getElementById('j-plan').value;
-  const waOn=document.getElementById('wa-toggle-check').checked;
-  const wanum=document.getElementById('j-wanum').value.trim();
-  if(!name){alert('Client ka naam daalo!');return;}
-  if(!btype){alert('Business type select karo!');return;}
-  const cid='soltai_'+Date.now().toString(36);
-  const waLine=waOn&&wanum?`\n  data-whatsapp="${wanum.replace(/\D/g,'')}"`:'';
-  const embedCode=`<!-- SOLTAI AI Chatbot | ${name} -->
-<script
-  src="https://soltai.onrender.com/widget.js"
-  data-client-id="${cid}"
-  data-bot-name="${botname}"
-  data-welcome="${welcome}"
-  data-business="${btype}"${waLine}
-  async>
-<\/script>`;
-  const rows=[['Client',name],['Business',btype],['Bot Name',botname],['Plan',plan],['WhatsApp',waOn?(wanum||'Enabled'):'Disabled']];
-  document.getElementById('client-summary').innerHTML=rows.map(([k,v])=>`<div class="client-card-row"><span class="cc-key">${k}</span><span class="cc-val">${v}</span></div>`).join('');
-  document.getElementById('embed-code-box').textContent=embedCode;
-  const waBtn=document.getElementById('wa-connect-btn');
-  if(waOn&&wanum){
-    const num=wanum.replace(/\D/g,'');
-    const msg=encodeURIComponent(`Hi! Maine SOLTAI chatbot ke liye signup kiya hai. Client: ${name}, Bot: ${botname}`);
-    waBtn.href=`https://wa.me/${num}?text=${msg}`;
-    waBtn.classList.remove('wa-hidden');
-  }else{waBtn.classList.add('wa-hidden');}
-  showPage('embed');
-}
-
-function copyCode(){
-  const code=document.getElementById('embed-code-box').textContent;
-  navigator.clipboard.writeText(code).then(()=>{
-    const btn=document.getElementById('copy-btn');
-    btn.classList.add('copied');
-    btn.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Copied!`;
-    const t=document.getElementById('toast');t.style.display='block';
-    setTimeout(()=>{t.style.display='none';btn.classList.remove('copied');btn.innerHTML=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy Embed Code`;},2500);
-  });
-}
-
 function buildHeatmap(){
   const grid=document.getElementById('heatmap');if(!grid)return;grid.innerHTML='';
   const levels=[0,0.1,0.25,0.45,0.7,1];
@@ -464,20 +411,17 @@ function buildHeatmap(){
 buildHeatmap();
 setInterval(()=>{const cells=document.querySelectorAll('.hm-cell');const count=Math.floor(cells.length*0.15);
   for(let i=0;i<count;i++){const cell=cells[Math.floor(Math.random()*cells.length)];const lv=[0.07,0.15,0.3,0.5,0.75,1];cell.style.background=`rgba(83,104,120,${lv[Math.floor(Math.random()*lv.length)]})`;}},800);
-
-const termMsgs=[{type:'user',text:'Analyze Q3 data?'},{type:'bot',text:'Running analysis...'},{type:'user',text:'Show risk report'},{type:'bot',text:'Report ready ✓'},{type:'user',text:'Optimize pipeline?'},{type:'bot',text:'Optimizing now...'}];
+const termMsgs=[{type:'user',text:'Book appointment?'},{type:'bot',text:'Sure! What date works?'},{type:'user',text:'Tomorrow 10am'},{type:'bot',text:'Confirmed ✓'},{type:'user',text:'Your charges?'},{type:'bot',text:'Starting ₹15,000/month.'}];
 let termIdx=0;
 function addTermMsg(){const body=document.getElementById('term-body');if(!body)return;
   const msgs=body.querySelectorAll('.t-msg,.t-typing');if(msgs.length>4)msgs[0].remove();
   const ty=document.createElement('div');ty.className='t-typing';ty.innerHTML='<span></span><span></span><span></span>';body.appendChild(ty);
   setTimeout(()=>{ty.remove();const msg=termMsgs[termIdx%termMsgs.length];const el=document.createElement('div');el.className=`t-msg ${msg.type==='bot'?'t-bot':'t-user'}`;el.textContent=msg.text;body.appendChild(el);termIdx++;},900);}
 setInterval(addTermMsg,2200);
-
 function sendForm(){const n=document.getElementById('nm').value.trim();const e=document.getElementById('em').value.trim();const m=document.getElementById('mg').value.trim();
   if(!n||!e||!m){alert('Please fill all fields.');return;}
   document.getElementById('nm').value='';document.getElementById('em').value='';document.getElementById('mg').value='';
   const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
-
 let chatOpen=false;
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('cwin').classList.toggle('open',chatOpen);document.getElementById('ico-chat').style.display=chatOpen?'none':'block';document.getElementById('ico-x').style.display=chatOpen?'block':'none';}
 function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chatSend();}}
@@ -490,7 +434,7 @@ async function chatSend(){
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
-        system:'You are SOLTAI Assistant. SOLTAI provides enterprise AI chatbots for businesses. Reply in user language (Hindi/English/Hinglish). Concise, under 80 words.',
+        system:'You are SOLTAI Assistant. SOLTAI provides 2 services: (1) AI Chatbot — automated bot for websites, (2) Agent Connect — real human agents for high-level queries with auto ticket generation. Reply in user language (Hindi/English/Hinglish). Concise, under 80 words.',
         messages:[{role:'user',content:txt}]})});
     const data=await res.json();
     const reply=data.content?.map(b=>b.text||'').join('')||'Something went wrong.';
