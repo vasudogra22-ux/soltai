@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SOLTAI Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(0,0,0,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(83,104,120,0.15);}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.logo{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0;}
+.admin-badge{font-size:9px;letter-spacing:0.1em;color:#536878;border:1px solid rgba(83,104,120,0.3);border-radius:6px;padding:3px 8px;text-transform:uppercase;}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-link-btn{font-size:13px;color:rgba(200,205,216,0.5);background:none;border:none;cursor:pointer;transition:color 0.2s;font-family:'Inter',sans-serif;}
+.nav-link-btn:hover{color:#e8eaf0;}
+.nav-link-btn.active{color:#e8eaf0;}
+.btn-add-client{display:inline-flex;align-items:center;gap:6px;background:#536878;color:#000;border:none;border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;font-family:'Inter',sans-serif;}
+.btn-add-client:hover{background:#6b8494;}
+
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* DASHBOARD */
+.dash-wrap{max-width:900px;margin:0 auto;padding:36px 28px 80px;}
+.dash-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+.dash-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;}
+.dash-title .accent{color:#536878;}
+.dash-title .white{color:#fff;}
+.dash-sub{font-size:13px;color:rgba(200,205,216,0.4);margin-top:4px;}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px;}
+@media(max-width:640px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.18);border-radius:14px;padding:18px 16px;}
+.stat-num{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;color:#e8eaf0;margin-bottom:4px;}
+.stat-label{font-size:11px;color:rgba(83,104,120,0.7);letter-spacing:0.08em;text-transform:uppercase;}
+.stat-sub{font-size:11px;color:rgba(200,205,216,0.35);margin-top:2px;}
+
+.filter-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+.search-input{flex:1;min-width:180px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:10px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;transition:border-color 0.2s;}
+.search-input:focus{border-color:rgba(83,104,120,0.5);}
+.search-input::placeholder{color:rgba(200,205,216,0.28);}
+.filter-select{background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:rgba(200,205,216,0.7);padding:10px 14px;font-family:'Inter',sans-serif;font-size:13px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;padding-right:32px;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(83,104,120,0.6)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.filter-select option{background:#111;}
+
+.table-wrap{background:rgba(83,104,120,0.04);border:1px solid rgba(83,104,120,0.15);border-radius:16px;overflow:hidden;}
+.table-head{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1fr 1fr 80px;gap:0;padding:12px 20px;border-bottom:1px solid rgba(83,104,120,0.12);background:rgba(83,104,120,0.06);}
+@media(max-width:700px){.table-head{display:none;}}
+.th{font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;font-weight:500;}
+
+.client-row{display:grid;grid-template-columns:2fr 1.5fr 1.2fr 1fr 1fr 80px;gap:0;padding:16px 20px;border-bottom:1px solid rgba(83,104,120,0.08);align-items:center;transition:background 0.2s;cursor:pointer;}
+@media(max-width:700px){.client-row{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;}}
+.client-row:last-child{border-bottom:none;}
+.client-row:hover{background:rgba(83,104,120,0.07);}
+.client-name-cell{display:flex;align-items:center;gap:10px;}
+.client-avatar{width:32px;height:32px;border-radius:50%;background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:#9aa5b8;flex-shrink:0;}
+.client-name{font-size:13px;color:#e8eaf0;font-weight:500;}
+.client-bot{font-size:11px;color:rgba(200,205,216,0.4);margin-top:2px;}
+.cell-text{font-size:13px;color:rgba(200,205,216,0.65);}
+.cell-small{font-size:11px;color:rgba(200,205,216,0.4);}
+
+.plan-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;}
+.plan-starter{background:rgba(83,104,120,0.15);color:#7a8fa0;border:1px solid rgba(83,104,120,0.25);}
+.plan-growth{background:rgba(83,104,120,0.25);color:#9aa5b8;border:1px solid rgba(83,104,120,0.4);}
+.plan-pro{background:rgba(107,132,148,0.3);color:#c8cdd8;border:1px solid rgba(107,132,148,0.5);}
+.plan-enterprise{background:rgba(200,205,216,0.1);color:#e8eaf0;border:1px solid rgba(200,205,216,0.2);}
+
+.wa-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;}
+.wa-yes{background:#25d366;}
+.wa-no{background:rgba(83,104,120,0.4);}
+
+.row-actions{display:flex;gap:6px;justify-content:flex-end;}
+.btn-icon{width:28px;height:28px;border-radius:7px;background:transparent;border:1px solid rgba(83,104,120,0.2);color:rgba(200,205,216,0.5);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.btn-icon:hover{background:rgba(83,104,120,0.15);border-color:rgba(83,104,120,0.4);color:#e8eaf0;}
+.btn-icon.delete:hover{background:rgba(200,80,80,0.1);border-color:rgba(200,80,80,0.3);color:#c85050;}
+
+.empty-state{text-align:center;padding:60px 20px;}
+.empty-icon{width:56px;height:56px;border-radius:50%;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.empty-title{font-size:16px;color:rgba(200,205,216,0.6);margin-bottom:8px;}
+.empty-sub{font-size:13px;color:rgba(200,205,216,0.3);}
+
+/* ADD CLIENT */
+#page-add{background:#000;padding-top:72px;}
+.form-wrap{max-width:520px;margin:0 auto;padding:40px 28px 80px;}
+.form-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:32px;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.form-back:hover{border-color:rgba(83,104,120,0.5);color:#e8eaf0;}
+.form-title{font-family:'Playfair Display',serif;font-size:clamp(26px,5vw,36px);font-weight:700;margin-bottom:6px;}
+.form-title .white{color:#fff;}
+.form-title .accent{color:#536878;}
+.form-sub{font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:32px;}
+.jf-group{margin-bottom:18px;}
+.jf-label{display:block;font-size:10px;letter-spacing:0.12em;color:rgba(83,104,120,0.7);text-transform:uppercase;margin-bottom:7px;font-weight:500;}
+.jf-input{width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;color:#e8eaf0;padding:13px 16px;font-family:'Inter',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s,background 0.2s;}
+.jf-input:focus{border-color:rgba(83,104,120,0.5);background:rgba(83,104,120,0.1);}
+.jf-input::placeholder{color:rgba(200,205,216,0.22);}
+textarea.jf-input{resize:none;min-height:80px;}
+select.jf-input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(83,104,120,0.6)' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
+select.jf-input option{background:#111;color:#e8eaf0;}
+.wa-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.15);border-radius:12px;margin-bottom:18px;}
+.wa-toggle-label{display:flex;align-items:center;gap:10px;}
+.wa-icon{width:30px;height:30px;border-radius:8px;background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.2);display:flex;align-items:center;justify-content:center;}
+.wa-text{font-size:13px;color:#c8cdd8;font-weight:500;}
+.wa-sub{font-size:11px;color:rgba(200,205,216,0.35);margin-top:1px;}
+.toggle{position:relative;width:44px;height:24px;cursor:pointer;}
+.toggle input{opacity:0;width:0;height:0;}
+.toggle-slider{position:absolute;inset:0;background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.3);border-radius:12px;transition:0.3s;}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;background:#536878;border-radius:50%;transition:0.3s;}
+.toggle input:checked + .toggle-slider{background:rgba(37,211,102,0.2);border-color:rgba(37,211,102,0.4);}
+.toggle input:checked + .toggle-slider::before{transform:translateX(20px);background:#25d366;}
+.wa-number-wrap{display:none;margin-bottom:18px;}
+.wa-number-wrap.show{display:block;}
+.btn-generate{width:100%;background:linear-gradient(135deg,#536878,#3d5060);color:#fff;border:none;border-radius:12px;padding:17px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;box-shadow:0 4px 20px rgba(83,104,120,0.25);}
+.btn-generate:hover{background:linear-gradient(135deg,#6b8494,#536878);transform:translateY(-1px);}
+
+/* EMBED PAGE */
+#page-embed{background:#000;padding-top:72px;}
+.embed-wrap{max-width:540px;margin:0 auto;padding:40px 28px 80px;}
+.embed-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:32px;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.embed-back:hover{border-color:rgba(83,104,120,0.5);color:#e8eaf0;}
+.embed-success{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+.embed-check{width:38px;height:38px;border-radius:50%;background:rgba(83,104,120,0.15);border:1px solid rgba(83,104,120,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.embed-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;}
+.embed-title .accent{color:#536878;}
+.embed-sub{font-size:13px;color:rgba(200,205,216,0.4);line-height:1.7;margin-bottom:24px;}
+.client-summary-card{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.18);border-radius:14px;padding:16px;margin-bottom:20px;}
+.csr{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid rgba(83,104,120,0.08);}
+.csr:last-child{border-bottom:none;}
+.csk{font-size:11px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;text-transform:uppercase;}
+.csv{font-size:12px;color:#c8cdd8;font-weight:500;}
+.code-label{font-size:11px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:8px;}
+.code-box{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.2);border-radius:12px;padding:14px;font-family:'Courier New',monospace;font-size:11px;color:#9aa5b8;line-height:1.6;word-break:break-all;margin-bottom:10px;max-height:150px;overflow-y:auto;}
+.code-box::-webkit-scrollbar{width:3px;}
+.code-box::-webkit-scrollbar-thumb{background:rgba(83,104,120,0.3);border-radius:2px;}
+.btn-copy{width:100%;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.25);color:#c8cdd8;border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;transition:all 0.2s;}
+.btn-copy:hover{background:rgba(83,104,120,0.2);}
+.btn-copy.copied{background:rgba(83,104,120,0.25);color:#e8eaf0;}
+.btn-wa-send{width:100%;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);color:#25d366;border-radius:10px;padding:13px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;text-decoration:none;}
+.btn-wa-send:hover{background:rgba(37,211,102,0.14);}
+.wa-hidden{display:none;}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:500;align-items:center;justify-content:center;padding:20px;}
+.modal-bg.open{display:flex;}
+.modal{background:#0e0e0e;border:1px solid rgba(83,104,120,0.25);border-radius:20px;width:100%;max-width:440px;padding:28px;position:relative;animation:modalIn 0.2s ease;}
+@keyframes modalIn{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
+.modal-close{position:absolute;top:18px;right:18px;background:none;border:none;color:rgba(200,205,216,0.4);cursor:pointer;}
+.modal-close:hover{color:#e8eaf0;}
+.modal-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:4px;}
+.modal-btype{font-size:12px;color:rgba(83,104,120,0.8);margin-bottom:20px;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.modal-field{background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.15);border-radius:10px;padding:12px;}
+.mf-label{font-size:10px;color:rgba(83,104,120,0.6);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+.mf-val{font-size:13px;color:#c8cdd8;font-weight:500;}
+.modal-actions{display:flex;gap:8px;}
+.btn-modal-code{flex:1;background:rgba(83,104,120,0.15);border:1px solid rgba(83,104,120,0.3);color:#c8cdd8;border-radius:10px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;}
+.btn-modal-code:hover{background:rgba(83,104,120,0.25);}
+.btn-modal-wa{flex:1;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);color:#25d366;border-radius:10px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s;}
+.btn-modal-wa:hover{background:rgba(37,211,102,0.14);}
+.modal-wa-hidden{display:none;}
+
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.95);color:#e8eaf0;padding:10px 22px;border-radius:50px;font-size:13px;display:none;z-index:600;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <div class="logo">SOLTAI <span class="admin-badge">Admin</span></div>
+  </div>
+  <div class="nav-right">
+    <button class="nav-link-btn active" id="nav-dash" onclick="showPage('dash')">Dashboard</button>
+    <button class="nav-link-btn" id="nav-add" onclick="showPage('add')">+ New Client</button>
+    <a href="index.html" class="nav-link-btn">← Public Site</a>
+  </div>
+</nav>
+
+<!-- DASHBOARD -->
+<div class="page active" id="page-dash" style="padding-top:72px;">
+  <div class="dash-wrap">
+    <div class="dash-header">
+      <div>
+        <h1 class="dash-title"><span class="accent">Client</span> <span class="white">Dashboard</span></h1>
+        <p class="dash-sub">Saare onboarded clients aur unki details</p>
+      </div>
+      <button class="btn-add-client" onclick="showPage('add')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Add Client
+      </button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Total Clients</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-wa">0</div><div class="stat-label">WhatsApp Active</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-mrr">₹0</div><div class="stat-label">Monthly Revenue</div><div class="stat-sub">Estimated MRR</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-new">0</div><div class="stat-label">This Month</div><div class="stat-sub">New clients</div></div>
+    </div>
+    <div class="filter-bar">
+      <input class="search-input" id="search-input" placeholder="Search client or bot name..." oninput="renderTable()"/>
+      <select class="filter-select" id="filter-plan" onchange="renderTable()">
+        <option value="">All Plans</option>
+        <option value="Starter">Starter</option>
+        <option value="Growth">Growth</option>
+        <option value="Pro">Pro</option>
+        <option value="Enterprise">Enterprise</option>
+      </select>
+      <select class="filter-select" id="filter-wa" onchange="renderTable()">
+        <option value="">All</option>
+        <option value="yes">WhatsApp ✓</option>
+        <option value="no">No WhatsApp</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <div class="table-head">
+        <div class="th">Client</div>
+        <div class="th">Business</div>
+        <div class="th">Plan</div>
+        <div class="th">WhatsApp</div>
+        <div class="th">Added</div>
+        <div class="th"></div>
+      </div>
+      <div id="client-table-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD CLIENT -->
+<div class="page" id="page-add">
+  <div class="form-wrap">
+    <button class="form-back" onclick="showPage('dash')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
+    <h2 class="form-title"><span class="white">New </span><span class="accent">Client</span></h2>
+    <p class="form-sub">Fill in the client details below</p>
+    <div class="jf-group"><label class="jf-label">Client Name</label><input class="jf-input" id="j-name" type="text" placeholder="e.g. Sharma Clinic"/></div>
+    <div class="jf-group"><label class="jf-label">Business Type</label>
+      <select class="jf-input" id="j-btype">
+        <option value="">Select...</option>
+        <option>Clinic / Hospital</option><option>Restaurant / Cafe</option>
+        <option>Retail Shop</option><option>Real Estate</option>
+        <option>Education / Coaching</option><option>E-commerce</option>
+        <option>Salon / Spa</option><option>Legal / Finance</option><option>Other</option>
+      </select>
+    </div>
+    <div class="jf-group"><label class="jf-label">Website / WhatsApp / Instagram</label><input class="jf-input" id="j-site" type="text" placeholder="e.g. sharmaclinic.com"/></div>
+    <div class="jf-group"><label class="jf-label">Bot Name</label><input class="jf-input" id="j-botname" type="text" placeholder="e.g. Dr. Bot, Priya, Assistant"/></div>
+    <div class="jf-group"><label class="jf-label">Welcome Message</label><textarea class="jf-input" id="j-welcome" placeholder="e.g. Hello! I'm the assistant. How can I help?"></textarea></div>
+    <div class="jf-group"><label class="jf-label">Monthly Plan</label>
+      <select class="jf-input" id="j-plan">
+        <option value="Starter — ₹15,000/month">Starter — ₹15,000/month</option>
+        <option value="Growth — ₹35,000/month" selected>Growth — ₹35,000/month</option>
+        <option value="Pro — ₹65,000/month">Pro — ₹65,000/month</option>
+        <option value="Enterprise — Custom">Enterprise — Custom</option>
+      </select>
+    </div>
+    <div class="wa-toggle-row">
+      <div class="wa-toggle-label">
+        <div class="wa-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
+        <div><div class="wa-text">WhatsApp Integration</div><div class="wa-sub">Connect chatbot to WhatsApp</div></div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="wa-toggle-check" onchange="toggleWA()"/><span class="toggle-slider"></span></label>
+    </div>
+    <div class="wa-number-wrap" id="wa-num-wrap">
+      <label class="jf-label">WhatsApp Number</label>
+      <input class="jf-input" id="j-wanum" type="tel" placeholder="e.g. +91 98765 43210"/>
+    </div>
+    <button class="btn-generate" onclick="generateEmbed()">✨ Generate Embed Code</button>
+  </div>
+</div>
+
+<!-- EMBED PAGE -->
+<div class="page" id="page-embed">
+  <div class="embed-wrap">
+    <button class="embed-back" onclick="showPage('dash')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back to Dashboard</button>
+    <div class="embed-success">
+      <div class="embed-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#536878" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="embed-title"><span class="accent">Embed</span> <span style="color:#fff;">Ready!</span></div>
+    </div>
+    <p class="embed-sub">Client ki website ke <code style="background:rgba(83,104,120,0.15);padding:2px 5px;border-radius:4px;font-size:11px;color:#9aa5b8;">&lt;/body&gt;</code> se pehle paste karo.</p>
+    <div class="client-summary-card" id="client-summary"></div>
+    <div class="code-label">Embed Code</div>
+    <div class="code-box" id="embed-code-box"></div>
+    <button class="btn-copy" id="copy-btn" onclick="copyCode()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Embed Code</button>
+    <a id="wa-send-btn" class="btn-wa-send wa-hidden" href="#" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Send via WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModal(event)">
+  <div class="modal" id="modal-box">
+    <button class="modal-close" onclick="closeModalDirect()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div class="modal-name" id="modal-name"></div>
+    <div class="modal-btype" id="modal-btype"></div>
+    <div class="modal-grid" id="modal-grid"></div>
+    <div class="modal-actions">
+      <button class="btn-modal-code" onclick="viewClientCode()">View Embed Code</button>
+      <a class="btn-modal-wa modal-wa-hidden" id="modal-wa-btn" href="#" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+function getClients(){try{return JSON.parse(localStorage.getItem('soltai_clients')||'[]');}catch{return[];}}
+function saveClients(arr){localStorage.setItem('soltai_clients',JSON.stringify(arr));}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  document.getElementById('nav-dash').classList.toggle('active',id==='dash');
+  document.getElementById('nav-add').classList.toggle('active',id==='add');
+  if(id==='dash')renderDash();
+}
+
+function planPrice(plan){if(plan.includes('15,000'))return 15000;if(plan.includes('35,000'))return 35000;if(plan.includes('65,000'))return 65000;return 0;}
+function planKey(plan){if(plan.includes('Starter'))return'Starter';if(plan.includes('Growth'))return'Growth';if(plan.includes('Pro'))return'Pro';return'Enterprise';}
+function planClass(plan){const k=planKey(plan);return{Starter:'plan-starter',Growth:'plan-growth',Pro:'plan-pro',Enterprise:'plan-enterprise'}[k]||'plan-starter';}
+function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
+function thisMonth(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear();}
+
+function renderDash(){
+  const clients=getClients();
+  document.getElementById('stat-total').textContent=clients.length;
+  document.getElementById('stat-wa').textContent=clients.filter(c=>c.waOn).length;
+  const mrr=clients.reduce((s,c)=>s+planPrice(c.plan),0);
+  document.getElementById('stat-mrr').textContent=mrr?'₹'+mrr.toLocaleString('en-IN'):'₹0';
+  document.getElementById('stat-new').textContent=clients.filter(c=>thisMonth(c.addedAt)).length;
+  renderTable();
+}
+
+function renderTable(){
+  const clients=getClients();
+  const q=(document.getElementById('search-input').value||'').toLowerCase();
+  const fp=document.getElementById('filter-plan').value;
+  const fw=document.getElementById('filter-wa').value;
+  let filtered=clients.filter(c=>{
+    const mq=!q||(c.name||'').toLowerCase().includes(q)||(c.botname||'').toLowerCase().includes(q);
+    const mp=!fp||planKey(c.plan)===fp;
+    const mw=!fw||(fw==='yes'?c.waOn:!c.waOn);
+    return mq&&mp&&mw;
+  }).sort((a,b)=>(b.addedAt||0)-(a.addedAt||0));
+  const tbody=document.getElementById('client-table-body');
+  if(!filtered.length){
+    tbody.innerHTML=`<div class="empty-state"><div class="empty-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.6)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="empty-title">${clients.length===0?'No clients yet':'No results'}</div><div class="empty-sub">${clients.length===0?'Click "Add Client" to onboard your first client':'Try a different search or filter'}</div></div>`;
+    return;
+  }
+  tbody.innerHTML=filtered.map(c=>`
+    <div class="client-row" onclick="openModal('${c.id}')">
+      <div class="client-name-cell"><div class="client-avatar">${(c.name||'?')[0].toUpperCase()}</div><div><div class="client-name">${c.name}</div><div class="client-bot">Bot: ${c.botname||'—'}</div></div></div>
+      <div class="cell-text">${c.btype||'—'}</div>
+      <div><span class="plan-badge ${planClass(c.plan)}">${planKey(c.plan)}</span></div>
+      <div class="cell-text"><span class="wa-dot ${c.waOn?'wa-yes':'wa-no'}"></span>${c.waOn?'Active':'—'}</div>
+      <div class="cell-small">${fmtDate(c.addedAt)}</div>
+      <div class="row-actions" onclick="event.stopPropagation()">
+        <button class="btn-icon" title="Get Code" onclick="quickCode('${c.id}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></button>
+        <button class="btn-icon delete" title="Delete" onclick="deleteClient('${c.id}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button>
+      </div>
+    </div>`).join('');
+}
+
+function toggleWA(){document.getElementById('wa-num-wrap').classList.toggle('show',document.getElementById('wa-toggle-check').checked);}
+
+function generateEmbed(){
+  const name=document.getElementById('j-name').value.trim();
+  const btype=document.getElementById('j-btype').value;
+  const site=document.getElementById('j-site').value.trim();
+  const botname=document.getElementById('j-botname').value.trim()||'SOLTAI Bot';
+  const welcome=document.getElementById('j-welcome').value.trim()||`Hello! I'm ${botname}. How can I help?`;
+  const plan=document.getElementById('j-plan').value;
+  const waOn=document.getElementById('wa-toggle-check').checked;
+  const wanum=document.getElementById('j-wanum').value.trim();
+  if(!name){alert('Client Name daalo!');return;}
+  if(!btype){alert('Business Type select karo!');return;}
+  const cid='soltai_'+Date.now().toString(36);
+  const client={id:cid,name,btype,site,botname,welcome,plan,waOn,wanum,addedAt:Date.now()};
+  const clients=getClients();clients.push(client);saveClients(clients);
+  showEmbedPage(client);
+  ['j-name','j-site','j-botname','j-welcome','j-wanum'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('j-btype').value='';
+  document.getElementById('j-plan').value='Growth — ₹35,000/month';
+  document.getElementById('wa-toggle-check').checked=false;
+  document.getElementById('wa-num-wrap').classList.remove('show');
+}
+
+function buildEmbedCode(c){
+  const waLine=c.waOn&&c.wanum?`\n  data-whatsapp="${c.wanum.replace(/\D/g,'')}"`:'';
+  return `<!-- SOLTAI AI Chatbot | ${c.name} -->\n<script\n  src="https://soltai.onrender.com/widget.js"\n  data-client-id="${c.id}"\n  data-bot-name="${c.botname}"\n  data-welcome="${c.welcome}"\n  data-business="${c.btype}"${waLine}\n  async>\n<\/script>`;
+}
+
+function showEmbedPage(c){
+  const rows=[['Client',c.name],['Business',c.btype],['Bot Name',c.botname],['Plan',planKey(c.plan)],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled']];
+  document.getElementById('client-summary').innerHTML=rows.map(([k,v])=>`<div class="csr"><span class="csk">${k}</span><span class="csv">${v}</span></div>`).join('');
+  document.getElementById('embed-code-box').textContent=buildEmbedCode(c);
+  const waBtn=document.getElementById('wa-send-btn');
+  if(c.waOn&&c.wanum){const num=c.wanum.replace(/\D/g,'');waBtn.href=`https://wa.me/${num}?text=${encodeURIComponent(`SOLTAI Chatbot Embed Code for ${c.name}:\n\n${buildEmbedCode(c)}`)}`;waBtn.classList.remove('wa-hidden');}
+  else{waBtn.classList.add('wa-hidden');}
+  const btn=document.getElementById('copy-btn');btn.classList.remove('copied');btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Embed Code`;
+  showPage('embed');
+}
+
+function quickCode(cid){const c=getClients().find(x=>x.id===cid);if(c)showEmbedPage(c);}
+
+function copyCode(){
+  const code=document.getElementById('embed-code-box').textContent;
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn=document.getElementById('copy-btn');btn.classList.add('copied');btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Copied!`;
+    showToast('✓ Embed code copied!');
+    setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy Embed Code`;},2500);
+  });
+}
+
+let modalClientId=null;
+function openModal(cid){
+  const c=getClients().find(x=>x.id===cid);if(!c)return;
+  modalClientId=cid;
+  document.getElementById('modal-name').textContent=c.name;
+  document.getElementById('modal-btype').textContent=c.btype+' · '+planKey(c.plan);
+  document.getElementById('modal-grid').innerHTML=[['Bot Name',c.botname||'—'],['Website',c.site||'—'],['Plan',planKey(c.plan)],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled'],['Added',fmtDate(c.addedAt)],['Client ID',c.id.slice(-8)]].map(([k,v])=>`<div class="modal-field"><div class="mf-label">${k}</div><div class="mf-val">${v}</div></div>`).join('');
+  const waBtn=document.getElementById('modal-wa-btn');
+  if(c.waOn&&c.wanum){waBtn.href=`https://wa.me/${c.wanum.replace(/\D/g,'')}?text=${encodeURIComponent(`Hi! Following up on SOLTAI chatbot — Client: ${c.name}`)}`;waBtn.classList.remove('modal-wa-hidden');}
+  else{waBtn.classList.add('modal-wa-hidden');}
+  document.getElementById('modal-bg').classList.add('open');
+}
+function viewClientCode(){const c=getClients().find(x=>x.id===modalClientId);if(c){closeModalDirect();showEmbedPage(c);}}
+function closeModal(e){if(e.target===document.getElementById('modal-bg'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modal-bg').classList.remove('open');modalClientId=null;}
+
+function deleteClient(cid){
+  if(!confirm('Delete this client?'))return;
+  saveClients(getClients().filter(c=>c.id!==cid));
+  renderDash();showToast('Client deleted');
+}
+
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}
+
+renderDash();
+</script>
+</body>
+</html>
