@@ -9,17 +9,14 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hidden;}
-
 .navbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(83,104,120,0.1);}
 .logo{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0;}
 .nav-links{display:flex;gap:40px;}
 .nav-link{font-size:14px;color:rgba(200,205,216,0.45);text-decoration:none;position:relative;transition:color 0.2s;cursor:pointer;}
 .nav-link:hover,.nav-link.active{color:#e8eaf0;}
 .nav-link.active::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;background:#536878;border-radius:1px;}
-
 .page{display:none;min-height:100vh;}
 .page.active{display:block;}
-
 .hero{min-height:100vh;background:#000;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 100px;position:relative;}
 .hero-inner{max-width:540px;}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,82px);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-0.01em;}
@@ -33,7 +30,6 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .btn-outline:hover{border-color:rgba(200,205,216,0.65);transform:translateY(-1px);}
 .hint{margin-top:18px;font-size:12px;color:rgba(200,205,216,0.32);display:flex;align-items:center;gap:8px;}
 .hint-dot{width:6px;height:6px;border-radius:50%;background:#536878;}
-
 .ai-pulse{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;}
 .pulse-rings{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(83,104,120,0.5);animation:expandRing 2.4s ease-out infinite;}
@@ -44,9 +40,7 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .pulse-core{width:10px;height:10px;border-radius:50%;background:#536878;box-shadow:0 0 8px rgba(83,104,120,0.8);animation:corePulse 2.4s ease-in-out infinite;z-index:2;}
 @keyframes corePulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:0.7;}}
 .pulse-label{font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;}
-
 .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(83,104,120,0.3),transparent);}
-
 .contact{background:#000;padding:60px 32px 72px;}
 .contact-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:600;margin-bottom:10px;}
 .contact-title .white{color:#fff;}
@@ -65,7 +59,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .btn-send:hover{background:#6b8494;transform:translateY(-1px);}
 .footer{background:#000;text-align:center;padding:22px 32px;border-top:1px solid rgba(83,104,120,0.1);}
 .footer p{font-size:12px;color:rgba(83,104,120,0.45);letter-spacing:0.04em;}
-
 #page-services{background:#000;padding-top:90px;}
 .services-wrap{max-width:900px;margin:0 auto;padding:60px 32px 80px;}
 .back-btn{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.3);color:rgba(200,205,216,0.6);border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;margin-bottom:40px;transition:all 0.2s;font-family:'Inter',sans-serif;}
@@ -94,7 +87,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .sc-badge{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:0.1em;padding:4px 10px;border-radius:20px;text-transform:uppercase;}
 .sc-badge.new{background:rgba(83,104,120,0.2);color:#536878;border:1px solid rgba(83,104,120,0.35);}
 .sc-badge.popular{background:rgba(200,205,216,0.08);color:#c8cdd8;border:1px solid rgba(200,205,216,0.15);}
-
 #page-chatbot{background:#000;padding-top:90px;}
 .feat-wrap{max-width:900px;margin:0 auto;padding:40px 32px 80px;}
 .cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
@@ -106,7 +98,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .card-title .accent{color:#536878;}
 .card-desc{font-size:13px;color:rgba(200,205,216,0.45);line-height:1.7;margin-bottom:20px;}
 .card-anim{width:100%;display:flex;justify-content:center;align-items:center;flex:1;}
-
 .terminal{width:100%;max-width:260px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;overflow:hidden;}
 .terminal-bar{background:rgba(83,104,120,0.15);padding:8px 12px;display:flex;align-items:center;gap:6px;}
 .t-dot{width:8px;height:8px;border-radius:50%;}
@@ -119,7 +110,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .t-typing span:nth-child(2){animation-delay:0.2s;}
 .t-typing span:nth-child(3){animation-delay:0.4s;}
 @keyframes tblink{0%,100%{opacity:0.3;}50%{opacity:1;}}
-
 .brain-wrap{position:relative;width:140px;height:140px;display:flex;align-items:center;justify-content:center;}
 .brain-core{width:44px;height:44px;border-radius:50%;background:rgba(83,104,120,0.2);border:1.5px solid rgba(83,104,120,0.5);display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 0 20px rgba(83,104,120,0.3);}
 .brain-core svg{animation:brainPulse 2s ease-in-out infinite;}
@@ -133,7 +123,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .p1-b{bottom:0;left:50%;transform:translateX(-50%) translateY(6px);}
 .p2-a{top:50%;right:-8px;transform:translateY(-50%);}
 .p2-b{top:50%;left:-8px;transform:translateY(-50%);}
-
 .team-board{width:100%;max-width:260px;}
 .team-row{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:10px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.12);margin-bottom:8px;}
 .team-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
@@ -146,11 +135,9 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .status-idle{background:rgba(83,104,120,0.4);}
 @keyframes statusPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .ai-badge{background:rgba(83,104,120,0.2);border:1px solid rgba(83,104,120,0.3);border-radius:6px;padding:2px 6px;font-size:9px;color:#536878;}
-
 .heatmap-grid{display:flex;gap:3px;}
 .hm-col{display:flex;flex-direction:column;gap:3px;}
 .hm-cell{width:10px;height:10px;border-radius:2px;}
-
 #page-agent{background:#000;padding-top:90px;}
 .agent-wrap{max-width:860px;margin:0 auto;padding:40px 32px 80px;}
 .agent-hero{margin-bottom:40px;}
@@ -187,7 +174,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .agent-cta p{font-size:13px;color:rgba(200,205,216,0.45);margin-bottom:20px;}
 .btn-agent-start{display:inline-flex;align-items:center;gap:8px;background:#536878;color:#000;border:none;border-radius:10px;padding:14px 28px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
 .btn-agent-start:hover{background:#6b8494;transform:translateY(-1px);}
-
 #fab{position:fixed;bottom:26px;right:26px;z-index:300;width:54px;height:54px;border-radius:50%;background:#000;border:1.5px solid rgba(83,104,120,0.5);box-shadow:0 0 0 0 rgba(83,104,120,0.4);animation:pgpulse 3s ease-out infinite;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
 #fab:hover{background:rgba(83,104,120,0.12);}
 @keyframes pgpulse{0%{box-shadow:0 0 0 0 rgba(83,104,120,0.45);}70%{box-shadow:0 0 0 13px rgba(83,104,120,0);}100%{box-shadow:0 0 0 0 rgba(83,104,120,0);}}
@@ -214,6 +200,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .typing span:nth-child(2){animation-delay:0.2s;}
 .typing span:nth-child(3){animation-delay:0.4s;}
 #toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.92);color:#e8eaf0;padding:11px 24px;border-radius:50px;font-size:13px;display:none;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+@keyframes modalIn{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
 </style>
 </head>
 <body>
@@ -268,7 +255,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
   <footer class="footer"><p>soltai.onrender.com</p></footer>
 </div>
 
-<!-- SERVICES SELECTION -->
+<!-- SERVICES -->
 <div class="page" id="page-services">
   <div class="services-wrap">
     <button class="back-btn" onclick="showPage('home')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
@@ -307,7 +294,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
   </div>
 </div>
 
-<!-- AI CHATBOT DETAIL -->
+<!-- AI CHATBOT -->
 <div class="page" id="page-chatbot">
   <div class="feat-wrap">
     <button class="back-btn" onclick="showPage('services')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
@@ -331,6 +318,98 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
         <div class="card-anim" style="flex-direction:column;align-items:flex-start;padding:0 4px;"><div style="font-size:10px;color:rgba(83,104,120,0.5);margin-bottom:10px;letter-spacing:0.06em;">BOT ACTIVITY — 16 WEEKS</div><div class="heatmap-grid" id="heatmap"></div><div style="display:flex;align-items:center;gap:6px;margin-top:10px;"><span style="font-size:10px;color:rgba(83,104,120,0.4);">Less</span><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.1);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.25);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.45);"></div><div style="width:9px;height:9px;border-radius:2px;background:rgba(83,104,120,0.7);"></div><div style="width:9px;height:9px;border-radius:2px;background:#536878;"></div><span style="font-size:10px;color:rgba(83,104,120,0.4);">More</span></div></div>
       </div>
     </div>
+
+    <!-- LIVE DEMO -->
+    <div style="margin-top:56px;">
+      <div style="font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Try It Live</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;margin-bottom:8px;"><span style="color:#536878;">Live Demo</span> — Try the Bot</h3>
+      <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:24px;line-height:1.7;">A real SOLTAI chatbot — try it right here. This is exactly how it will look on your client's website.</p>
+      <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.22);border-radius:20px;overflow:hidden;max-width:480px;">
+        <div style="background:rgba(83,104,120,0.1);border-bottom:1px solid rgba(83,104,120,0.15);padding:14px 18px;display:flex;align-items:center;gap:10px;">
+          <div style="width:34px;height:34px;border-radius:50%;background:#000;border:1.5px solid #536878;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#536878;">S</span></div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#e8eaf0;">SOLTAI Assistant</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:1px;"><div style="width:6px;height:6px;border-radius:50%;background:#536878;animation:blink 2s infinite;"></div><span style="font-size:11px;color:rgba(83,104,120,0.8);">Online — Try me!</span></div>
+          </div>
+        </div>
+        <div id="demo-msgs" style="padding:16px;display:flex;flex-direction:column;gap:10px;min-height:200px;max-height:280px;overflow-y:auto;">
+          <div style="max-width:85%;padding:9px 13px;border-radius:4px 13px 13px 13px;font-size:13px;line-height:1.55;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;">Hello! I'm SOLTAI Assistant. Ask me anything about our AI chatbot service! 👋</div>
+        </div>
+        <div style="padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid rgba(83,104,120,0.1);">
+          <button onclick="demoQuick('What is SOLTAI chatbot?')" style="font-size:11px;padding:5px 11px;border-radius:20px;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.25);color:#9aa5b8;cursor:pointer;font-family:'Inter',sans-serif;">What is SOLTAI?</button>
+          <button onclick="demoQuick('How much does it cost?')" style="font-size:11px;padding:5px 11px;border-radius:20px;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.25);color:#9aa5b8;cursor:pointer;font-family:'Inter',sans-serif;">Pricing?</button>
+          <button onclick="demoQuick('How to setup on my website?')" style="font-size:11px;padding:5px 11px;border-radius:20px;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.25);color:#9aa5b8;cursor:pointer;font-family:'Inter',sans-serif;">How to setup?</button>
+        </div>
+        <div style="border-top:1px solid rgba(83,104,120,0.15);padding:10px;display:flex;gap:8px;align-items:flex-end;">
+          <textarea id="demo-input" style="flex:1;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;font-size:13px;padding:9px 11px;resize:none;outline:none;font-family:'Inter',sans-serif;max-height:70px;" rows="1" placeholder="Type a message..." onkeydown="demoKey(event)"></textarea>
+          <button onclick="demoSend()" style="width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(83,104,120,0.28);border:1px solid rgba(83,104,120,0.4);color:#c8cdd8;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div style="margin-top:64px;">
+      <div style="font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Transparent Pricing</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;margin-bottom:8px;">Simple <span style="color:#536878;">Plans</span></h3>
+      <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:32px;">No hidden charges. Cancel anytime.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="pricing-grid">
+
+        <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:18px;padding:24px 20px;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(83,104,120,0.45)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(83,104,120,0.2)';this.style.transform='translateY(0)'">
+          <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Starter</div>
+          <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:2px;">₹4,999</div>
+          <div style="font-size:11px;color:rgba(200,205,216,0.35);margin-bottom:20px;">/month</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>1 Website</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>500 conversations/mo</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Basic customization</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Email support</div>
+          </div>
+          <button onclick="openPayment('Starter','4999')" style="width:100%;background:transparent;border:1px solid rgba(83,104,120,0.35);color:#9aa5b8;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(83,104,120,0.15)'" onmouseout="this.style.background='transparent'">Get Started</button>
+        </div>
+
+        <div style="background:#0a0a0a;border:1.5px solid #536878;border-radius:18px;padding:24px 20px;position:relative;transition:all 0.3s;box-shadow:0 0 30px rgba(83,104,120,0.15);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+          <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#536878;color:#000;font-size:9px;font-weight:700;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;text-transform:uppercase;">Most Popular</div>
+          <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Growth</div>
+          <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:2px;">₹9,999</div>
+          <div style="font-size:11px;color:rgba(200,205,216,0.35);margin-bottom:20px;">/month</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>3 Websites</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>2,000 conversations/mo</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>WhatsApp integration</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Full customization</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Priority support</div>
+          </div>
+          <button onclick="openPayment('Growth','9999')" style="width:100%;background:#536878;border:none;color:#000;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#6b8494'" onmouseout="this.style.background='#536878'">Get Started</button>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:18px;padding:24px 20px;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(83,104,120,0.45)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(83,104,120,0.2)';this.style.transform='translateY(0)'">
+          <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Pro</div>
+          <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:2px;">₹19,999</div>
+          <div style="font-size:11px;color:rgba(200,205,216,0.35);margin-bottom:20px;">/month</div>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:24px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Unlimited websites</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Unlimited conversations</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>WhatsApp + Instagram</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Agent Connect included</div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(200,205,216,0.6);"><span style="width:5px;height:5px;border-radius:50%;background:#536878;flex-shrink:0;"></span>Dedicated support</div>
+          </div>
+          <button onclick="openPayment('Pro','19999')" style="width:100%;background:transparent;border:1px solid rgba(83,104,120,0.35);color:#9aa5b8;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(83,104,120,0.15)'" onmouseout="this.style.background='transparent'">Get Started</button>
+        </div>
+
+      </div>
+      <p style="text-align:center;margin-top:16px;font-size:12px;color:rgba(200,205,216,0.3);">Enterprise plan also available — <span style="color:rgba(83,104,120,0.7);cursor:pointer;" onclick="showPage('home');setTimeout(scrollContact,300);">Contact us</span></p>
+    </div>
+
+    <!-- FAQ -->
+    <div style="margin-top:64px;margin-bottom:20px;">
+      <div style="font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Common Questions</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;margin-bottom:32px;">FAQ</h3>
+      <div id="faq-list" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+
+    <!-- CTA -->
     <div style="margin-top:40px;padding:28px;background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.18);border-radius:16px;text-align:center;">
       <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:8px;">Ready to deploy your <span style="color:#536878;">AI Chatbot?</span></h3>
       <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:18px;">Contact us and we'll set it up for your website in under 24 hours.</p>
@@ -353,14 +432,14 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
         <div class="step"><div class="step-num">1</div><div><div class="step-title">Customer Sends a Query</div><div class="step-desc">A visitor submits a business query — pricing, custom requirements, partnerships, or anything complex.</div><span class="step-tag">High-level queries only</span></div></div>
         <div class="step"><div class="step-num">2</div><div><div class="step-title">Agent Gets Notified</div><div class="step-desc">Our agent dashboard lights up with the new conversation. Full context, visitor info, reply directly.</div><span class="step-tag">Real-time dashboard</span></div></div>
         <div class="step"><div class="step-num">3</div><div><div class="step-title">Agent Replies Personally</div><div class="step-desc">The human agent handles it personally — no bots, no automated responses for complex issues.</div><span class="step-tag">Human touch</span></div></div>
-        <div class="step"><div class="step-num">4</div><div><div class="step-title">Auto Ticket if No Response</div><div class="step-desc">If agent doesn't respond within SLA, a ticket is automatically created and escalated — zero queries missed.</div><span class="step-tag" style="background:rgba(200,160,80,0.08);color:rgba(200,160,80,0.7);border-color:rgba(200,160,80,0.25);">Auto escalation</span></div></div>
+        <div class="step"><div class="step-num">4</div><div><div class="step-title">Auto Ticket if No Response</div><div class="step-desc">If agent doesn't respond within SLA, a ticket is automatically created and escalated.</div><span class="step-tag" style="background:rgba(200,160,80,0.08);color:rgba(200,160,80,0.7);border-color:rgba(200,160,80,0.25);">Auto escalation</span></div></div>
       </div>
     </div>
     <div class="ticket-demo">
       <div class="ticket-head"><span style="font-size:13px;font-weight:500;color:#c8cdd8;">Live Ticket Queue</span><span style="font-size:10px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;">DEMO</span></div>
-      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Rajesh Mehta — Enterprise Pricing Query</div><div class="tkt-msg">"We need a custom plan for 500+ employees across 3 offices. Can we schedule a call?"</div><div class="tkt-meta"><span class="tkt-badge tkt-open">Open</span><span class="tkt-time">2 min ago</span></div></div></div>
-      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Priya Sharma — Integration Requirement</div><div class="tkt-msg">"Need chatbot integrated with our CRM system. Is that possible?"</div><div class="tkt-meta"><span class="tkt-badge tkt-pending">Pending</span><span class="tkt-time">18 min ago</span></div></div></div>
-      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Ankit Verma — Partnership Inquiry</div><div class="tkt-msg">"Interested in white-labeling your chatbot for our clients."</div><div class="tkt-meta"><span class="tkt-badge tkt-resolved">Resolved</span><span class="tkt-time">1 hr ago</span></div></div></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Rajesh Mehta — Enterprise Pricing Query</div><div class="tkt-msg">"We need a custom plan for 500+ employees. Can we schedule a call?"</div><div class="tkt-meta"><span class="tkt-badge tkt-open">Open</span><span class="tkt-time">2 min ago</span></div></div></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Priya Sharma — Integration Requirement</div><div class="tkt-msg">"Need chatbot integrated with our CRM system."</div><div class="tkt-meta"><span class="tkt-badge tkt-pending">Pending</span><span class="tkt-time">18 min ago</span></div></div></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Ankit Verma — Partnership Inquiry</div><div class="tkt-msg">"Interested in white-labeling your chatbot."</div><div class="tkt-meta"><span class="tkt-badge tkt-resolved">Resolved</span><span class="tkt-time">1 hr ago</span></div></div></div>
     </div>
     <div class="agent-cta">
       <h3>Want <span style="color:#536878;">Agent Connect</span> for your business?</h3>
@@ -372,6 +451,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 
 <div id="toast">✓ Sent!</div>
 
+<!-- CHATBOT FAB -->
 <button id="fab" onclick="toggleChat()">
   <svg id="ico-chat" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
   <svg id="ico-x" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -385,43 +465,156 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
   <div class="cinput-area"><textarea class="cinput" id="cinput" placeholder="Ask something..." rows="1" onkeydown="chatKey(event)"></textarea><button class="csend" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
 </div>
 
+<!-- PAYMENT MODAL -->
+<div id="pay-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;padding:20px;" onclick="closePayBg(event)">
+  <div style="background:#0e0e0e;border:1px solid rgba(83,104,120,0.28);border-radius:22px;width:100%;max-width:420px;overflow:hidden;animation:modalIn 0.25s ease;">
+    <div style="background:rgba(83,104,120,0.1);border-bottom:1px solid rgba(83,104,120,0.15);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;">
+      <div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;">Complete Payment</div><div style="font-size:12px;color:rgba(200,205,216,0.4);margin-top:2px;" id="pay-plan-label">Starter Plan — ₹4,999/month</div></div>
+      <button onclick="closePayModal()" style="background:none;border:none;cursor:pointer;color:rgba(200,205,216,0.4);padding:4px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div style="display:flex;border-bottom:1px solid rgba(83,104,120,0.12);">
+      <button id="tab-upi" onclick="switchTab('upi')" style="flex:1;padding:14px;background:rgba(83,104,120,0.12);border:none;border-bottom:2px solid #536878;color:#e8eaf0;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">UPI</button>
+      <button id="tab-card" onclick="switchTab('card')" style="flex:1;padding:14px;background:none;border:none;border-bottom:2px solid transparent;color:rgba(200,205,216,0.45);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">Card</button>
+    </div>
+    <div id="panel-upi" style="padding:22px;">
+      <div style="font-size:11px;letter-spacing:0.08em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Pay with UPI App</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+        <button onclick="payUPI('phonepe')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#5f259f;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:11px;font-weight:700;">Pe</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">PhonePe</span></button>
+        <button onclick="payUPI('gpay')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#4285F4;">G</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">Google Pay</span></button>
+        <button onclick="payUPI('bhim')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#00529b;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:10px;font-weight:700;">BHIM</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">BHIM UPI</span></button>
+        <button onclick="payUPI('paytm')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#00b9f1;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:9px;font-weight:700;">Paytm</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">Paytm</span></button>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><div style="flex:1;height:1px;background:rgba(83,104,120,0.15);"></div><span style="font-size:11px;color:rgba(83,104,120,0.5);">OR Enter UPI ID</span><div style="flex:1;height:1px;background:rgba(83,104,120,0.15);"></div></div>
+      <div style="display:flex;gap:8px;">
+        <input id="upi-input" type="text" placeholder="yourname@upi" style="flex:1;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:11px 14px;font-size:13px;outline:none;font-family:'Inter',sans-serif;"/>
+        <button onclick="payManualUPI()" style="background:#536878;border:none;color:#000;border-radius:10px;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;">Pay</button>
+      </div>
+      <p style="font-size:11px;color:rgba(200,205,216,0.3);margin-top:8px;">Amount will be sent to: vasu.dogra.yo@okhdfcbank</p>
+    </div>
+    <div id="panel-card" style="display:none;padding:22px;">
+      <div style="font-size:11px;letter-spacing:0.08em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:16px;">Card Details</div>
+      <div style="margin-bottom:14px;"><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Card Number</label><input type="text" maxlength="19" placeholder="1234  5678  9012  3456" id="card-num" oninput="formatCard(this)" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Expiry</label><input type="text" maxlength="5" placeholder="MM/YY" id="card-exp" oninput="formatExpiry(this)" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
+        <div><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">CVV</label><input type="password" maxlength="4" placeholder="•••" id="card-cvv" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
+      </div>
+      <div style="margin-bottom:20px;"><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Name on Card</label><input type="text" placeholder="Your Full Name" id="card-name" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
+      <button onclick="payCard()" id="pay-card-btn" style="width:100%;background:#536878;border:none;color:#000;border-radius:10px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Pay ₹<span id="pay-amount-card">4,999</span></button>
+      <p style="font-size:11px;color:rgba(200,205,216,0.25);text-align:center;margin-top:10px;">🔒 256-bit SSL encrypted</p>
+    </div>
+  </div>
+</div>
+
 <script>
+const UPI_ID='vasu.dogra.yo@okhdfcbank';
+const UPI_NAME='SOLTAI';
+let payAmount='4999';
+let payPlan='Starter';
+
+function openPayment(plan,amount){
+  payPlan=plan;payAmount=amount;
+  const fmt=parseInt(amount).toLocaleString('en-IN');
+  document.getElementById('pay-plan-label').textContent=plan+' Plan — ₹'+fmt+'/month';
+  document.getElementById('pay-amount-card').textContent=fmt;
+  document.getElementById('pay-bg').style.display='flex';
+  switchTab('upi');
+}
+function closePayModal(){document.getElementById('pay-bg').style.display='none';}
+function closePayBg(e){if(e.target===document.getElementById('pay-bg'))closePayModal();}
+function switchTab(tab){
+  document.getElementById('panel-upi').style.display=tab==='upi'?'block':'none';
+  document.getElementById('panel-card').style.display=tab==='card'?'block':'none';
+  const u=document.getElementById('tab-upi'),c=document.getElementById('tab-card');
+  if(tab==='upi'){u.style.background='rgba(83,104,120,0.12)';u.style.borderBottom='2px solid #536878';u.style.color='#e8eaf0';c.style.background='none';c.style.borderBottom='2px solid transparent';c.style.color='rgba(200,205,216,0.45)';}
+  else{c.style.background='rgba(83,104,120,0.12)';c.style.borderBottom='2px solid #536878';c.style.color='#e8eaf0';u.style.background='none';u.style.borderBottom='2px solid transparent';u.style.color='rgba(200,205,216,0.45)';}
+}
+function payUPI(app){
+  const amt=payAmount;
+  const note=encodeURIComponent('SOLTAI '+payPlan+' Plan');
+  const links={phonepe:`phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,gpay:`tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,bhim:`bhim://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,paytm:`paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`};
+  window.location.href=links[app];
+  setTimeout(()=>{window.open('https://'+(app==='phonepe'?'www.phonepe.com':app==='gpay'?'pay.google.com':app==='bhim'?'www.bhimupi.org.in':'paytm.com'),'_blank');},1500);
+}
+function payManualUPI(){
+  const id=document.getElementById('upi-input').value.trim();
+  if(!id){alert('Please enter your UPI ID');return;}
+  window.location.href=`upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${payAmount}&cu=INR&tn=${encodeURIComponent('SOLTAI '+payPlan+' Plan')}`;
+}
+function formatCard(inp){let v=inp.value.replace(/\D/g,'').slice(0,16);inp.value=v.replace(/(.{4})/g,'$1  ').trim();}
+function formatExpiry(inp){let v=inp.value.replace(/\D/g,'').slice(0,4);if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2);inp.value=v;}
+function payCard(){
+  const num=document.getElementById('card-num').value.replace(/\s/g,'');
+  const exp=document.getElementById('card-exp').value;
+  const cvv=document.getElementById('card-cvv').value;
+  const name=document.getElementById('card-name').value.trim();
+  if(num.length<16){alert('Please enter a valid card number');return;}
+  if(exp.length<5){alert('Please enter expiry date');return;}
+  if(cvv.length<3){alert('Please enter CVV');return;}
+  if(!name){alert('Please enter name on card');return;}
+  const btn=document.getElementById('pay-card-btn');btn.textContent='Processing...';btn.style.opacity='0.7';
+  setTimeout(()=>{closePayModal();alert('✓ Payment initiated! We will confirm your subscription within 24 hours.');btn.innerHTML='Pay ₹<span id="pay-amount-card">'+parseInt(payAmount).toLocaleString('en-IN')+'</span>';btn.style.opacity='1';},2000);
+}
+
+const faqs=[
+  {q:'Will this chatbot work on my website?',a:'Yes! SOLTAI chatbot can be embedded on any website with a simple script tag — WordPress, Wix, Shopify, custom HTML, all supported. Setup takes less than 5 minutes.'},
+  {q:'How long does the setup take?',a:'Less than 24 hours. Just contact us, share your details — and we will have your custom bot live on your website. No technical knowledge required.'},
+  {q:'Does it work on WhatsApp too?',a:'Yes! WhatsApp integration is included in the Growth and Pro plans. Your customers can message on WhatsApp and the bot will reply there too.'},
+  {q:'What if the bot gives a wrong answer?',a:'The bot is trained with your specific business information. For complex queries, our Agent Connect service lets a real human agent take over instantly.'},
+  {q:'Is there a long-term contract?',a:'No long-term contracts — it is a simple monthly subscription. Cancel anytime. No hidden charges, no setup fees.'},
+  {q:'Can the bot speak in Hindi?',a:'Absolutely! SOLTAI bot replies in Hindi, English, and Hinglish. It automatically matches the language your customer writes in.'},
+  {q:'Is my data secure?',a:'Yes. All conversations are fully secure. No data is shared with any third party. Enterprise plan also includes VPC deployment for maximum security.'},
+];
+function buildFAQ(){
+  const list=document.getElementById('faq-list');if(!list)return;
+  list.innerHTML=faqs.map((f,i)=>`<div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.18);border-radius:12px;overflow:hidden;" id="faq-${i}"><button onclick="toggleFAQ(${i})" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:none;border:none;cursor:pointer;text-align:left;gap:12px;"><span style="font-size:13px;font-weight:500;color:#c8cdd8;">${f.q}</span><span id="faq-icon-${i}" style="font-size:18px;color:#536878;flex-shrink:0;">+</span></button><div id="faq-ans-${i}" style="display:none;padding:0 20px 16px;font-size:13px;color:rgba(200,205,216,0.55);line-height:1.75;border-top:1px solid rgba(83,104,120,0.1);">${f.a}</div></div>`).join('');
+}
+function toggleFAQ(i){
+  const ans=document.getElementById('faq-ans-'+i);const icon=document.getElementById('faq-icon-'+i);const open=ans.style.display==='block';
+  ans.style.display=open?'none':'block';icon.textContent=open?'+':'−';
+}
+buildFAQ();
+
+function demoKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();demoSend();}}
+function demoQuick(txt){document.getElementById('demo-input').value=txt;demoSend();}
+async function demoSend(){
+  const inp=document.getElementById('demo-input');const txt=inp.value.trim();if(!txt)return;inp.value='';
+  const box=document.getElementById('demo-msgs');
+  const um=document.createElement('div');um.style.cssText='max-width:85%;padding:9px 13px;border-radius:13px 4px 13px 13px;font-size:13px;line-height:1.55;background:rgba(83,104,120,0.22);border:1px solid rgba(83,104,120,0.3);color:#e8eaf0;align-self:flex-end;';um.textContent=txt;box.appendChild(um);
+  const ty=document.createElement('div');ty.style.cssText='display:flex;gap:4px;padding:9px 13px;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);border-radius:4px 13px 13px 13px;align-self:flex-start;width:fit-content;';ty.innerHTML='<span style="width:5px;height:5px;border-radius:50%;background:rgba(83,104,120,0.65);animation:blink 1.2s infinite;"></span><span style="width:5px;height:5px;border-radius:50%;background:rgba(83,104,120,0.65);animation:blink 1.2s 0.2s infinite;"></span><span style="width:5px;height:5px;border-radius:50%;background:rgba(83,104,120,0.65);animation:blink 1.2s 0.4s infinite;"></span>';box.appendChild(ty);box.scrollTop=box.scrollHeight;
+  try{
+    const res=await fetch('/chat/soltai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:txt})});
+    const data=await res.json();ty.remove();
+    const bm=document.createElement('div');bm.style.cssText='max-width:85%;padding:9px 13px;border-radius:4px 13px 13px 13px;font-size:13px;line-height:1.55;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;';bm.textContent=data.reply||'Please try again.';box.appendChild(bm);
+  }catch{ty.remove();const er=document.createElement('div');er.style.cssText='max-width:85%;padding:9px 13px;border-radius:4px 13px 13px 13px;font-size:13px;color:#c8cdd8;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);align-self:flex-start;';er.textContent='Connection error.';box.appendChild(er);}
+  box.scrollTop=box.scrollHeight;
+}
+
+function fixPricingGrid(){const g=document.getElementById('pricing-grid');if(!g)return;g.style.gridTemplateColumns=window.innerWidth<640?'1fr':'repeat(3,1fr)';}
+fixPricingGrid();window.addEventListener('resize',fixPricingGrid);
+
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   window.scrollTo(0,0);
-  document.querySelectorAll('.nav-link').forEach((l,i)=>{
-    l.classList.toggle('active',(i===0&&id==='home')||(i===1&&(id==='services'||id==='chatbot'))||(i===2&&id==='agent'));
-  });
+  document.querySelectorAll('.nav-link').forEach((l,i)=>{l.classList.toggle('active',(i===0&&id==='home')||(i===1&&(id==='services'||id==='chatbot'))||(i===2&&id==='agent'));});
 }
-function scrollContact(){
-  showPage('home');
-  setTimeout(()=>document.getElementById('contact-section').scrollIntoView({behavior:'smooth'}),100);
-}
+function scrollContact(){showPage('home');setTimeout(()=>document.getElementById('contact-section').scrollIntoView({behavior:'smooth'}),100);}
+
 function buildHeatmap(){
   const grid=document.getElementById('heatmap');if(!grid)return;grid.innerHTML='';
   const levels=[0,0.1,0.25,0.45,0.7,1];
-  for(let w=0;w<16;w++){const col=document.createElement('div');col.className='hm-col';
-    for(let d=0;d<7;d++){const cell=document.createElement('div');cell.className='hm-cell';
-      const lvl=levels[Math.floor(Math.random()*levels.length)];
-      cell.style.background=lvl===0?'rgba(83,104,120,0.07)':`rgba(83,104,120,${lvl})`;
-      cell.style.transition=`background ${0.3+Math.random()*0.4}s ease`;col.appendChild(cell);}
-    grid.appendChild(col);}
+  for(let w=0;w<16;w++){const col=document.createElement('div');col.className='hm-col';for(let d=0;d<7;d++){const cell=document.createElement('div');cell.className='hm-cell';const lvl=levels[Math.floor(Math.random()*levels.length)];cell.style.background=lvl===0?'rgba(83,104,120,0.07)':`rgba(83,104,120,${lvl})`;cell.style.transition=`background ${0.3+Math.random()*0.4}s ease`;col.appendChild(cell);}grid.appendChild(col);}
 }
 buildHeatmap();
-setInterval(()=>{const cells=document.querySelectorAll('.hm-cell');const count=Math.floor(cells.length*0.15);
-  for(let i=0;i<count;i++){const cell=cells[Math.floor(Math.random()*cells.length)];const lv=[0.07,0.15,0.3,0.5,0.75,1];cell.style.background=`rgba(83,104,120,${lv[Math.floor(Math.random()*lv.length)]})`;}},800);
-const termMsgs=[{type:'user',text:'Book appointment?'},{type:'bot',text:'Sure! What date works?'},{type:'user',text:'Tomorrow 10am'},{type:'bot',text:'Confirmed ✓'},{type:'user',text:'Your charges?'},{type:'bot',text:'Starting ₹15,000/month.'}];
+setInterval(()=>{const cells=document.querySelectorAll('.hm-cell');const count=Math.floor(cells.length*0.15);for(let i=0;i<count;i++){const cell=cells[Math.floor(Math.random()*cells.length)];const lv=[0.07,0.15,0.3,0.5,0.75,1];cell.style.background=`rgba(83,104,120,${lv[Math.floor(Math.random()*lv.length)]})`;} },800);
+
+const termMsgs=[{type:'user',text:'Book appointment?'},{type:'bot',text:'Sure! What date works?'},{type:'user',text:'Tomorrow 10am'},{type:'bot',text:'Confirmed ✓'},{type:'user',text:'Your charges?'},{type:'bot',text:'Starting ₹4,999/month.'}];
 let termIdx=0;
-function addTermMsg(){const body=document.getElementById('term-body');if(!body)return;
-  const msgs=body.querySelectorAll('.t-msg,.t-typing');if(msgs.length>4)msgs[0].remove();
-  const ty=document.createElement('div');ty.className='t-typing';ty.innerHTML='<span></span><span></span><span></span>';body.appendChild(ty);
-  setTimeout(()=>{ty.remove();const msg=termMsgs[termIdx%termMsgs.length];const el=document.createElement('div');el.className=`t-msg ${msg.type==='bot'?'t-bot':'t-user'}`;el.textContent=msg.text;body.appendChild(el);termIdx++;},900);}
+function addTermMsg(){const body=document.getElementById('term-body');if(!body)return;const msgs=body.querySelectorAll('.t-msg,.t-typing');if(msgs.length>4)msgs[0].remove();const ty=document.createElement('div');ty.className='t-typing';ty.innerHTML='<span></span><span></span><span></span>';body.appendChild(ty);setTimeout(()=>{ty.remove();const msg=termMsgs[termIdx%termMsgs.length];const el=document.createElement('div');el.className=`t-msg ${msg.type==='bot'?'t-bot':'t-user'}`;el.textContent=msg.text;body.appendChild(el);termIdx++;},900);}
 setInterval(addTermMsg,2200);
-function sendForm(){const n=document.getElementById('nm').value.trim();const e=document.getElementById('em').value.trim();const m=document.getElementById('mg').value.trim();
-  if(!n||!e||!m){alert('Please fill all fields.');return;}
-  document.getElementById('nm').value='';document.getElementById('em').value='';document.getElementById('mg').value='';
-  const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
+
+function sendForm(){const n=document.getElementById('nm').value.trim();const e=document.getElementById('em').value.trim();const m=document.getElementById('mg').value.trim();if(!n||!e||!m){alert('Please fill all fields.');return;}document.getElementById('nm').value='';document.getElementById('em').value='';document.getElementById('mg').value='';const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
+
 let chatOpen=false;
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('cwin').classList.toggle('open',chatOpen);document.getElementById('ico-chat').style.display=chatOpen?'none':'block';document.getElementById('ico-x').style.display=chatOpen?'block':'none';}
 function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();chatSend();}}
@@ -432,13 +625,9 @@ async function chatSend(){
   const ty=document.createElement('div');ty.className='cmsg cbot typing';ty.innerHTML='<span></span><span></span><span></span>';box.appendChild(ty);
   box.scrollTop=box.scrollHeight;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
-        system:'You are SOLTAI Assistant. SOLTAI provides 2 services: (1) AI Chatbot — automated bot for websites, (2) Agent Connect — real human agents for high-level queries with auto ticket generation. Reply in user language (Hindi/English/Hinglish). Concise, under 80 words.',
-        messages:[{role:'user',content:txt}]})});
+    const res=await fetch('/chat/soltai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:txt})});
     const data=await res.json();
-    const reply=data.content?.map(b=>b.text||'').join('')||'Something went wrong.';
-    ty.remove();const bm=document.createElement('div');bm.className='cmsg cbot';bm.textContent=reply;box.appendChild(bm);
+    ty.remove();const bm=document.createElement('div');bm.className='cmsg cbot';bm.textContent=data.reply||'Something went wrong.';box.appendChild(bm);
   }catch{ty.remove();const er=document.createElement('div');er.className='cmsg cbot';er.textContent='Connection error.';box.appendChild(er);}
   box.scrollTop=box.scrollHeight;
 }
