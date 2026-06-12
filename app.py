@@ -3,102 +3,19 @@ import anthropic
 import os
 
 app = Flask(__name__)
-
-client = anthropic.Anthropic(
-    api_key=os.getenv("ANTHROPIC_API_KEY")
-)
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 BUSINESS_PROMPTS = {
-    "Clinic / Hospital": """You are a professional medical clinic assistant. Help patients with:
-- Appointment booking and scheduling
-- Doctor availability and specializations
-- Clinic timings, location, contact info
-- General health queries (non-diagnostic)
-- Insurance and billing queries
-- Lab test information
-- Emergency contact guidance
-Always be empathetic, professional and caring. Never provide specific medical diagnosis or prescriptions.
-If emergency, always say: "Please call 112 or visit nearest emergency room immediately." """,
-
-    "Restaurant / Cafe": """You are a friendly restaurant assistant. Help customers with:
-- Menu items, prices, ingredients, allergens
-- Table reservations and availability
-- Opening hours and location
-- Special dietary requirements (vegan, gluten-free etc)
-- Home delivery and takeaway options
-- Special events, offers, combo deals
-- Feedback and complaints
-Be warm, enthusiastic about food, and make customers feel welcome.""",
-
-    "Retail Shop": """You are a helpful retail store assistant. Help customers with:
-- Product availability, prices, specifications
-- Store timings and location
-- Offers, discounts, sale information
-- Return and exchange policies
-- Order tracking and delivery
-- Payment methods accepted
-- Gift wrapping and special requests
-Be helpful and guide customers to make the right purchase decision.""",
-
-    "Real Estate": """You are a professional real estate assistant. Help clients with:
-- Available properties for sale/rent
-- Property details, pricing, location
-- Site visit scheduling
-- Home loan and EMI information
-- Legal documentation process
-- Area information and amenities
-- Investment advice (general)
-Be professional, trustworthy and help clients find their dream property.""",
-
-    "Education / Coaching": """You are a knowledgeable education assistant. Help students and parents with:
-- Courses and programs offered
-- Fees, scholarships, payment plans
-- Admission process and eligibility
-- Batch timings and schedule
-- Faculty information
-- Study materials and resources
-- Results and performance tracking
-- Career guidance
-Be encouraging, motivating and supportive.""",
-
-    "E-commerce": """You are an efficient e-commerce support assistant. Help customers with:
-- Product search, specifications, comparisons
-- Pricing and availability
-- Order placement and tracking
-- Shipping and delivery timelines
-- Returns, refunds and exchanges
-- Payment issues and methods
-- Discount codes and offers
-- Account related queries
-Be quick, precise and resolve issues efficiently.""",
-
-    "Salon / Spa": """You are a friendly salon and spa assistant. Help clients with:
-- Services offered and pricing
-- Appointment booking and availability
-- Stylist/therapist recommendations
-- Product recommendations
-- Package deals and memberships
-- Pre and post service care tips
-- Special occasion bookings
-Be warm, friendly and make clients feel pampered.""",
-
-    "Legal / Finance": """You are a professional legal and financial services assistant. Help clients with:
-- Services offered
-- Consultation scheduling
-- Document requirements
-- General process guidance
-- Fee structure information
-Always be professional. Never give specific legal or financial advice.
-Add disclaimer: "This is general information only. Please consult our experts for specific advice." """,
-
-    "Other": """You are a professional and helpful business assistant.
-Help customers with their queries professionally and helpfully.
-Be professional, friendly and resolve customer queries efficiently."""
+    "Clinic / Hospital": "You are a professional medical clinic assistant. Be empathetic and caring. Never diagnose or prescribe. For emergencies say: Please call 112 immediately.",
+    "Restaurant / Cafe": "You are a friendly restaurant assistant. Be warm and enthusiastic about food.",
+    "Retail Shop": "You are a helpful retail store assistant. Guide customers to make the right purchase.",
+    "Real Estate": "You are a professional real estate assistant. Be trustworthy and helpful.",
+    "Education / Coaching": "You are a knowledgeable education assistant. Be encouraging and motivating.",
+    "E-commerce": "You are an efficient e-commerce support assistant. Be quick and precise.",
+    "Salon / Spa": "You are a friendly salon assistant. Make clients feel pampered and welcome.",
+    "Legal / Finance": "You are a professional assistant. Never give specific legal or financial advice. Always say: Please consult our experts for specific advice.",
+    "Other": "You are a professional and helpful business assistant."
 }
-
-DEFAULT_PROMPT = """You are a professional business assistant.
-Help customers with their queries professionally and helpfully.
-Reply in the same language as the customer — Hindi, English, or Hinglish."""
 
 
 @app.route("/")
@@ -123,45 +40,70 @@ def chat():
         user_message = data.get("message", "")
         business_type = data.get("business_type", "Other")
         bot_name = data.get("bot_name", "Assistant")
-        welcome_context = data.get("welcome_message", "")
         business_name = data.get("business_name", "")
+        phone = data.get("phone", "")
+        email = data.get("email", "")
+        address = data.get("address", "")
+        timings = data.get("timings", "")
+        days = data.get("days", "")
+        services = data.get("services", "")
+        pricing = data.get("pricing", "")
+        team = data.get("team", "")
+        instructions = data.get("instructions", "")
+        faqs = data.get("faqs", "")
 
-        base_prompt = BUSINESS_PROMPTS.get(business_type, DEFAULT_PROMPT)
+        base_prompt = BUSINESS_PROMPTS.get(business_type, BUSINESS_PROMPTS["Other"])
 
-        system_prompt = f"""You are {bot_name}, an AI assistant for {business_name if business_name else 'this business'}.
-
+        system_prompt = f"""You are {bot_name}, an AI assistant for {business_name}.
 Business Type: {business_type}
 
 {base_prompt}
 
-Additional context: {welcome_context if welcome_context else ''}
+=== BUSINESS INFORMATION ===
+Business Name: {business_name}
+"""
+        if phone:
+            system_prompt += f"Phone: {phone}\n"
+        if email:
+            system_prompt += f"Email: {email}\n"
+        if address:
+            system_prompt += f"Address: {address}\n"
+        if timings:
+            system_prompt += f"Timings: {timings}\n"
+        if days:
+            system_prompt += f"Working Days: {days}\n"
+        if services:
+            system_prompt += f"\n=== SERVICES / MENU / PRODUCTS ===\n{services}\n"
+        if pricing:
+            system_prompt += f"\n=== PRICING / FEES ===\n{pricing}\n"
+        if team:
+            system_prompt += f"\n=== TEAM / DOCTORS / STAFF ===\n{team}\n"
+        if faqs:
+            system_prompt += f"\n=== FREQUENTLY ASKED QUESTIONS ===\n{faqs}\n"
+        if instructions:
+            system_prompt += f"\n=== SPECIAL INSTRUCTIONS ===\n{instructions}\n"
 
-Important rules:
-1. Always reply in the same language as the customer (Hindi/English/Hinglish)
-2. Keep responses concise — under 100 words unless detailed explanation needed
+        system_prompt += """
+=== RULES ===
+1. Reply in same language as customer — Hindi, English, or Hinglish
+2. Keep responses under 100 words unless detailed explanation needed
 3. Be professional yet friendly
-4. If you don't know something specific, say: "Please contact us directly for this information."
-5. Never make up prices, timings or specific details not provided to you
-6. Never use markdown formatting like **bold** or bullet points with * — reply in plain text only"""
+4. Never make up information not provided above
+5. If you don't know something say: Please contact us directly for this information
+6. Never use markdown formatting like **bold** or *asterisks* — plain text only"""
 
         response = client.messages.create(
             model="claude-opus-4-5",
             max_tokens=1024,
             system=system_prompt,
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
+            messages=[{"role": "user", "content": user_message}]
         )
 
-        return jsonify({
-            "reply": response.content[0].text
-        })
+        return jsonify({"reply": response.content[0].text})
 
     except Exception as e:
         print("ERROR:", str(e))
-        return jsonify({
-            "reply": "I'm having trouble right now. Please try again in a moment."
-        }), 500
+        return jsonify({"reply": "I am having trouble right now. Please try again."}), 500
 
 
 @app.route("/chat/soltai", methods=["POST"])
@@ -173,15 +115,16 @@ def chat_soltai():
         response = client.messages.create(
             model="claude-opus-4-5",
             max_tokens=1024,
-            system="""You are SOLTAI Assistant — the official AI for SOLTAI company.
+            system="""You are SOLTAI Assistant — official AI for SOLTAI company.
 
 SOLTAI provides two services:
+
 1. AI Chatbot Service — Automated 24/7 chatbot for any business website
    - Starter: Rs 4,999/month (1 site, 500 conversations)
    - Growth: Rs 9,999/month (3 sites, 2000 conversations, WhatsApp)
    - Pro: Rs 19,999/month (unlimited everything, Agent Connect included)
    - Setup in under 24 hours
-   - Works on any website — WordPress, Wix, Shopify, custom HTML
+   - Works on WordPress, Wix, Shopify, custom HTML — any website
 
 2. Agent Connect — Real human agents for complex business queries
    - High-level business requirements handled personally
@@ -189,32 +132,22 @@ SOLTAI provides two services:
    - Real-time conversation dashboard
 
 Contact Details:
-- Phone: +91-8750905404
-- WhatsApp: +91-8750905404
+- Phone / WhatsApp: +91-8750905404
 - Email: vasudogra22@gmail.com
 
-When someone wants to purchase, get started, or contact us — always share these contact details.
-When someone asks for a demo or wants to see how it works — tell them to try the live demo on this page.
-
-Important rules:
-1. Reply in the same language as the user — Hindi, English, or Hinglish
-2. Be professional, friendly and concise — under 80 words
-3. Never use markdown formatting like **bold** or *asterisks* — reply in plain text only
-4. Never make up information not provided above""",
-            messages=[
-                {"role": "user", "content": user_message}
-            ]
+Rules:
+1. Reply in same language as user — Hindi, English, or Hinglish
+2. Be professional, friendly, concise — under 80 words
+3. Never use markdown like **bold** or *asterisks* — plain text only
+4. When someone wants to buy or contact — always share contact details above""",
+            messages=[{"role": "user", "content": user_message}]
         )
 
-        return jsonify({
-            "reply": response.content[0].text
-        })
+        return jsonify({"reply": response.content[0].text})
 
     except Exception as e:
         print("ERROR:", str(e))
-        return jsonify({
-            "reply": "Something went wrong. Please try again."
-        }), 500
+        return jsonify({"reply": "Something went wrong. Please try again."}), 500
 
 
 if __name__ == "__main__":
