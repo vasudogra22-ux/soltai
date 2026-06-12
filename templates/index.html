@@ -613,7 +613,12 @@ let termIdx=0;
 function addTermMsg(){const body=document.getElementById('term-body');if(!body)return;const msgs=body.querySelectorAll('.t-msg,.t-typing');if(msgs.length>4)msgs[0].remove();const ty=document.createElement('div');ty.className='t-typing';ty.innerHTML='<span></span><span></span><span></span>';body.appendChild(ty);setTimeout(()=>{ty.remove();const msg=termMsgs[termIdx%termMsgs.length];const el=document.createElement('div');el.className=`t-msg ${msg.type==='bot'?'t-bot':'t-user'}`;el.textContent=msg.text;body.appendChild(el);termIdx++;},900);}
 setInterval(addTermMsg,2200);
 
-function sendForm(){const n=document.getElementById('nm').value.trim();const e=document.getElementById('em').value.trim();const m=document.getElementById('mg').value.trim();if(!n||!e||!m){alert('Please fill all fields.');return;}document.getElementById('nm').value='';document.getElementById('em').value='';document.getElementById('mg').value='';const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
+function sendForm(){const n=document.getElementById('nm').value.trim();const e=document.getElementById('em').value.trim();const m=document.getElementById('mg').value.trim();if(!n||!e||!m){alert('Please fill all fields.');return;} try}
+  await fetch('https://formspree.io/f/xgobnpal',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:n,email:e,message:m})
+    });document.getElementById('nm').value='';document.getElementById('em').value='';document.getElementById('mg').value='';const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',3000);}
 
 let chatOpen=false;
 function toggleChat(){chatOpen=!chatOpen;document.getElementById('cwin').classList.toggle('open',chatOpen);document.getElementById('ico-chat').style.display=chatOpen?'none':'block';document.getElementById('ico-x').style.display=chatOpen?'block':'none';}
