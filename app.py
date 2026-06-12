@@ -8,11 +8,10 @@ client = anthropic.Anthropic(
     api_key=os.getenv("ANTHROPIC_API_KEY")
 )
 
-# Business type ke hisaab se alag system prompts
 BUSINESS_PROMPTS = {
     "Clinic / Hospital": """You are a professional medical clinic assistant. Help patients with:
 - Appointment booking and scheduling
-- Doctor availability and specializations  
+- Doctor availability and specializations
 - Clinic timings, location, contact info
 - General health queries (non-diagnostic)
 - Insurance and billing queries
@@ -49,7 +48,6 @@ Be helpful and guide customers to make the right purchase decision.""",
 - Legal documentation process
 - Area information and amenities
 - Investment advice (general)
-- Builder/seller contact
 Be professional, trustworthy and help clients find their dream property.""",
 
     "Education / Coaching": """You are a knowledgeable education assistant. Help students and parents with:
@@ -85,51 +83,38 @@ Be quick, precise and resolve issues efficiently.""",
 Be warm, friendly and make clients feel pampered.""",
 
     "Legal / Finance": """You are a professional legal and financial services assistant. Help clients with:
-- Services offered (legal/financial)
+- Services offered
 - Consultation scheduling
 - Document requirements
 - General process guidance
 - Fee structure information
-- Case/matter status updates
-- Regulatory compliance queries
-Always be professional and precise. Never give specific legal or financial advice — always recommend consulting the expert directly.
+Always be professional. Never give specific legal or financial advice.
 Add disclaimer: "This is general information only. Please consult our experts for specific advice." """,
 
-    "Government": """You are a helpful government services assistant. Help citizens with:
-- Available services and eligibility
-- Document requirements
-- Application process and status
-- Office timings and location
-- Fees and payment methods
-- Grievance redressal
-- Relevant scheme information
-Be clear, patient and helpful. Use simple language.""",
-
-    "Other": """You are a professional and helpful business assistant. Help customers with:
-- Business services and offerings
-- Pricing and availability
-- Appointments and bookings
-- Contact and location information
-- General queries about the business
-- Feedback and support
+    "Other": """You are a professional and helpful business assistant.
+Help customers with their queries professionally and helpfully.
 Be professional, friendly and resolve customer queries efficiently."""
 }
 
-DEFAULT_PROMPT = """You are a professional business assistant for SOLTAI. 
+DEFAULT_PROMPT = """You are a professional business assistant.
 Help customers with their queries professionally and helpfully.
 Reply in the same language as the customer — Hindi, English, or Hinglish."""
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/admin")
 def admin():
     return render_template("admin.html")
 
+
 @app.route("/conversations")
 def conversations():
     return render_template("conversations.html")
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -141,10 +126,8 @@ def chat():
         welcome_context = data.get("welcome_message", "")
         business_name = data.get("business_name", "")
 
-        # Business type ke hisaab se prompt select karo
         base_prompt = BUSINESS_PROMPTS.get(business_type, DEFAULT_PROMPT)
 
-        # Full system prompt build karo
         system_prompt = f"""You are {bot_name}, an AI assistant for {business_name if business_name else 'this business'}.
 
 Business Type: {business_type}
@@ -157,8 +140,9 @@ Important rules:
 1. Always reply in the same language as the customer (Hindi/English/Hinglish)
 2. Keep responses concise — under 100 words unless detailed explanation needed
 3. Be professional yet friendly
-4. If you don't know something specific about the business, say: "Please contact us directly for this information."
-5. Never make up prices, timings or specific details not provided to you"""
+4. If you don't know something specific, say: "Please contact us directly for this information."
+5. Never make up prices, timings or specific details not provided to you
+6. Never use markdown formatting like **bold** or bullet points with * — reply in plain text only"""
 
         response = client.messages.create(
             model="claude-opus-4-5",
@@ -182,7 +166,6 @@ Important rules:
 
 @app.route("/chat/soltai", methods=["POST"])
 def chat_soltai():
-    """SOLTAI ki apni website ke liye chatbot"""
     try:
         data = request.get_json()
         user_message = data.get("message", "")
@@ -194,19 +177,30 @@ def chat_soltai():
 
 SOLTAI provides two services:
 1. AI Chatbot Service — Automated 24/7 chatbot for any business website
-   - Starter: ₹4,999/month (1 site, 500 conversations)
-   - Growth: ₹9,999/month (3 sites, 2000 conversations, WhatsApp)
-   - Pro: ₹19,999/month (unlimited everything, Agent Connect included)
+   - Starter: Rs 4,999/month (1 site, 500 conversations)
+   - Growth: Rs 9,999/month (3 sites, 2000 conversations, WhatsApp)
+   - Pro: Rs 19,999/month (unlimited everything, Agent Connect included)
    - Setup in under 24 hours
-   - Works on any website — WordPress, Wix, Shopify, custom
+   - Works on any website — WordPress, Wix, Shopify, custom HTML
 
 2. Agent Connect — Real human agents for complex business queries
    - High-level business requirements handled personally
-   - Auto ticket if agent doesn't respond
+   - Auto ticket if agent does not respond
    - Real-time conversation dashboard
 
-Reply in the same language as the user — Hindi, English, or Hinglish.
-Be professional, friendly and concise. Under 80 words.""",
+Contact Details:
+- Phone: +91-8750905404
+- WhatsApp: +91-8750905404
+- Email: vasudogra22@gmail.com
+
+When someone wants to purchase, get started, or contact us — always share these contact details.
+When someone asks for a demo or wants to see how it works — tell them to try the live demo on this page.
+
+Important rules:
+1. Reply in the same language as the user — Hindi, English, or Hinglish
+2. Be professional, friendly and concise — under 80 words
+3. Never use markdown formatting like **bold** or *asterisks* — reply in plain text only
+4. Never make up information not provided above""",
             messages=[
                 {"role": "user", "content": user_message}
             ]
