@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import anthropic
 import os
 
@@ -18,6 +18,21 @@ BUSINESS_PROMPTS = {
 }
 
 
+# ---------- CORS (needed so widget.js works on client websites) ----------
+@app.after_request
+def add_cors(response):
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
+    response.headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+    return response
+
+
+# ---------- Serve widget.js as a static JS file ----------
+@app.route("/widget.js")
+def widget_js():
+    return send_from_directory('.', 'widget.js', mimetype='application/javascript')
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -33,6 +48,7 @@ def conversations():
     return render_template("conversations.html")
 
 
+# ---------- Generic chatbot route (used by widget.js for all clients) ----------
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
@@ -106,6 +122,7 @@ Business Name: {business_name}
         return jsonify({"reply": "I am having trouble right now. Please try again."}), 500
 
 
+# ---------- SOLTAI's own website chatbot ----------
 @app.route("/chat/soltai", methods=["POST"])
 def chat_soltai():
     try:
