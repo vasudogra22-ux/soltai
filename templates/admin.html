@@ -171,9 +171,33 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .modal-wa-hidden{display:none;}
 
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.95);color:#e8eaf0;padding:10px 22px;border-radius:50px;font-size:13px;display:none;z-index:600;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
+
+/* LOGIN GATE */
+#login-gate{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px;}
+#login-gate.hidden{display:none;}
+.login-box{width:100%;max-width:340px;text-align:center;}
+.login-logo{font-family:'Inter',sans-serif;font-weight:500;font-size:18px;letter-spacing:0.2em;color:#e8eaf0;margin-bottom:6px;}
+.login-sub{font-size:12px;color:rgba(83,104,120,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px;}
+.login-input{width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.25);border-radius:12px;color:#e8eaf0;padding:14px 16px;font-family:'Inter',sans-serif;font-size:15px;outline:none;text-align:center;letter-spacing:0.1em;margin-bottom:12px;transition:border-color 0.2s;}
+.login-input:focus{border-color:rgba(83,104,120,0.6);}
+.login-btn{width:100%;background:#536878;color:#000;border:none;border-radius:12px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background 0.2s;}
+.login-btn:hover{background:#6b8494;}
+.login-error{font-size:12px;color:#e08c8c;margin-top:12px;display:none;}
+.login-error.show{display:block;}
 </style>
 </head>
 <body>
+
+<!-- LOGIN GATE -->
+<div id="login-gate">
+  <div class="login-box">
+    <div class="login-logo">SOLTAI <span style="color:#536878;">Admin</span></div>
+    <div class="login-sub">Enter password to continue</div>
+    <input class="login-input" id="login-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')checkLogin()"/>
+    <button class="login-btn" onclick="checkLogin()">Unlock</button>
+    <div class="login-error" id="login-error">Incorrect password. Try again.</div>
+  </div>
+</div>
 
 <nav class="navbar">
   <div class="nav-left">
@@ -713,9 +737,30 @@ function deleteClient(cid){
 /* ════════════════════════════════════════
    TOAST
 ════════════════════════════════════════ */
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}
-
 renderDash();
+
+/* ════════════════════════════════════════
+   LOGIN GATE
+════════════════════════════════════════ */
+const ADMIN_PASSWORD = 'soltai2026';
+
+function checkLogin(){
+  const input=document.getElementById('login-pass').value;
+  if(input===ADMIN_PASSWORD){
+    sessionStorage.setItem('soltai_admin_auth','true');
+    document.getElementById('login-gate').classList.add('hidden');
+  }else{
+    document.getElementById('login-error').classList.add('show');
+    document.getElementById('login-pass').value='';
+    document.getElementById('login-pass').focus();
+  }
+}
+
+if(sessionStorage.getItem('soltai_admin_auth')==='true'){
+  document.getElementById('login-gate').classList.add('hidden');
+}else{
+  document.getElementById('login-pass').focus();
+}
 </script>
 </body>
 </html>
