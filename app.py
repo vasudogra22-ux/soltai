@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, jsonify, send_from_directory
 import anthropic
+import razorpay
 import os
 
 app = Flask(__name__)
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+razorpay_client = razorpay.Client(
+    auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
+)
 
 BUSINESS_PROMPTS = {
     "Clinic / Hospital": "You are a professional medical clinic assistant. Be empathetic and caring. Never diagnose or prescribe. For emergencies say: Please call 112 immediately.",
@@ -143,10 +148,9 @@ SOLTAI provides two services:
    - Setup in under 24 hours
    - Works on WordPress, Wix, Shopify, custom HTML — any website
 
-2. Agent Connect — Real human agents for complex business queries
-   - High-level business requirements handled personally
-   - Auto ticket if agent does not respond
-   - Real-time conversation dashboard
+2. Agent Connect — AI Agent attempts to resolve complex queries first using full
+   business context. If it can't resolve, a support ticket is automatically
+   generated and a real human agent takes over instantly with full context.
 
 Contact Details:
 - Phone / WhatsApp: +91-8750905404
@@ -165,6 +169,43 @@ Rules:
     except Exception as e:
         print("ERROR:", str(e))
         return jsonify({"reply": "Something went wrong. Please try again."}), 500
+
+
+# ---------- Razorpay: create an order before opening checkout ----------
+@app.route("/create-order", methods=["POST"])
+def create_order():
+    try:
+        data = request.get_json()
+        amount = int(float(data["amount"])) * 100  # Razorpay needs amount in paise
+        order = razorpay_client.order.create({
+            "amount": amount,
+            "currency": "INR",
+            "payment_capture": 1,
+            "notes": {"plan": data.get("plan", "")}
+        })
+        return jsonify(order)
+    except Exception as e:
+        print("CREATE ORDER ERROR:", str(e))
+        return jsonify({"error": str(e)}), 500
+
+
+# ---------- Razorpay: verify payment signature after checkout success ----------
+@app.route("/verify-payment", methods=["POST"])
+def verify_payment():
+    try:
+        data = request.get_json()
+        params = {
+            "razorpay_order_id": data.get("razorpay_order_id"),
+            "razorpay_payment_id": data.get("razorpay_payment_id"),
+            "razorpay_signature": data.get("razorpay_signature")
+        }
+        razorpay_client.utility.verify_payment_signature(params)
+        # TODO: future mein yahan DB mein save kar sakte ho
+        # (kaunsa plan, kaunsa client, payment id, kab pay kiya)
+        return jsonify({"status": "success"})
+    except Exception as e:
+        print("VERIFY PAYMENT ERROR:", str(e))
+        return jsonify({"status": "failed"}), 400
 
 
 if __name__ == "__main__":
