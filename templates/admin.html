@@ -21,6 +21,8 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .btn-add-client:hover{background:#6b8494;}
 .page{display:none;min-height:100vh;}
 .page.active{display:block;}
+
+/* DASHBOARD */
 .dash-wrap{max-width:960px;margin:0 auto;padding:36px 28px 80px;}
 .dash-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
 .dash-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;}
@@ -69,6 +71,8 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .empty-icon{width:56px;height:56px;border-radius:50%;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.2);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
 .empty-title{font-size:16px;color:rgba(200,205,216,0.6);margin-bottom:8px;}
 .empty-sub{font-size:13px;color:rgba(200,205,216,0.3);}
+
+/* ADD CLIENT FORM */
 #page-add{background:#000;padding-top:72px;}
 .form-wrap{max-width:600px;margin:0 auto;padding:40px 28px 80px;}
 .form-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:32px;transition:all 0.2s;font-family:'Inter',sans-serif;}
@@ -106,6 +110,21 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .wa-number-wrap.show{display:block;}
 .btn-generate{width:100%;background:linear-gradient(135deg,#536878,#3d5060);color:#fff;border:none;border-radius:12px;padding:17px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.2s;box-shadow:0 4px 20px rgba(83,104,120,0.25);margin-top:8px;}
 .btn-generate:hover{background:linear-gradient(135deg,#6b8494,#536878);transform:translateY(-1px);}
+
+/* WIDGET THEME PICKER */
+.theme-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:6px;}
+@media(min-width:560px){.theme-grid{grid-template-columns:repeat(3,1fr);}}
+.theme-card{border-radius:14px;padding:14px 12px;cursor:pointer;border:2px solid rgba(83,104,120,0.15);transition:all 0.2s;position:relative;}
+.theme-card.selected{border-color:#536878;box-shadow:0 0 0 1px rgba(83,104,120,0.4),0 8px 24px rgba(0,0,0,0.3);}
+.theme-card-preview{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.theme-fab{width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1.5px solid;}
+.theme-bubble{flex:1;height:22px;border:1px solid;}
+.theme-name{font-size:12px;font-weight:700;margin-bottom:2px;}
+.theme-desc{font-size:10px;opacity:0.65;line-height:1.4;}
+.theme-check{position:absolute;top:8px;right:8px;width:16px;height:16px;border-radius:50%;background:#536878;display:none;align-items:center;justify-content:center;z-index:2;}
+.theme-card.selected .theme-check{display:flex;}
+
+/* EMBED PAGE */
 #page-embed{background:#000;padding-top:72px;}
 .embed-wrap{max-width:560px;margin:0 auto;padding:40px 28px 80px;}
 .embed-back{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(83,104,120,0.25);color:rgba(200,205,216,0.5);border-radius:8px;padding:7px 14px;font-size:13px;cursor:pointer;margin-bottom:32px;transition:all 0.2s;font-family:'Inter',sans-serif;}
@@ -121,7 +140,7 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .csk{font-size:11px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;text-transform:uppercase;flex-shrink:0;}
 .csv{font-size:12px;color:#c8cdd8;font-weight:500;text-align:right;}
 .code-label{font-size:11px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:8px;}
-.code-box{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.2);border-radius:12px;padding:14px;font-family:'Courier New',monospace;font-size:11px;color:#9aa5b8;line-height:1.6;word-break:break-all;margin-bottom:10px;max-height:150px;overflow-y:auto;}
+.code-box{background:rgba(83,104,120,0.06);border:1px solid rgba(83,104,120,0.2);border-radius:12px;padding:14px;font-family:'Courier New',monospace;font-size:11px;color:#9aa5b8;line-height:1.6;word-break:break-all;margin-bottom:10px;max-height:170px;overflow-y:auto;}
 .code-box::-webkit-scrollbar{width:3px;}
 .code-box::-webkit-scrollbar-thumb{background:rgba(83,104,120,0.3);border-radius:2px;}
 .btn-copy{width:100%;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.25);color:#c8cdd8;border-radius:10px;padding:12px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;transition:all 0.2s;}
@@ -130,6 +149,8 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .btn-wa-send{width:100%;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);color:#25d366;border-radius:10px;padding:13px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;text-decoration:none;}
 .btn-wa-send:hover{background:rgba(37,211,102,0.14);}
 .wa-hidden{display:none;}
+
+/* MODAL */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:500;align-items:center;justify-content:center;padding:20px;}
 .modal-bg.open{display:flex;}
 .modal{background:#0e0e0e;border:1px solid rgba(83,104,120,0.25);border-radius:20px;width:100%;max-width:480px;padding:28px;position:relative;animation:modalIn 0.2s ease;max-height:85vh;overflow-y:auto;}
@@ -148,6 +169,7 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 .btn-modal-wa{flex:1;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);color:#25d366;border-radius:10px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;transition:all 0.2s;}
 .btn-modal-wa:hover{background:rgba(37,211,102,0.14);}
 .modal-wa-hidden{display:none;}
+
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.95);color:#e8eaf0;padding:10px 22px;border-radius:50px;font-size:13px;display:none;z-index:600;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.6);}
 </style>
 </head>
@@ -224,7 +246,7 @@ select.jf-input option{background:#111;color:#e8eaf0;}
     <div class="jf-group"><label class="jf-label">Client / Business Name</label><input class="jf-input" id="j-name" type="text" placeholder="e.g. Sharma Clinic, Delhi Bistro"/></div>
 
     <div class="jf-group"><label class="jf-label">Business Type</label>
-      <select class="jf-input" id="j-btype">
+      <select class="jf-input" id="j-btype" onchange="updateFieldsForBusinessType()">
         <option value="">Select...</option>
         <option>Clinic / Hospital</option>
         <option>Restaurant / Cafe</option>
@@ -270,28 +292,30 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 
     <div class="jf-group"><label class="jf-label">Working Days</label><input class="jf-input" id="j-days" type="text" placeholder="e.g. Monday to Saturday, Closed on Sunday"/></div>
 
-    <div class="form-section"><div class="form-section-title">Business Specific Information</div><div class="form-section-sub">Jitna detailed utna better — bot yeh use karega</div></div>
+    <!-- BUSINESS SPECIFIC INFO — dynamic labels -->
+    <div class="form-section"><div class="form-section-title" id="biz-section-title">Business Specific Information</div><div class="form-section-sub" id="biz-section-sub">Select a business type above to customize this section</div></div>
 
     <div class="jf-group">
-      <label class="jf-label">Services / Menu / Products</label>
-      <textarea class="jf-input" id="j-services" style="min-height:100px;" placeholder="e.g. General Consultation&#10;Blood Tests&#10;X-Ray&#10;ECG"></textarea>
-      <div class="jf-hint">Each service on a new line.</div>
+      <label class="jf-label" id="lbl-services">Services / Menu / Products</label>
+      <textarea class="jf-input" id="j-services" style="min-height:100px;" placeholder="e.g. Service 1&#10;Service 2&#10;Service 3"></textarea>
+      <div class="jf-hint" id="hint-services">Each item on a new line.</div>
     </div>
 
     <div class="jf-group">
-      <label class="jf-label">Pricing / Fees (Optional)</label>
-      <textarea class="jf-input" id="j-pricing" placeholder="e.g. General Consultation: ₹500&#10;Blood Test: ₹300-800&#10;X-Ray: ₹600"></textarea>
-      <div class="jf-hint">Agar pricing share karna chahte ho toh daalo, warna blank.</div>
+      <label class="jf-label" id="lbl-pricing">Pricing / Fees (Optional)</label>
+      <textarea class="jf-input" id="j-pricing" placeholder="e.g. Item 1: ₹500"></textarea>
+      <div class="jf-hint" id="hint-pricing">Agar pricing share karna chahte ho toh daalo, warna blank.</div>
     </div>
 
     <div class="jf-group">
-      <label class="jf-label">Doctors / Staff / Team (Optional)</label>
-      <textarea class="jf-input" id="j-team" placeholder="e.g. Dr. Raj Sharma — General Physician (15 years exp)&#10;Dr. Priya Singh — Gynecologist"></textarea>
+      <label class="jf-label" id="lbl-team">Staff / Team (Optional)</label>
+      <textarea class="jf-input" id="j-team" placeholder="e.g. Name — Role"></textarea>
+      <div class="jf-hint" id="hint-team"></div>
     </div>
 
     <div class="jf-group">
       <label class="jf-label">Special Instructions for Bot</label>
-      <textarea class="jf-input" id="j-instructions" placeholder="e.g. Always ask for patient name before booking. No walk-ins, appointment only on call."></textarea>
+      <textarea class="jf-input" id="j-instructions" placeholder="e.g. Always ask for name before booking. No walk-ins, appointment only on call."></textarea>
       <div class="jf-hint">Koi specific rules jo bot follow kare.</div>
     </div>
 
@@ -301,6 +325,12 @@ select.jf-input option{background:#111;color:#e8eaf0;}
       <div class="jf-hint">Format: Q: question A: answer</div>
     </div>
 
+    <!-- WIDGET DESIGN PICKER -->
+    <div class="form-section"><div class="form-section-title">Widget Design</div><div class="form-section-sub">Chatbot ka color theme select karo client ki website ke liye</div></div>
+
+    <div class="theme-grid" id="theme-grid"></div>
+
+    <!-- WHATSAPP -->
     <div class="form-section"><div class="form-section-title">WhatsApp Integration</div></div>
 
     <div class="wa-toggle-row">
@@ -361,9 +391,15 @@ select.jf-input option{background:#111;color:#e8eaf0;}
 <div id="toast"></div>
 
 <script>
+/* ════════════════════════════════════════
+   STORAGE
+════════════════════════════════════════ */
 function getClients(){try{return JSON.parse(localStorage.getItem('soltai_clients')||'[]');}catch{return[];}}
 function saveClients(arr){localStorage.setItem('soltai_clients',JSON.stringify(arr));}
 
+/* ════════════════════════════════════════
+   PAGE NAV
+════════════════════════════════════════ */
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -373,12 +409,18 @@ function showPage(id){
   if(id==='dash')renderDash();
 }
 
+/* ════════════════════════════════════════
+   PLAN HELPERS
+════════════════════════════════════════ */
 function planPrice(plan){if(plan.includes('4,999'))return 4999;if(plan.includes('9,999'))return 9999;if(plan.includes('19,999'))return 19999;return 0;}
 function planKey(plan){if(plan.includes('Starter'))return'Starter';if(plan.includes('Growth'))return'Growth';if(plan.includes('Pro'))return'Pro';return'Enterprise';}
 function planClass(plan){const k=planKey(plan);return{Starter:'plan-starter',Growth:'plan-growth',Pro:'plan-pro',Enterprise:'plan-enterprise'}[k]||'plan-starter';}
 function fmtDate(ts){if(!ts)return'—';return new Date(ts).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
 function thisMonth(ts){if(!ts)return false;const d=new Date(ts),n=new Date();return d.getMonth()===n.getMonth()&&d.getFullYear()===n.getFullYear();}
 
+/* ════════════════════════════════════════
+   DASHBOARD RENDER
+════════════════════════════════════════ */
 function renderDash(){
   const clients=getClients();
   document.getElementById('stat-total').textContent=clients.length;
@@ -419,8 +461,136 @@ function renderTable(){
     </div>`).join('');
 }
 
+/* ════════════════════════════════════════
+   DYNAMIC BUSINESS-SPECIFIC FIELDS
+════════════════════════════════════════ */
+const BUSINESS_FIELD_CONFIG = {
+  "Clinic / Hospital": {
+    sectionSub: "Clinic ki services, fees aur doctors ki info — bot yeh use karega",
+    services: {label:"Services / Treatments Offered", placeholder:"e.g. General Consultation\nBlood Tests\nX-Ray\nECG\nVaccination", hint:"Each service on a new line."},
+    pricing: {label:"Consultation & Test Fees (Optional)", placeholder:"e.g. General Consultation: ₹500\nBlood Test: ₹300-800\nX-Ray: ₹600", hint:"Agar fees share karna chahte ho toh daalo, warna blank."},
+    team: {label:"Doctors / Medical Staff (Optional)", placeholder:"e.g. Dr. Raj Sharma — General Physician (15 years exp)\nDr. Priya Singh — Gynecologist", hint:"Doctor naam aur specialization."}
+  },
+  "Restaurant / Cafe": {
+    sectionSub: "Menu, pricing aur staff ki info — bot customers ko yeh batayega",
+    services: {label:"Menu Items / Categories", placeholder:"e.g. Starters: Spring Rolls, Garlic Bread\nMains: Pasta, Pizza, Burgers\nDesserts: Brownie, Ice Cream\nBeverages: Cold Coffee, Mojito", hint:"Categories aur items, each on a new line."},
+    pricing: {label:"Menu Pricing (Optional)", placeholder:"e.g. Margherita Pizza: ₹299\nPasta Alfredo: ₹349\nCold Coffee: ₹150", hint:"Popular items ki pricing daal sakte ho."},
+    team: {label:"Chef / Staff (Optional)", placeholder:"e.g. Chef Rahul — Head Chef, 10 years experience", hint:"Chef ya key staff ki info."}
+  },
+  "Retail Shop": {
+    sectionSub: "Products, offers aur staff ki info — bot customers ko yeh batayega",
+    services: {label:"Products / Categories", placeholder:"e.g. Men's Clothing\nWomen's Clothing\nFootwear\nAccessories", hint:"Categories, each on a new line."},
+    pricing: {label:"Pricing / Offers (Optional)", placeholder:"e.g. T-Shirts starting ₹399\nFlat 20% off on shoes", hint:"Pricing range ya current offers."},
+    team: {label:"Staff (Optional)", placeholder:"e.g. Store Manager: Rohit Verma", hint:"Key staff info."}
+  },
+  "Real Estate": {
+    sectionSub: "Property listings, pricing aur agents ki info — bot yeh use karega",
+    services: {label:"Property Listings / Types", placeholder:"e.g. 2BHK Apartments — Sector 45\n3BHK Villas — Greater Noida\nCommercial Spaces — MG Road", hint:"Property types aur locations, each on a new line."},
+    pricing: {label:"Price Range (Optional)", placeholder:"e.g. 2BHK: ₹45-60 Lakhs\n3BHK Villa: ₹1.2-1.5 Cr", hint:"Approximate price ranges."},
+    team: {label:"Agents / Team (Optional)", placeholder:"e.g. Amit Kumar — Senior Property Consultant", hint:"Agent naam aur role."}
+  },
+  "Education / Coaching": {
+    sectionSub: "Courses, fees aur faculty ki info — bot students/parents ko yeh batayega",
+    services: {label:"Courses / Programs Offered", placeholder:"e.g. JEE Preparation\nNEET Preparation\nSpoken English\nComputer Basics", hint:"Courses, each on a new line."},
+    pricing: {label:"Fees / Plans (Optional)", placeholder:"e.g. JEE 1-Year: ₹45,000\nSpoken English: ₹5,000/month", hint:"Course fees ya plans."},
+    team: {label:"Faculty / Trainers (Optional)", placeholder:"e.g. Mr. Anil Gupta — Physics Faculty (12 years exp)", hint:"Faculty naam aur subject."}
+  },
+  "E-commerce": {
+    sectionSub: "Product categories, offers aur support info — bot yeh use karega",
+    services: {label:"Product Categories", placeholder:"e.g. Electronics\nFashion\nHome & Kitchen\nBeauty", hint:"Categories, each on a new line."},
+    pricing: {label:"Pricing / Offers (Optional)", placeholder:"e.g. Free shipping above ₹499\nFlat 10% off on first order", hint:"Offers ya shipping info."},
+    team: {label:"Support Team (Optional)", placeholder:"e.g. Customer Support available 9 AM - 9 PM", hint:"Support availability."}
+  },
+  "Salon / Spa": {
+    sectionSub: "Services, pricing aur stylists ki info — bot clients ko yeh batayega",
+    services: {label:"Services / Treatments", placeholder:"e.g. Hair Cut\nFacial\nMassage\nManicure & Pedicure", hint:"Services, each on a new line."},
+    pricing: {label:"Service Pricing (Optional)", placeholder:"e.g. Hair Cut: ₹300\nFacial: ₹800-1500", hint:"Service pricing."},
+    team: {label:"Stylists / Therapists (Optional)", placeholder:"e.g. Priya — Senior Hair Stylist (8 years exp)", hint:"Stylist naam aur expertise."}
+  },
+  "Legal / Finance": {
+    sectionSub: "Services, fee structure aur team ki info — bot yeh use karega",
+    services: {label:"Services Offered", placeholder:"e.g. Property Registration\nTax Filing\nLegal Consultation\nLoan Assistance", hint:"Services, each on a new line."},
+    pricing: {label:"Fee Structure (Optional)", placeholder:"e.g. Consultation: ₹1000/session\nTax Filing: starting ₹2000", hint:"Fees ya consultation charges."},
+    team: {label:"Lawyers / Advisors (Optional)", placeholder:"e.g. Adv. Suresh Mehta — 15 years experience in property law", hint:"Advisor naam aur specialization."}
+  },
+  "Other": {
+    sectionSub: "Business ki services, pricing aur team ki info — bot yeh use karega",
+    services: {label:"Services / Menu / Products", placeholder:"e.g. Service 1\nService 2\nService 3", hint:"Each item on a new line."},
+    pricing: {label:"Pricing / Fees (Optional)", placeholder:"e.g. Service 1: ₹500", hint:"Agar pricing share karna chahte ho toh daalo, warna blank."},
+    team: {label:"Staff / Team (Optional)", placeholder:"e.g. Name — Role", hint:"Key staff info."}
+  }
+};
+
+function updateFieldsForBusinessType(){
+  const btype=document.getElementById('j-btype').value;
+  const cfg=BUSINESS_FIELD_CONFIG[btype]||BUSINESS_FIELD_CONFIG['Other'];
+
+  document.getElementById('biz-section-sub').textContent=cfg.sectionSub;
+
+  document.getElementById('lbl-services').textContent=cfg.services.label;
+  document.getElementById('j-services').placeholder=cfg.services.placeholder;
+  document.getElementById('hint-services').textContent=cfg.services.hint;
+
+  document.getElementById('lbl-pricing').textContent=cfg.pricing.label;
+  document.getElementById('j-pricing').placeholder=cfg.pricing.placeholder;
+  document.getElementById('hint-pricing').textContent=cfg.pricing.hint;
+
+  document.getElementById('lbl-team').textContent=cfg.team.label;
+  document.getElementById('j-team').placeholder=cfg.team.placeholder;
+  document.getElementById('hint-team').textContent=cfg.team.hint;
+}
+
+/* ════════════════════════════════════════
+   WIDGET THEME PICKER
+════════════════════════════════════════ */
+const WIDGET_THEMES = [
+  {id:'aurora',    name:'Aurora',    desc:'Glassmorphism · Purple-blue glow',
+    fab:'#a78bfa', fabBg:'linear-gradient(135deg,#a78bfa,#60a5fa)', bubble:'rgba(167,139,250,0.18)', border:'rgba(167,139,250,0.4)', fabRadius:'50%', cardBg:'linear-gradient(135deg,#2a1f4a,#1e2a4a)'},
+  {id:'mono',      name:'Mono',      desc:'Editorial · Black & white, serif',
+    fab:'#ffffff', fabBg:'#0a0a0a', bubble:'#f4f4f4', border:'#111111', fabRadius:'5px', cardBg:'#ffffff', textColor:'#111'},
+  {id:'bubblepop', name:'Bubble Pop',desc:'Playful · Pink-orange gradient',
+    fab:'#ffffff', fabBg:'linear-gradient(135deg,#ff6b9d,#ffa36b)', bubble:'#fff0f6', border:'#ffd9e6', fabRadius:'50%', cardBg:'#fffaf3', textColor:'#5a3a4a'},
+  {id:'neon',      name:'Neon Edge', desc:'Cyberpunk · Glowing teal',
+    fab:'#00ffc8', fabBg:'#0a0e16', bubble:'rgba(0,255,200,0.1)', border:'#00ffc8', fabRadius:'50%', cardBg:'#0a0e16'},
+  {id:'softcard',  name:'Soft Card', desc:'Neumorphism · Pastel grey',
+    fab:'#7c8db5', fabBg:'#eef1f6', bubble:'#ffffff', border:'transparent', fabRadius:'50%', cardBg:'#eef1f6', textColor:'#3a4256'},
+  {id:'executive', name:'Executive', desc:'Corporate · Navy & white',
+    fab:'#ffffff', fabBg:'#16243d', bubble:'#f3f5f8', border:'#16243d', fabRadius:'12px', cardBg:'#ffffff', textColor:'#16243d'}
+];
+let selectedTheme='aurora';
+
+function buildThemeGrid(){
+  const grid=document.getElementById('theme-grid');
+  grid.innerHTML=WIDGET_THEMES.map(t=>`
+    <div class="theme-card ${t.id===selectedTheme?'selected':''}" id="theme-${t.id}" onclick="selectTheme('${t.id}')" style="background:${t.cardBg};">
+      <div class="theme-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <div class="theme-card-preview">
+        <div class="theme-fab" style="background:${t.fabBg};border-radius:${t.fabRadius};border-color:${t.border};">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${t.fab}" stroke-width="1.7"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div class="theme-bubble" style="background:${t.bubble};border-color:${t.border};border-radius:${parseInt(t.fabRadius)>20?'10px':'4px'};"></div>
+      </div>
+      <div class="theme-name" style="color:${t.textColor||t.fab};">${t.name}</div>
+      <div class="theme-desc" style="color:${t.textColor||t.fab};">${t.desc}</div>
+    </div>
+  `).join('');
+}
+function selectTheme(id){
+  selectedTheme=id;
+  document.querySelectorAll('.theme-card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('theme-'+id).classList.add('selected');
+}
+buildThemeGrid();
+updateFieldsForBusinessType();
+
+/* ════════════════════════════════════════
+   WHATSAPP TOGGLE
+════════════════════════════════════════ */
 function toggleWA(){document.getElementById('wa-num-wrap').classList.toggle('show',document.getElementById('wa-toggle-check').checked);}
 
+/* ════════════════════════════════════════
+   GENERATE EMBED
+════════════════════════════════════════ */
 function generateEmbed(){
   const name=document.getElementById('j-name').value.trim();
   const btype=document.getElementById('j-btype').value;
@@ -446,7 +616,9 @@ function generateEmbed(){
   if(!btype){alert('Please select business type!');return;}
 
   const cid='soltai_'+Date.now().toString(36);
-  const c={id:cid,name,btype,site,botname,welcome,plan,phone,email,address,timings:openTime&&closeTime?`${openTime} to ${closeTime}`:'',days,services,pricing,team,instructions,faqs,waOn,wanum,addedAt:Date.now()};
+  const c={id:cid,name,btype,site,botname,welcome,plan,phone,email,address,
+    timings:openTime&&closeTime?`${openTime} to ${closeTime}`:'',days,services,pricing,team,instructions,faqs,
+    widgetTheme:selectedTheme,waOn,wanum,addedAt:Date.now()};
 
   const clients=getClients();clients.push(c);saveClients(clients);
   showEmbedPage(c);
@@ -456,15 +628,37 @@ function generateEmbed(){
   document.getElementById('j-plan').value='Growth — ₹9,999/month';
   document.getElementById('wa-toggle-check').checked=false;
   document.getElementById('wa-num-wrap').classList.remove('show');
+  selectedTheme='aurora';
+  buildThemeGrid();
+  updateFieldsForBusinessType();
 }
 
+/* ════════════════════════════════════════
+   BUILD EMBED CODE (base64 config + theme)
+════════════════════════════════════════ */
 function buildEmbedCode(c){
+  const cfg={
+    name:c.name, btype:c.btype, botname:c.botname, welcome:c.welcome,
+    phone:c.phone||'', email:c.email||'', address:c.address||'',
+    timings:c.timings||'', days:c.days||'',
+    services:c.services||'', pricing:c.pricing||'', team:c.team||'',
+    instructions:c.instructions||'', faqs:c.faqs||''
+  };
+  let b64='';
+  try{ b64=btoa(unescape(encodeURIComponent(JSON.stringify(cfg)))); }catch(e){ b64=''; }
+
   const waLine=c.waOn&&c.wanum?`\n  data-whatsapp="${c.wanum.replace(/\D/g,'')}"`:'';
-  return `<!-- SOLTAI AI Chatbot | ${c.name} -->\n<script\n  src="https://soltai.onrender.com/widget.js"\n  data-client-id="${c.id}"\n  data-bot-name="${c.botname}"\n  data-welcome="${c.welcome}"\n  data-business="${c.btype}"\n  data-business-name="${c.name}"${waLine}\n  async>\n<\/script>`;
+  const theme=c.widgetTheme||'dark';
+
+  return `<!-- SOLTAI AI Chatbot | ${c.name} -->\n<script\n  src="https://soltai.onrender.com/widget.js"\n  data-config="${b64}"\n  data-theme="${theme}"\n  data-client-id="${c.id}"${waLine}\n  async>\n<\/script>`;
 }
 
+/* ════════════════════════════════════════
+   SHOW EMBED PAGE
+════════════════════════════════════════ */
 function showEmbedPage(c){
-  const rows=[['Client',c.name],['Business',c.btype],['Bot Name',c.botname],['Phone',c.phone||'—'],['Email',c.email||'—'],['Timings',c.timings?`${c.timings}`:c.days||'—'],['Plan',planKey(c.plan)],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled']];
+  const themeName=(WIDGET_THEMES.find(t=>t.id===(c.widgetTheme||'dark'))||{}).name||'Midnight';
+  const rows=[['Client',c.name],['Business',c.btype],['Bot Name',c.botname],['Phone',c.phone||'—'],['Email',c.email||'—'],['Timings',c.timings?`${c.timings}`:c.days||'—'],['Widget Design',themeName],['Plan',planKey(c.plan)],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled']];
   document.getElementById('client-summary').innerHTML=rows.map(([k,v])=>`<div class="csr"><span class="csk">${k}</span><span class="csv">${v}</span></div>`).join('');
   document.getElementById('embed-code-box').textContent=buildEmbedCode(c);
   const waBtn=document.getElementById('wa-send-btn');
@@ -486,14 +680,18 @@ function copyCode(){
   });
 }
 
+/* ════════════════════════════════════════
+   MODAL
+════════════════════════════════════════ */
 let modalClientId=null;
 function openModal(cid){
   const c=getClients().find(x=>x.id===cid);if(!c)return;
   modalClientId=cid;
+  const themeName=(WIDGET_THEMES.find(t=>t.id===(c.widgetTheme||'dark'))||{}).name||'Midnight';
   document.getElementById('modal-name').textContent=c.name;
   document.getElementById('modal-btype').textContent=c.btype+' · '+planKey(c.plan);
-  const fields=[['Bot Name',c.botname||'—'],['Phone',c.phone||'—'],['Email',c.email||'—'],['Address',c.address||'—'],['Timings',c.timings||'—'],['Working Days',c.days||'—'],['Services',c.services?c.services.split('\n').slice(0,3).join(', ')+(c.services.split('\n').length>3?'...':''):'—'],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled'],['Added',fmtDate(c.addedAt)],['Client ID',c.id.slice(-8)]];
-  document.getElementById('modal-grid').innerHTML=fields.map(([k,v],i)=>`<div class="modal-field" style="${i>=6?'grid-column:1/-1':''}"><div class="mf-label">${k}</div><div class="mf-val">${v}</div></div>`).join('');
+  const fields=[['Bot Name',c.botname||'—'],['Phone',c.phone||'—'],['Email',c.email||'—'],['Address',c.address||'—'],['Timings',c.timings||'—'],['Working Days',c.days||'—'],['Widget Design',themeName],['Services',c.services?c.services.split('\n').slice(0,3).join(', ')+(c.services.split('\n').length>3?'...':''):'—'],['WhatsApp',c.waOn?(c.wanum||'Enabled'):'Disabled'],['Added',fmtDate(c.addedAt)],['Client ID',c.id.slice(-8)]];
+  document.getElementById('modal-grid').innerHTML=fields.map(([k,v],i)=>`<div class="modal-field" style="${i>=7?'grid-column:1/-1':''}"><div class="mf-label">${k}</div><div class="mf-val">${v}</div></div>`).join('');
   const waBtn=document.getElementById('modal-wa-btn');
   if(c.waOn&&c.wanum){waBtn.href=`https://wa.me/${c.wanum.replace(/\D/g,'')}?text=${encodeURIComponent(`Hi! Following up on SOLTAI chatbot for ${c.name}`)}`;waBtn.classList.remove('modal-wa-hidden');}
   else{waBtn.classList.add('modal-wa-hidden');}
@@ -503,12 +701,18 @@ function viewClientCode(){const c=getClients().find(x=>x.id===modalClientId);if(
 function closeModal(e){if(e.target===document.getElementById('modal-bg'))closeModalDirect();}
 function closeModalDirect(){document.getElementById('modal-bg').classList.remove('open');modalClientId=null;}
 
+/* ════════════════════════════════════════
+   DELETE
+════════════════════════════════════════ */
 function deleteClient(cid){
   if(!confirm('Delete this client? Cannot be undone.'))return;
   saveClients(getClients().filter(c=>c.id!==cid));
   renderDash();showToast('Client deleted');
 }
 
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2500);}
 
 renderDash();
