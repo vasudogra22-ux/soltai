@@ -11,14 +11,14 @@ html{scroll-behavior:smooth;}
 body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hidden;}
 .navbar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(83,104,120,0.1);}
 .logo{font-family:'Inter',sans-serif;font-weight:500;font-size:15px;letter-spacing:0.2em;color:#e8eaf0;}
-.nav-links{display:flex;gap:40px;}
+.nav-links{display:flex;gap:40px;margin-left:28px;}
 .nav-link{font-size:14px;color:rgba(200,205,216,0.45);text-decoration:none;position:relative;transition:color 0.2s;cursor:pointer;}
 .nav-link:hover,.nav-link.active{color:#e8eaf0;}
 .nav-link.active::after{content:'';position:absolute;bottom:-6px;left:0;right:0;height:2px;background:#536878;border-radius:1px;}
 .page{display:none;min-height:100vh;}
 .page.active{display:block;}
-.hero{min-height:100vh;background:#000;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 100px;position:relative;}
-.hero-inner{max-width:540px;}
+.hero{min-height:100vh;background:#000;display:flex;flex-direction:column;justify-content:center;padding:130px 32px 100px;position:relative;overflow:hidden;}
+.hero-inner{max-width:540px;position:relative;z-index:2;}
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(50px,9vw,82px);font-weight:700;line-height:1.08;margin-bottom:24px;letter-spacing:-0.01em;}
 .hero-title .accent{color:#536878;}
 .hero-title .white{color:#fff;}
@@ -30,7 +30,7 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .btn-outline:hover{border-color:rgba(200,205,216,0.65);transform:translateY(-1px);}
 .hint{margin-top:18px;font-size:12px;color:rgba(200,205,216,0.32);display:flex;align-items:center;gap:8px;}
 .hint-dot{width:6px;height:6px;border-radius:50%;background:#536878;}
-.ai-pulse{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;}
+.ai-pulse{position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:14px;z-index:2;}
 .pulse-rings{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(83,104,120,0.5);animation:expandRing 2.4s ease-out infinite;}
 .ring:nth-child(1){width:20px;height:20px;animation-delay:0s;}
@@ -47,7 +47,7 @@ body{background:#000;color:#e8eaf0;font-family:'Inter',sans-serif;overflow-x:hid
 .contact-title .accent{color:#536878;}
 .contact-sub{font-size:13px;color:rgba(200,205,216,0.38);line-height:1.7;margin-bottom:36px;max-width:280px;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
-@media(max-width:600px){.form-row{grid-template-columns:1fr;}.nav-links{gap:18px;}}
+@media(max-width:600px){.form-row{grid-template-columns:1fr;}.nav-links{gap:18px;margin-left:18px;}}
 .input-wrap{position:relative;}
 .input-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:rgba(83,104,120,0.65);pointer-events:none;}
 .textarea-icon{position:absolute;left:15px;top:15px;color:rgba(83,104,120,0.65);pointer-events:none;}
@@ -201,7 +201,30 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 .typing span:nth-child(3){animation-delay:0.4s;}
 #toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);background:rgba(83,104,120,0.92);color:#e8eaf0;padding:11px 24px;border-radius:50px;font-size:13px;display:none;z-index:400;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
 @keyframes modalIn{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
+
+/* HERO BACKGROUND ANIMATION — Particle Wave + Palm Tree + Cyber Sun */
+.wave-canvas{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%;z-index:0;pointer-events:none;}
+
+.palm-tree{position:absolute;bottom:0;z-index:2;pointer-events:none;
+  transform-origin:bottom center;animation:palmSway 6s ease-in-out infinite;
+  filter:drop-shadow(0 0 6px rgba(83,104,120,0.35));}
+.palm-tree path{fill:#2e4256;}
+@keyframes palmSway{0%,100%{transform:rotate(-1.2deg);}50%{transform:rotate(1.2deg);}}
+.palm-1{left:-1%;width:150px;height:228px;}
+
+.hero-sun{position:absolute;top:13%;right:9%;width:70px;height:70px;border-radius:50%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle,#fff8e6 0%,#dff0ff 35%,#7cc0e8 70%,transparent 100%);
+  box-shadow:0 0 40px 14px rgba(140,210,255,0.5),0 0 80px 28px rgba(255,236,170,0.18);
+  animation:sunGlow 4s ease-in-out infinite;}
+@keyframes sunGlow{0%,100%{opacity:0.9;transform:scale(1);}50%{opacity:1;transform:scale(1.06);}}
+
+@media(max-width:480px){
+  .hero-sun{width:48px;height:48px;top:10%;right:7%;}
+  .palm-1{width:95px;height:145px;}
+}
 </style>
+
+
 </head>
 <body>
 
@@ -218,6 +241,17 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
 <!-- HOME -->
 <div class="page active" id="page-home">
   <section class="hero">
+    <div class="hero-sun"></div>
+    <canvas class="wave-canvas" id="wave-canvas"></canvas>
+    <svg class="palm-tree palm-1" viewBox="0 0 220 320">
+      <path d="M58,320 C46,240 70,160 96,90 C102,78 90,72 84,84 C58,158 32,240 44,320 Z"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(-75 92 86)"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(-35 92 86)"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(0 92 86)"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(35 92 86)"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(75 92 86)"/>
+      <path d="M92,86 C130,60 175,55 210,70 C175,68 130,85 100,108 Z" transform="rotate(115 92 86)"/>
+    </svg>
     <div class="hero-inner">
       <h1 class="hero-title"><span class="accent">AI Powered</span><br/><span class="white">Future Solutions</span></h1>
       <p class="hero-sub">Welcome to SOLTAI AI.<br/>Build smart systems with AI technology.</p>
@@ -226,10 +260,6 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
         <button class="btn-outline" onclick="showPage('services')">Explore Services &nbsp;→</button>
       </div>
       <p class="hint"><span class="hint-dot"></span>Interactive product demo · No signup required</p>
-    </div>
-    <div class="ai-pulse">
-      <div class="pulse-rings"><div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="pulse-core"></div></div>
-      <span class="pulse-label">AI Active</span>
     </div>
   </section>
   <div class="divider"></div>
@@ -252,7 +282,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
     </div>
     <button class="btn-send" onclick="sendForm()">Send Enquiry <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
   </section>
-  <footer class="footer"><p>soltai.onrender.com</p></footer>
+  <footer class="footer"><p>soltai.in</p></footer>
 </div>
 
 <!-- SERVICES -->
@@ -281,11 +311,11 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
         <div class="sc-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.9)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
         <div class="sc-tag">Service 02</div>
         <div class="sc-title"><span class="accent">Agent</span> <span class="white">Connect</span></div>
-        <div class="sc-desc">Real human agents handle high-level queries. Business requirements, complex issues, and decisions handled personally.</div>
+        <div class="sc-desc">AI Agent attempts to resolve complex queries instantly using full business context. Can't resolve? A ticket is auto-generated and a real human takes over.</div>
         <div class="sc-features">
-          <div class="sc-feat"><span class="sc-feat-dot"></span>Real human agent replies</div>
-          <div class="sc-feat"><span class="sc-feat-dot"></span>High-level business queries</div>
-          <div class="sc-feat"><span class="sc-feat-dot"></span>Auto ticket if agent offline</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>AI Agent resolves first</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Auto ticket if AI can't resolve</div>
+          <div class="sc-feat"><span class="sc-feat-dot"></span>Real human takes over instantly</div>
           <div class="sc-feat"><span class="sc-feat-dot"></span>Full conversation dashboard</div>
         </div>
         <button class="sc-btn">Explore Agent Connect →</button>
@@ -323,14 +353,17 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
     <div style="margin-top:56px;">
       <div style="font-size:10px;letter-spacing:0.14em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Try It Live</div>
       <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;margin-bottom:8px;"><span style="color:#536878;">Live Demo</span> — Try the Bot</h3>
-      <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:24px;line-height:1.7;">A real SOLTAI chatbot — try it right here.</p>
+      <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:24px;line-height:1.7;">A real SOLTAI chatbot — try it right here. This is exactly how it will look on your client's website.</p>
       <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.22);border-radius:20px;overflow:hidden;max-width:480px;">
         <div style="background:rgba(83,104,120,0.1);border-bottom:1px solid rgba(83,104,120,0.15);padding:14px 18px;display:flex;align-items:center;gap:10px;">
           <div style="width:34px;height:34px;border-radius:50%;background:#000;border:1.5px solid #536878;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#536878;">S</span></div>
-          <div><div style="font-size:13px;font-weight:500;color:#e8eaf0;">SOLTAI Assistant</div><div style="display:flex;align-items:center;gap:5px;margin-top:1px;"><div style="width:6px;height:6px;border-radius:50%;background:#536878;animation:blink 2s infinite;"></div><span style="font-size:11px;color:rgba(83,104,120,0.8);">Online — Try me!</span></div></div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#e8eaf0;">SOLTAI Assistant</div>
+            <div style="display:flex;align-items:center;gap:5px;margin-top:1px;"><div style="width:6px;height:6px;border-radius:50%;background:#536878;animation:blink 2s infinite;"></div><span style="font-size:11px;color:rgba(83,104,120,0.8);">Online — Try me!</span></div>
+          </div>
         </div>
         <div id="demo-msgs" style="padding:16px;display:flex;flex-direction:column;gap:10px;min-height:200px;max-height:280px;overflow-y:auto;">
-          <div style="max-width:85%;padding:9px 13px;border-radius:4px 13px 13px 13px;font-size:13px;line-height:1.55;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;">Hello! I'm SOLTAI Assistant. Ask me anything! 👋</div>
+          <div style="max-width:85%;padding:9px 13px;border-radius:4px 13px 13px 13px;font-size:13px;line-height:1.55;background:rgba(83,104,120,0.12);border:1px solid rgba(83,104,120,0.18);color:#c8cdd8;align-self:flex-start;">Hello! I'm SOLTAI Assistant. Ask me anything about our AI chatbot service! 👋</div>
         </div>
         <div style="padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid rgba(83,104,120,0.1);">
           <button onclick="demoQuick('What is SOLTAI chatbot?')" style="font-size:11px;padding:5px 11px;border-radius:20px;background:rgba(83,104,120,0.1);border:1px solid rgba(83,104,120,0.25);color:#9aa5b8;cursor:pointer;font-family:'Inter',sans-serif;">What is SOLTAI?</button>
@@ -352,6 +385,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
       <h3 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,36px);font-weight:700;color:#fff;margin-bottom:8px;">Simple <span style="color:#536878;">Plans</span></h3>
       <p style="font-size:13px;color:rgba(200,205,216,0.4);margin-bottom:32px;">No hidden charges. Cancel anytime.</p>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" id="pricing-grid">
+
         <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:18px;padding:24px 20px;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(83,104,120,0.45)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(83,104,120,0.2)';this.style.transform='translateY(0)'">
           <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Starter</div>
           <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:2px;">₹4,999</div>
@@ -364,6 +398,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
           </div>
           <button onclick="openPayment('Starter','4999')" style="width:100%;background:transparent;border:1px solid rgba(83,104,120,0.35);color:#9aa5b8;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(83,104,120,0.15)'" onmouseout="this.style.background='transparent'">Get Started</button>
         </div>
+
         <div style="background:#0a0a0a;border:1.5px solid #536878;border-radius:18px;padding:24px 20px;position:relative;transition:all 0.3s;box-shadow:0 0 30px rgba(83,104,120,0.15);" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
           <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#536878;color:#000;font-size:9px;font-weight:700;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;text-transform:uppercase;">Most Popular</div>
           <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Growth</div>
@@ -378,6 +413,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
           </div>
           <button onclick="openPayment('Growth','9999')" style="width:100%;background:#536878;border:none;color:#000;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#6b8494'" onmouseout="this.style.background='#536878'">Get Started</button>
         </div>
+
         <div style="background:#0a0a0a;border:1px solid rgba(83,104,120,0.2);border-radius:18px;padding:24px 20px;transition:all 0.3s;" onmouseover="this.style.borderColor='rgba(83,104,120,0.45)';this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='rgba(83,104,120,0.2)';this.style.transform='translateY(0)'">
           <div style="font-size:10px;letter-spacing:0.1em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:12px;">Pro</div>
           <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;margin-bottom:2px;">₹19,999</div>
@@ -391,6 +427,7 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
           </div>
           <button onclick="openPayment('Pro','19999')" style="width:100%;background:transparent;border:1px solid rgba(83,104,120,0.35);color:#9aa5b8;border-radius:9px;padding:11px;font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(83,104,120,0.15)'" onmouseout="this.style.background='transparent'">Get Started</button>
         </div>
+
       </div>
       <p style="text-align:center;margin-top:16px;font-size:12px;color:rgba(200,205,216,0.3);">Enterprise plan also available — <span style="color:rgba(83,104,120,0.7);cursor:pointer;" onclick="showPage('home');setTimeout(scrollContact,300);">Contact us</span></p>
     </div>
@@ -417,19 +454,20 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
     <button class="back-btn" onclick="showPage('services')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Back</button>
     <div class="agent-hero">
       <h2 class="agent-title"><span class="accent">Agent</span> <span class="white">Connect</span></h2>
-      <p class="agent-sub">Real human agents handle your high-level business queries, requirements, and decisions. When the agent is unavailable, a ticket is automatically generated — nothing gets missed.</p>
+      <p class="agent-sub">Our AI Agent handles complex queries first — using full business context to resolve issues instantly. Only when it can't, a ticket is automatically created and a real human takes over. Nothing gets missed, customers never wait.</p>
     </div>
     <div class="how-section">
       <div class="section-label">How It Works</div>
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div><div class="step-title">Customer Sends a Query</div><div class="step-desc">A visitor submits a business query — pricing, custom requirements, partnerships, or anything complex.</div><span class="step-tag">High-level queries only</span></div></div>
-        <div class="step"><div class="step-num">2</div><div><div class="step-title">Agent Gets Notified</div><div class="step-desc">Our agent dashboard lights up with the new conversation. Full context, visitor info, reply directly.</div><span class="step-tag">Real-time dashboard</span></div></div>
-        <div class="step"><div class="step-num">3</div><div><div class="step-title">Agent Replies Personally</div><div class="step-desc">The human agent handles it personally — no bots, no automated responses for complex issues.</div><span class="step-tag">Human touch</span></div></div>
-        <div class="step"><div class="step-num">4</div><div><div class="step-title">Auto Ticket if No Response</div><div class="step-desc">If agent doesn't respond within SLA, a ticket is automatically created and escalated.</div><span class="step-tag" style="background:rgba(200,160,80,0.08);color:rgba(200,160,80,0.7);border-color:rgba(200,160,80,0.25);">Auto escalation</span></div></div>
+        <div class="step"><div class="step-num">1</div><div><div class="step-title">Customer Sends a Query</div><div class="step-desc">A visitor asks something complex — custom pricing, partnerships, or a tricky issue the chatbot can't fully handle.</div><span class="step-tag">High-level queries</span></div></div>
+        <div class="step"><div class="step-num">2</div><div><div class="step-title">AI Agent Attempts Resolution</div><div class="step-desc">Our AI Agent steps in with full business context — checking policies, pricing rules, and past conversations to resolve it intelligently.</div><span class="step-tag">AI-first response</span></div></div>
+        <div class="step"><div class="step-num">3</div><div><div class="step-title">Resolved, or Auto-Ticket Created</div><div class="step-desc">If the AI Agent resolves it — done. If not, a support ticket is generated automatically within seconds. Nothing falls through the cracks.</div><span class="step-tag" style="background:rgba(200,160,80,0.08);color:rgba(200,160,80,0.7);border-color:rgba(200,160,80,0.25);">Instant auto-escalation</span></div></div>
+        <div class="step"><div class="step-num">4</div><div><div class="step-title">Human Agent Takes Over</div><div class="step-desc">Your team gets notified with full context and conversation history — picks up exactly where the AI left off, no repeated questions for the customer.</div><span class="step-tag">Real-time dashboard</span></div></div>
       </div>
     </div>
     <div class="ticket-demo">
-      <div class="ticket-head"><span style="font-size:13px;font-weight:500;color:#c8cdd8;">Live Ticket Queue</span><span style="font-size:10px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;">DEMO</span></div>
+      <div class="ticket-head"><span style="font-size:13px;font-weight:500;color:#c8cdd8;">Live Activity Feed</span><span style="font-size:10px;color:rgba(83,104,120,0.6);letter-spacing:0.06em;">DEMO</span></div>
+      <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M12 2v20M2 12h20"/></svg></div><div class="tkt-body"><div class="tkt-name">Sneha Kapoor — Custom Plan Pricing</div><div class="tkt-msg">"We need pricing for 200 users across 3 locations."</div><div class="tkt-meta"><span class="tkt-badge tkt-open">✨ AI Resolved</span><span class="tkt-time">just now</span></div></div></div>
       <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Rajesh Mehta — Enterprise Pricing Query</div><div class="tkt-msg">"We need a custom plan for 500+ employees. Can we schedule a call?"</div><div class="tkt-meta"><span class="tkt-badge tkt-open">Open</span><span class="tkt-time">2 min ago</span></div></div></div>
       <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Priya Sharma — Integration Requirement</div><div class="tkt-msg">"Need chatbot integrated with our CRM system."</div><div class="tkt-meta"><span class="tkt-badge tkt-pending">Pending</span><span class="tkt-time">18 min ago</span></div></div></div>
       <div class="tkt-item"><div class="tkt-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(83,104,120,0.7)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="tkt-body"><div class="tkt-name">Ankit Verma — Partnership Inquiry</div><div class="tkt-msg">"Interested in white-labeling your chatbot."</div><div class="tkt-meta"><span class="tkt-badge tkt-resolved">Resolved</span><span class="tkt-time">1 hr ago</span></div></div></div>
@@ -646,6 +684,52 @@ async function chatSend(){
   }catch{ty.remove();const er=document.createElement('div');er.className='cmsg cbot';er.textContent='Connection error.';box.appendChild(er);}
   box.scrollTop=box.scrollHeight;
 }
+
+function initWaveCanvas(){
+  const canvas=document.getElementById('wave-canvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const cols=60,rows=20;
+  let w,h;
+  function resize(){
+    const dpr=window.devicePixelRatio||1;
+    const rect=canvas.getBoundingClientRect();
+    w=rect.width;h=rect.height;
+    ctx.setTransform(1,0,0,1,0,0);
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    ctx.scale(dpr,dpr);
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  let time=0;
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(let i=0;i<rows;i++){
+      const t=i/(rows-1);
+      const y0=h*Math.pow(t,1.35);
+      const spread=w*(0.65+0.85*t);
+      const amp=5+22*t;
+      const size=0.6+2.4*t;
+      const baseAlpha=0.18+0.65*t;
+      for(let j=0;j<cols;j++){
+        const xn=j/(cols-1)-0.5;
+        const x=w/2+xn*spread;
+        const phase=time*0.55+xn*6.2+t*3.5+i*0.3;
+        const y=y0+Math.sin(phase)*amp;
+        if(y<-4||y>h+4)continue;
+        const pulse=(Math.sin(phase)+1)/2;
+        const alpha=baseAlpha*(0.55+0.45*pulse);
+        ctx.beginPath();ctx.arc(x,y,size*2.2,0,Math.PI*2);
+        ctx.fillStyle=`rgba(80,180,230,${(alpha*0.25).toFixed(3)})`;ctx.fill();
+        ctx.beginPath();ctx.arc(x,y,size,0,Math.PI*2);
+        ctx.fillStyle=`rgba(140,225,255,${alpha.toFixed(3)})`;ctx.fill();
+      }
+    }
+    time+=0.016;
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+initWaveCanvas();
 </script>
 </body>
 </html>
