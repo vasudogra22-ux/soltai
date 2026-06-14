@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SOLTAI — AI Powered Future Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -496,95 +497,58 @@ textarea.f-input{resize:none;min-height:110px;padding-top:14px;}
   <div class="cinput-area"><textarea class="cinput" id="cinput" placeholder="Ask something..." rows="1" onkeydown="chatKey(event)"></textarea><button class="csend" onclick="chatSend()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button></div>
 </div>
 
-<!-- PAYMENT MODAL -->
-<div id="pay-bg" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:500;align-items:center;justify-content:center;padding:20px;" onclick="closePayBg(event)">
-  <div style="background:#0e0e0e;border:1px solid rgba(83,104,120,0.28);border-radius:22px;width:100%;max-width:420px;overflow:hidden;animation:modalIn 0.25s ease;">
-    <div style="background:rgba(83,104,120,0.1);border-bottom:1px solid rgba(83,104,120,0.15);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;">
-      <div><div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;">Complete Payment</div><div style="font-size:12px;color:rgba(200,205,216,0.4);margin-top:2px;" id="pay-plan-label">Starter Plan — ₹4,999/month</div></div>
-      <button onclick="closePayModal()" style="background:none;border:none;cursor:pointer;color:rgba(200,205,216,0.4);padding:4px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-    </div>
-    <div style="display:flex;border-bottom:1px solid rgba(83,104,120,0.12);">
-      <button id="tab-upi" onclick="switchTab('upi')" style="flex:1;padding:14px;background:rgba(83,104,120,0.12);border:none;border-bottom:2px solid #536878;color:#e8eaf0;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">UPI</button>
-      <button id="tab-card" onclick="switchTab('card')" style="flex:1;padding:14px;background:none;border:none;border-bottom:2px solid transparent;color:rgba(200,205,216,0.45);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;">Card</button>
-    </div>
-    <div id="panel-upi" style="padding:22px;">
-      <div style="font-size:11px;letter-spacing:0.08em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:14px;">Pay with UPI App</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
-        <button onclick="payUPI('phonepe')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#5f259f;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:11px;font-weight:700;">Pe</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">PhonePe</span></button>
-        <button onclick="payUPI('gpay')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:11px;font-weight:700;color:#4285F4;">G</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">Google Pay</span></button>
-        <button onclick="payUPI('bhim')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#00529b;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:10px;font-weight:700;">BHIM</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">BHIM UPI</span></button>
-        <button onclick="payUPI('paytm')" style="display:flex;align-items:center;gap:10px;padding:13px 14px;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:12px;cursor:pointer;font-family:'Inter',sans-serif;"><div style="width:32px;height:32px;border-radius:8px;background:#00b9f1;display:flex;align-items:center;justify-content:center;"><span style="color:#fff;font-size:9px;font-weight:700;">Paytm</span></div><span style="font-size:13px;color:#c8cdd8;font-weight:500;">Paytm</span></button>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;"><div style="flex:1;height:1px;background:rgba(83,104,120,0.15);"></div><span style="font-size:11px;color:rgba(83,104,120,0.5);">OR Enter UPI ID</span><div style="flex:1;height:1px;background:rgba(83,104,120,0.15);"></div></div>
-      <div style="display:flex;gap:8px;">
-        <input id="upi-input" type="text" placeholder="yourname@upi" style="flex:1;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:11px 14px;font-size:13px;outline:none;font-family:'Inter',sans-serif;"/>
-        <button onclick="payManualUPI()" style="background:#536878;border:none;color:#000;border-radius:10px;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;">Pay</button>
-      </div>
-      <p style="font-size:11px;color:rgba(200,205,216,0.3);margin-top:8px;">Amount will be sent to: vasu.dogra.yo@okhdfcbank</p>
-    </div>
-    <div id="panel-card" style="display:none;padding:22px;">
-      <div style="font-size:11px;letter-spacing:0.08em;color:rgba(83,104,120,0.6);text-transform:uppercase;margin-bottom:16px;">Card Details</div>
-      <div style="margin-bottom:14px;"><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Card Number</label><input type="text" maxlength="19" placeholder="1234  5678  9012  3456" id="card-num" oninput="formatCard(this)" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Expiry</label><input type="text" maxlength="5" placeholder="MM/YY" id="card-exp" oninput="formatExpiry(this)" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
-        <div><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">CVV</label><input type="password" maxlength="4" placeholder="•••" id="card-cvv" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
-      </div>
-      <div style="margin-bottom:20px;"><label style="font-size:11px;color:rgba(83,104,120,0.6);display:block;margin-bottom:6px;text-transform:uppercase;">Name on Card</label><input type="text" placeholder="Your Full Name" id="card-name" style="width:100%;background:rgba(83,104,120,0.07);border:1px solid rgba(83,104,120,0.2);border-radius:10px;color:#e8eaf0;padding:12px 14px;font-size:14px;outline:none;font-family:'Inter',sans-serif;"/></div>
-      <button onclick="payCard()" id="pay-card-btn" style="width:100%;background:#536878;border:none;color:#000;border-radius:10px;padding:14px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Pay ₹<span id="pay-amount-card">4,999</span></button>
-      <p style="font-size:11px;color:rgba(200,205,216,0.25);text-align:center;margin-top:10px;">🔒 256-bit SSL encrypted</p>
-    </div>
-  </div>
-</div>
 
 <script>
-const UPI_ID='vasu.dogra.yo@okhdfcbank';
-const UPI_NAME='SOLTAI';
-let payAmount='4999';
-let payPlan='Starter';
+const RAZORPAY_KEY_ID = 'rzp_live_T1dIcxPyNe0tg8';
 
-function openPayment(plan,amount){
-  payPlan=plan;payAmount=amount;
-  const fmt=parseInt(amount).toLocaleString('en-IN');
-  document.getElementById('pay-plan-label').textContent=plan+' Plan — ₹'+fmt+'/month';
-  document.getElementById('pay-amount-card').textContent=fmt;
-  document.getElementById('pay-bg').style.display='flex';
-  switchTab('upi');
-}
-function closePayModal(){document.getElementById('pay-bg').style.display='none';}
-function closePayBg(e){if(e.target===document.getElementById('pay-bg'))closePayModal();}
-function switchTab(tab){
-  document.getElementById('panel-upi').style.display=tab==='upi'?'block':'none';
-  document.getElementById('panel-card').style.display=tab==='card'?'block':'none';
-  const u=document.getElementById('tab-upi'),c=document.getElementById('tab-card');
-  if(tab==='upi'){u.style.background='rgba(83,104,120,0.12)';u.style.borderBottom='2px solid #536878';u.style.color='#e8eaf0';c.style.background='none';c.style.borderBottom='2px solid transparent';c.style.color='rgba(200,205,216,0.45)';}
-  else{c.style.background='rgba(83,104,120,0.12)';c.style.borderBottom='2px solid #536878';c.style.color='#e8eaf0';u.style.background='none';u.style.borderBottom='2px solid transparent';u.style.color='rgba(200,205,216,0.45)';}
-}
-function payUPI(app){
-  const amt=payAmount;
-  const note=encodeURIComponent('SOLTAI '+payPlan+' Plan');
-  const links={phonepe:`phonepe://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,gpay:`tez://upi/pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,bhim:`bhim://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`,paytm:`paytmmp://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR&tn=${note}`};
-  window.location.href=links[app];
-  setTimeout(()=>{window.open('https://'+(app==='phonepe'?'www.phonepe.com':app==='gpay'?'pay.google.com':app==='bhim'?'www.bhimupi.org.in':'paytm.com'),'_blank');},1500);
-}
-function payManualUPI(){
-  const id=document.getElementById('upi-input').value.trim();
-  if(!id){alert('Please enter your UPI ID');return;}
-  window.location.href=`upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${payAmount}&cu=INR&tn=${encodeURIComponent('SOLTAI '+payPlan+' Plan')}`;
-}
-function formatCard(inp){let v=inp.value.replace(/\D/g,'').slice(0,16);inp.value=v.replace(/(.{4})/g,'$1  ').trim();}
-function formatExpiry(inp){let v=inp.value.replace(/\D/g,'').slice(0,4);if(v.length>=2)v=v.slice(0,2)+'/'+v.slice(2);inp.value=v;}
-function payCard(){
-  const num=document.getElementById('card-num').value.replace(/\s/g,'');
-  const exp=document.getElementById('card-exp').value;
-  const cvv=document.getElementById('card-cvv').value;
-  const name=document.getElementById('card-name').value.trim();
-  if(num.length<16){alert('Please enter a valid card number');return;}
-  if(exp.length<5){alert('Please enter expiry date');return;}
-  if(cvv.length<3){alert('Please enter CVV');return;}
-  if(!name){alert('Please enter name on card');return;}
-  const btn=document.getElementById('pay-card-btn');
-  btn.textContent='Processing...';btn.style.opacity='0.7';
-  setTimeout(()=>{closePayModal();alert('Payment received! We will confirm your subscription within 24 hours.\nContact: vasudogra22@gmail.com | +91-8750905404');btn.innerHTML='Pay ₹<span id="pay-amount-card">'+parseInt(payAmount).toLocaleString('en-IN')+'</span>';btn.style.opacity='1';},2000);
+async function openPayment(plan, amount){
+  try{
+    const order = await fetch('/create-order', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({amount: amount, plan: plan})
+    }).then(r=>r.json());
+
+    if(!order || order.error){
+      alert('Something went wrong starting the payment. Please try again or contact us at +91-8750905404.');
+      return;
+    }
+
+    const options = {
+      key: RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: 'INR',
+      name: 'SOLTAI',
+      description: plan + ' Plan — Monthly Subscription',
+      order_id: order.id,
+      handler: function(response){
+        fetch('/verify-payment', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(response)
+        }).then(r=>r.json()).then(d=>{
+          if(d.status==='success'){
+            alert('Payment successful! 🎉 We will set up your '+plan+' plan within 24 hours. A confirmation will be sent to your email.');
+          }else{
+            alert('Payment received but verification failed. Please contact us at vasudogra22@gmail.com with your Payment ID: '+response.razorpay_payment_id);
+          }
+        }).catch(()=>{
+          alert('Payment received! Please contact us at vasudogra22@gmail.com with your Payment ID: '+response.razorpay_payment_id);
+        });
+      },
+      prefill: { name:'', email:'', contact:'' },
+      notes: { plan: plan },
+      theme: { color: '#536878' }
+    };
+
+    const rzp = new Razorpay(options);
+    rzp.on('payment.failed', function(){
+      alert('Payment failed or cancelled. Please try again.');
+    });
+    rzp.open();
+  }catch(e){
+    alert('Something went wrong. Please try again or contact us at +91-8750905404.');
+  }
 }
 
 const faqs=[
